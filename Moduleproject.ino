@@ -1,7 +1,7 @@
 void setup() {
   // Open serial connection
   Serial.begin(9600);
-  pinMode(5V , OUTPUT);
+  pinMode(3.3V , OUTPUT);
   pinMode(GND , OUTPUT);
   pinMode(13 , OUTPUT);
   pinMode(12 , OUTPUT);

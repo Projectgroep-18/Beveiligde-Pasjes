@@ -20,8 +20,8 @@ c.execute('''CREATE TABLE versleuteling
 c.execute('''CREATE TABLE history
              ('UID' integer, 'Datum' text, 'tijd' text, 'TID' integer)''')
 
-c.execute('''INSERT INTO persoon VALUES (3529442660, 'Dirk-Jan Verandering', 'Gast')''')
-c.execute('''INSERT INTO persoon VALUES (4039826975, 'Jan Janssen', 'Eigenaar')''')
+c.execute('''INSERT INTO persoon VALUES (241821987043432866395696, 'Dirk-Jan Verandering', 'Gast')''')
+c.execute('''INSERT INTO persoon VALUES (246452191867917525661493, 'Jan Janssen', 'Eigenaar')''')
 # Save (commit) the changes
 conn.commit()
 

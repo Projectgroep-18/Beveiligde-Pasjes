@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.messagebox
+import UseDatabase
 
 root = Tk()
 
@@ -35,28 +36,28 @@ def search():
     else:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
 
-def searchName():
+def searchNameGUI():
     var1 = entryName1.get()
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     else:
-        print(var1)
+        UseDatabase.searchNaam(var1)
 
-def searchCID():
+def searchCIDGUI():
     var1 = entryCID1.get()
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     elif string_int(var1) == -1:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
     else:
-        print(var1)
+        UseDatabase.searchCID(string_int(var1))
 
-def searchRights():
+def searchRightsGUI():
     var1 = entryRights1.get()
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     else:
-        print(var1)
+        UseDatabase.searchRechten(var1)
 
 def add_vars():
     var1 = entryName2.get()
@@ -66,7 +67,7 @@ def add_vars():
     var3 = entryRights2.get()
     if var1 != "" and var2 != "" and var3 != "":
         if var2 != -1:
-            print(var1, var2, var3)
+            UseDatabase.add(var2, var1, var3)
         else:
             tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
     else:
@@ -82,9 +83,9 @@ inputVar4 = ""                                                              # In
 inputVar5 = ""                                                              # Input UID
 inputVar6 = ""                                                              # Input rights
 
-buttonSearchName = Button(root, text="Search", command=searchName)
-buttonSearchCID = Button(root, text="Search", command=searchCID)
-buttonSearchRights = Button(root, text="Search", command=searchRights)
+buttonSearchName = Button(root, text="Search", command=searchNameGUI)
+buttonSearchCID = Button(root, text="Search", command=searchCIDGUI)
+buttonSearchRights = Button(root, text="Search", command=searchRightsGUI)
 
 #buttonSearch = Button(root, text="Search", command=search, height=3)
 entryName1 = Entry(root, textvariable=inputVar1)

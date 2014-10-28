@@ -75,10 +75,7 @@ def searchNaam(Naam):
         print('Rechten = ',Rechten)
         print('CID = ',CID)
         print('Access = ',Access)
-        return Naam
-        return Rechten
-        return CID
-        return Access
+        return Naam, Rechten, CID, Access
     else:
         print('not found.')
         return False
@@ -95,10 +92,7 @@ def searchCID(CID):
         print('Rechten = ',Rechten)
         print('CID = ',CID)
         print('Access = ',Access)
-        return Naam
-        return Rechten
-        return CID
-        return Access
+        return Naam, Rechten, CID, Access
     else:
         print('not found.')
         return False
@@ -115,10 +109,7 @@ def searchRechten(Rechten):
         print('Rechten = ',Rechten)
         print('CID = ',CID)
         print('Access = ',Access)
-        return Naam
-        return Rechten
-        return CID
-        return Access
+        return Naam, Rechten, CID, Access
     else:
         print('not found.')
         return False

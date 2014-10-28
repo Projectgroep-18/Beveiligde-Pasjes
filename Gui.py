@@ -1,9 +1,18 @@
 from tkinter import *
 import tkinter.messagebox
 
+root = Tk()
 
-def useless():
-    print("I lied, i actually do something! HUEHUEHUE")
+
+def changeImg():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    if doorState.get() == 1:
+        labelDoor.configure(image=doorO)
+        labelDoor.image = doorO
+    else:
+        labelDoor.configure(image=doorC)
+        labelDoor.image = doorC
 
 
 def string_int(string):
@@ -41,7 +50,7 @@ def print_vars2():
         tkinter.messagebox.showerror("Wrong Input", "Some fields are empty")
 
 
-root = Tk()
+
 root.title("Dit is de titel")
 inputVar1 = ""                                                              # Search name
 inputVar2 = ""                                                              # Search UID
@@ -67,6 +76,11 @@ entryRights2 = Entry(root, textvariable=inputVar6)
 labelRights2 = Label(root, text="Rights")
 labelWhite = Label(root, text="")
 
+doorStart = PhotoImage(file="door_closed.png")
+labelDoor = Label(root, image=doorStart)
+doorState = IntVar()
+doorButton = Checkbutton(root, variable=doorState, command=changeImg)
+
 labelName1.grid(row=0, column=0, sticky=E)
 entryName1.grid(row=0, column=1)
 labelUID1.grid(row=1, column=0, sticky=E)
@@ -83,6 +97,9 @@ entryUID2.grid(row=5, column=1)
 labelRights2.grid(row=6, column=0, sticky=E)
 entryRights2.grid(row=6, column=1)
 buttonEnter.grid(row=4, column=2, rowspan=3)
+
+labelDoor.grid(row=7, column=1)
+doorButton.grid(row=7, column=0)
 
 
 

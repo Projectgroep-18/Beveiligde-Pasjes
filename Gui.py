@@ -28,12 +28,17 @@ def print_vars1():
 
 def print_vars2():
     var1 = (entryName2.get())
-    var2 = (string_int(entryUID2.get()))
+    var2 = (entryUID2.get())
+    if var2 != "":
+        var2 = string_int(var2)
     var3 = (entryRights2.get())
-    if var2 != -1:
-        print(var1, var2, var3)
+    if var1 != "" and var2 != "" and var3 != "":
+        if var2 != -1:
+            print(var1, var2, var3)
+        else:
+            tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
     else:
-        tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+        tkinter.messagebox.showerror("Wrong Input", "Some fields are empty")
 
 
 root = Tk()

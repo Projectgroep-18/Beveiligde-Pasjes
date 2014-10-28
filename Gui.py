@@ -1,14 +1,37 @@
 from tkinter import *
+import tkinter.messagebox
 
 
 def useless():
     print("I lied, i actually do something! HUEHUEHUE")
 
 
-def printVars():
-    print(entryName.get())
-    print(entryUID.get())
-    print(entryRights.get())
+def stringInt(string):
+    try:
+        int(string)
+        return int(string)
+    except ValueError:
+        return -1
+
+
+def printVars1():
+    var1 = (entryName1.get())
+    var2 = (stringInt(entryUID1.get()))
+    var3 = (entryRights1.get())
+    if var2 != -1:
+        print(var1, var2, var3)
+    else:
+        tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+
+
+def printVars2():
+    var1 = (entryName2.get())
+    var2 = (stringInt(entryUID2.get()))
+    var3 = (entryRights2.get())
+    if var2 != -1:
+        print(var1, var2, var3)
+    else:
+        tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
 
 root = Tk()
@@ -20,7 +43,7 @@ inputVar4 = ""                                                              # In
 inputVar5 = ""                                                              # Input UID
 inputVar6 = ""                                                              # Input rights
 
-buttonSearch = Button(root, text="Search", command=printVars, height=3)
+buttonSearch = Button(root, text="Search", command=printVars1, height=3)
 entryName1 = Entry(root, textvariable=inputVar1)
 labelName1 = Label(root, text="Name")
 entryUID1 = Entry(root, textvariable=inputVar2)
@@ -28,7 +51,7 @@ labelUID1 = Label(root, text="User ID")
 entryRights1 = Entry(root, textvariable=inputVar3)
 labelRights1 = Label(root, text="Rights")
 
-buttonEnter = Button(root, text="Enter", command=printVars, height=3)
+buttonEnter = Button(root, text="Enter", command=printVars2, height=3)
 entryName2 = Entry(root, textvariable=inputVar4)
 labelName2 = Label(root, text="Name")
 entryUID2 = Entry(root, textvariable=inputVar5)

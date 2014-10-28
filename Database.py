@@ -12,16 +12,16 @@ c.execute('''DROP TABLE IF EXISTS history''')
 
 # Create table
 c.execute('''CREATE TABLE persoon
-             ('UID' integer, 'Naam' text, 'Rechten' text)''')
+             ('UID' integer primary key, 'CID' integer, 'Naam' text, 'Rechten' text, 'Access' text)''')
 
 c.execute('''CREATE TABLE versleuteling
              ('KID' integer, 'key' text)''')
 
 c.execute('''CREATE TABLE history
-             ('UID' integer, 'Datum' text, 'tijd' text, 'TID' integer)''')
+             ('UID' integer primary key, 'CID' integer, 'Datum' text, 'tijd' text, 'TID' integer)''')
 
-c.execute('''INSERT INTO persoon VALUES (241821987043432866395696, 'Dirk-Jan Verandering', 'Gast')''')
-c.execute('''INSERT INTO persoon VALUES (246452191867917525661493, 'Jan Janssen', 'Eigenaar')''')
+c.execute('''INSERT INTO persoon VALUES (1, 241821987043432866395696, 'Dirk-Jan Verandering', 'Gast', 'Uit')''')
+c.execute('''INSERT INTO persoon VALUES (2, 246452191867917525661493, 'Jan Janssen', 'Eigenaar', 'Aan')''')
 # Save (commit) the changes
 conn.commit()
 

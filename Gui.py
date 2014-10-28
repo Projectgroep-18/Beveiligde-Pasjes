@@ -1,12 +1,24 @@
 from tkinter import *
+import tkinter.messagebox
 
 def useless():
     print("I lied, i actually do something! HUEHUEHUE")
 
+def stringInt(string):
+    try:
+        int(string)
+        return int(string)
+    except ValueError:
+        return -1
+
 def printVars():
-    print(entryName.get())
-    print(entryUID.get())
-    print(entryRights.get())
+    var1 = (entryName.get())
+    var2 = (stringInt(entryUID.get()))
+    var3 = (entryRights.get())
+    if var2 != -1:
+        print(var1, var2, var3)
+    else:
+        tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
 root = Tk()
 root.title("Dit is de titel")

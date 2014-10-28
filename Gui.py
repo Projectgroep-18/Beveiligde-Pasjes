@@ -35,8 +35,30 @@ def search():
     else:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
 
+def searchName():
+    var1 = entryName1.get()
+    if var1 == "":
+        tkinter.messagebox.showerror("No Input", "There must be an input")
+    else:
+        print(var1)
 
-def print_vars2():
+def searchCID():
+    var1 = entryCID1.get()
+    if var1 == "":
+        tkinter.messagebox.showerror("No Input", "There must be an input")
+    elif string_int(var1) == -1:
+        tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
+    else:
+        print(var1)
+
+def searchRights():
+    var1 = entryRights1.get()
+    if var1 == "":
+        tkinter.messagebox.showerror("No Input", "There must be an input")
+    else:
+        print(var1)
+
+def add_vars():
     var1 = entryName2.get()
     var2 = entryCID2.get()
     if var2 != "":
@@ -60,7 +82,11 @@ inputVar4 = ""                                                              # In
 inputVar5 = ""                                                              # Input UID
 inputVar6 = ""                                                              # Input rights
 
-buttonSearch = Button(root, text="Search", command=search, height=3)
+buttonSearchName = Button(root, text="Search", command=searchName)
+buttonSearchCID = Button(root, text="Search", command=searchCID)
+buttonSearchRights = Button(root, text="Search", command=searchRights)
+
+#buttonSearch = Button(root, text="Search", command=search, height=3)
 entryName1 = Entry(root, textvariable=inputVar1)
 labelName1 = Label(root, text="Name")
 entryCID1 = Entry(root, textvariable=inputVar2)
@@ -68,7 +94,7 @@ labelCID1 = Label(root, text="Card ID")
 entryRights1 = Entry(root, textvariable=inputVar3)
 labelRights1 = Label(root, text="Rights")
 
-buttonEnter = Button(root, text="Enter", command=print_vars2, height=3)
+buttonEnter = Button(root, text="Enter", command=add_vars, height=3)
 entryName2 = Entry(root, textvariable=inputVar4)
 labelName2 = Label(root, text="Name")
 entryCID2 = Entry(root, textvariable=inputVar5)
@@ -82,13 +108,17 @@ labelDoor = Label(root, image=doorStart)
 doorState = IntVar()
 doorButton = Checkbutton(root, variable=doorState, command=changeImg)
 
+buttonSearchName.grid(row=0, column=2)
+buttonSearchCID.grid(row=1, column=2)
+buttonSearchRights.grid(row=2, column=2)
+
 labelName1.grid(row=0, column=0, sticky=E)
 entryName1.grid(row=0, column=1)
 labelCID1.grid(row=1, column=0, sticky=E)
 entryCID1.grid(row=1, column=1)
 labelRights1.grid(row=2, column=0, sticky=E)
 entryRights1.grid(row=2, column=1)
-buttonSearch.grid(row=0, column=2, rowspan=3)
+#buttonSearch.grid(row=0, column=3, rowspan=3)
 
 labelWhite.grid(row=3)
 labelName2.grid(row=4, column=0, sticky=E)

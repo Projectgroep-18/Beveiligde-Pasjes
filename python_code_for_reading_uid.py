@@ -11,6 +11,9 @@ COMPOORT = int(input("De Arduino is aangesloten op COM-poort "))
 
 ser = serial.Serial(COMPOORT - 1)
 
+def decrypt(userid):
+	return userid - key
+	
 while True:
 	temp = []
 	while not temp:
@@ -30,8 +33,7 @@ while True:
 	ser.write(str(key).encode())
 	s = ser.readline().strip()
 	userid = int(s)
-	userid = userid - key
-	print(userid)
+	userid = decrypt(userid)
 	Door = UseDatabase.check(userid, TID)
 	print(Door)
 

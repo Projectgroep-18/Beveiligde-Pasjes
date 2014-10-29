@@ -15,13 +15,11 @@ def check(cid, tid=1):
     rechten = c.fetchall()
     if rechten:
         rechten = rechten[0][0]
-        print(rechten)
     else:
         print("Deze terminal bestaat niet")
         return False
     if persoon:
         persoon = persoon[0][0]
-    print("rechten van de persoon =", persoon)
     if not persoon:
         print('Deze Card ID staat niet in de database, of de kaart is gedisabled.')
         return False
@@ -35,10 +33,8 @@ def check(cid, tid=1):
         if temp != 0:
             c.execute("""SELECT Rechten from terminal WHERE TID = %i AND cid = %i""" % (tid, cid))
             terminal = c.fetchall()
-            print(terminal)
             if terminal:
                 terminal = terminal[0][0]
-                print(terminal)
                 if temp == cid:
                     print("Welkom!")
                     return True

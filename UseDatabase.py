@@ -19,6 +19,8 @@ def check(CID, TID=1):
     terminal = c.fetchall()
     if terminal:
         terminal = terminal[0][0]
+    else:
+        return "Deze deur bestaat niet!"
     print("terminal =", terminal)
     if not persoon:
         print('Deze Card ID staat niet in de database.')

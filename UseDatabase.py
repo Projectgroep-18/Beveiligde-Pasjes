@@ -256,7 +256,7 @@ def fire():
         firestate = 1
     elif firestate == 0:
         firestate = 1
-        for x in range(0, amountofdoors):
+        for x in range(1, amountofdoors):
             opendoor(x)
         c.execute("""UPDATE fire SET Fire = 1""")
         print("Het brandalarm staat nu aan.")

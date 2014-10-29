@@ -8,6 +8,7 @@ from time import strftime
 
 c = conn.cursor()
 
+#Functie om te controleren of de gebruiker de deur mag openen
 def check(cid, tid=1):
     c.execute("""SELECT UID from persoon where CID = %i""" % cid)
     uid = c.fetchall()
@@ -32,7 +33,7 @@ def check(cid, tid=1):
         return False
     elif persoon > rechten:
         print('Open deur!')
-        opendoor(uid, tid)
+        addhistory(uid, tid)
         return True
     elif persoon == rechten:
         c.execute("""SELECT cid FROM terminal WHERE tid = %i""" % tid)
@@ -45,7 +46,7 @@ def check(cid, tid=1):
                 terminal = terminal[0][0]
                 if temp == cid:
                     print("Welkom!")
-                    opendoor(uid, tid)
+                    addhistory(uid, tid)
                     return True
             elif not terminal:
                 print("Deze gebruiker mag deze deur niet in.")
@@ -56,13 +57,13 @@ def check(cid, tid=1):
             terminal = terminal[0][0]
             if persoon >= terminal:
                 print("Welkom!")
-                opendoor(uid, tid)
+                addhistory(uid, tid)
                 return True
     else:
         print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
         return False
 
-#functie om nieuwe users toe te voegen
+# Functie om nieuwe users toe te voegen aan de database
 def add(cid, naam, rechten):
     if naam == '':
         tkinter.messagebox.showerror("Incorrecte input", "Vul een naam in")
@@ -77,7 +78,7 @@ def add(cid, naam, rechten):
     print(Naam, ' toegevoegd')
 
 
-# functie om users te verwijderen
+# Functie om users te verwijderen uit de database
 def delete(uid):
     c.execute("""SELECT UID from persoon WHERE UID = %i """ % uid)
     uidlist = c.fetchall()
@@ -95,6 +96,7 @@ def delete(uid):
     conn.commit()
 
 
+# Functe om een pasje te activeren die al in de database staat
 def activeer(cid):
     c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Uit'""" % cid)
     naamtupel = c.fetchall()
@@ -108,6 +110,7 @@ def activeer(cid):
     conn.commit()
 
 
+# Functie om een pasje te deactiveren
 def deactiveer(cid):
     c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % cid)
     naamtupel = c.fetchall()
@@ -121,6 +124,7 @@ def deactiveer(cid):
     conn.commit()
 
 
+# Functie om naar een naam te zoeken in de database
 def search_naam(naam):
     c.execute("""SELECT * from persoon WHERE Naam LIKE '%%%s%%'""" % naam)
     data = c.fetchall()
@@ -139,6 +143,7 @@ def search_naam(naam):
         return False
 
 
+# Functie om naar een uid te zoeken in  de database
 def search_uid(uid):
     c.execute("""SELECT * from persoon WHERE UID = %i""" % uid)
     data = c.fetchall()
@@ -156,6 +161,7 @@ def search_uid(uid):
         return False
 
 
+# Functie om naar rechten te zoeken in de database
 def search_rechten(rechten):
     c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % rechten)
     data = c.fetchall()
@@ -173,6 +179,7 @@ def search_rechten(rechten):
         return False
 
 
+# Functie om de naam van een entry in de database te veranderen
 def verander_naam(naam, nieuwenaam):
     data = search_naam(naam)
     if len(data) > 1:
@@ -187,7 +194,8 @@ def verander_naam(naam, nieuwenaam):
     return "Naam is veranderd."
 
 
-def opendoor(uid, tid):
+# Functie die een entry toevoegt aan de database als een deur open gaat
+def addhistory(uid, tid):
     time = strftime("%Y-%m-%d %H:%M:%S")
     c.execute("""SELECT cid from persoon WHERE uid = %i""" % uid)
     cid = c.fetchall()[0][0]
@@ -195,6 +203,11 @@ def opendoor(uid, tid):
     conn.commit()
 
 
+# Functie die de history-tabel van de database opvraagt.
+def gethistory():
+    c.execute("""SELECT * from history""")
+    history = c.fetchall()
+    return history
 
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
@@ -205,4 +218,3 @@ conn.commit()
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
 
-check(3529442660, 3)

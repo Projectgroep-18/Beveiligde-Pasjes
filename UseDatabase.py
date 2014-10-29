@@ -11,37 +11,50 @@ c = conn.cursor()
 def check(cid, tid=1):
     c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % cid)
     persoon = c.fetchall()
+    c.execute("""SELECT Rechten from terminal where TID = %i""" % tid)
+    rechten = c.fetchall()
+    if rechten:
+        rechten = rechten[0][0]
+        print(rechten)
+    else:
+        print("Deze terminal bestaat niet")
+        return False
     if persoon:
         persoon = persoon[0][0]
-    print("persoon =", persoon)
-    c.execute("""SELECT cid FROM terminal WHERE tid = %i""" % tid)
-    temp = c.fetchall()
-    temp = temp[0][0]
-    if temp != 0:
-        c.execute("""SELECT Rechten from terminal WHERE TID = %i AND cid = %i""" % (tid, cid))
-        terminal = c.fetchall()
-        if not terminal:
-            print("Deze gebruiker mag deze deur niet in.")
-            return False
-    else:
-        c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % tid)
-        terminal = c.fetchall()
-    if terminal:
-        terminal = terminal[0][0]
-    else:
-        print("Deze deur bestaat niet!")
-        return False
-    print("terminal =", terminal)
+    print("rechten van de persoon =", persoon)
     if not persoon:
-        print('Deze Card ID staat niet in de database.')
+        print('Deze Card ID staat niet in de database, of de kaart is gedisabled.')
         return False
-    elif persoon >= terminal:
+    elif persoon > rechten:
         print('Open deur!')
         return True
+    elif persoon == rechten:
+        c.execute("""SELECT cid FROM terminal WHERE tid = %i""" % tid)
+        temp = c.fetchall()
+        temp = temp[0][0]
+        if temp != 0:
+            c.execute("""SELECT Rechten from terminal WHERE TID = %i AND cid = %i""" % (tid, cid))
+            terminal = c.fetchall()
+            print(terminal)
+            if terminal:
+                terminal = terminal[0][0]
+                print(terminal)
+                if temp == cid:
+                    print("Welkom!")
+                    return True
+            elif not terminal:
+                print("Deze gebruiker mag deze deur niet in.")
+                return False
+        else:
+            c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % tid)
+            terminal = c.fetchall()
+            terminal = terminal[0][0]
+            if persoon >= terminal:
+                print("Welkom!")
+                return True
     else:
-        print('Deze gebruiker heeft geen toegang tot deze deur.')
+        print("You shall not pass!")
         return False
-
 
 #functie om nieuwe users toe te voegen
 def add(cid, naam, rechten):
@@ -152,7 +165,7 @@ def search_rechten(rechten):
         print('not found.')
         return False
 
-check(255970565998217052893709, 4)
+check(232396203819758364471865, 2)
 
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.

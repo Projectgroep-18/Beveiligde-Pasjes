@@ -29,20 +29,20 @@ c.execute('''CREATE TABLE terminal
 c.execute('''CREATE TABLE history
              ('UID' integer primary key, 'CID' integer, 'Datum' text, 'tijd' text, 'TID' integer)''')
 
-c.execute('''INSERT INTO persoon VALUES (1, 241821987043432866395696, 'Dirk-Jan Verandering', 3, 'Aan')''')
-c.execute('''INSERT INTO persoon VALUES (2, 246452191867917525661493, 'Jan Janssen', 4, 'Aan')''')
-c.execute('''INSERT INTO persoon VALUES (3, 232396203819758364471865, 'Mevrouw De Schoonmaakster', 2, 'Aan')''')
-c.execute("""INSERT INTO persoon VALUES (4, 255970565998217052893709, 'Jeroen Weener STUDENT', 1, 'Aan')""")
-c.execute("""INSERT INTO persoon VALUES (5, 232450968716023256199986, 'Joël Ledelay STUDENT', 1, 'Aan')""")
-c.execute("""INSERT INTO persoon VALUES (6, 232396204097943329323057, 'Joël Ledelay OV', 1, 'Aan')""")
-c.execute("""INSERT INTO persoon VALUES (7, 237118211425339845326898, 'Menno Schober OV', 1, 'Aan')""")
+c.execute('''INSERT INTO persoon VALUES (1, 3529442660, 'Dirk-Jan Verandering', 3, 'Aan')''')
+c.execute('''INSERT INTO persoon VALUES (2, 4039826975, 'Jan Janssen', 4, 'Aan')''')
+c.execute('''INSERT INTO persoon VALUES (3, 1694667529, 'Meneer De Schoonmaker', 2, 'Aan')''')
+c.execute("""INSERT INTO persoon VALUES (4, 641312192, 'Jeroen Weener STUDENT', 1, 'Aan')""")
+c.execute("""INSERT INTO persoon VALUES (5, 1918555232, 'Joël Ledelay STUDENT', 1, 'Aan')""")
+c.execute("""INSERT INTO persoon VALUES (6, 1695383881, 'Joël Ledelay OV', 1, 'Aan')""")
+c.execute("""INSERT INTO persoon VALUES (7, 2649988782, 'Menno Schober OV', 1, 'Aan')""")
 c.execute('''INSERT INTO terminal VALUES (1, 4, 0)''')
 c.execute('''INSERT INTO terminal VALUES (2, 3, 0)''')
 c.execute('''INSERT INTO terminal VALUES (3, 2, 0)''')
-c.execute('''INSERT INTO terminal VALUES (4, 1, 255970565998217052893709)''')
-c.execute('''INSERT INTO terminal VALUES (5, 1, 232450968716023256199986)''')
-c.execute('''INSERT INTO terminal VALUES (6, 1, 232396204097943329323057)''')
-c.execute('''INSERT INTO terminal VALUES (7, 1, 237118211425339845326898)''')
+c.execute('''INSERT INTO terminal VALUES (4, 1, 641312192)''')
+c.execute('''INSERT INTO terminal VALUES (5, 1, 1918555232)''')
+c.execute('''INSERT INTO terminal VALUES (6, 1, 1695383881)''')
+c.execute('''INSERT INTO terminal VALUES (7, 1, 2649988782)''')
 
 
 # Save (commit) the changes

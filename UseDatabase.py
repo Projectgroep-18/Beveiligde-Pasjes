@@ -7,7 +7,6 @@ import tkinter.messagebox
 
 c = conn.cursor()
 
-
 def check(cid, tid=1):
     c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % cid)
     persoon = c.fetchall()

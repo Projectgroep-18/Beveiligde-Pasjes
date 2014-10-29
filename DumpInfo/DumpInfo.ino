@@ -42,9 +42,9 @@ void setup() {
 }
 
 void loop() {
+        Serial.print('A');
 	uint32_t uid = rfid.readUID();
-        Serial.print('test');
         int key = Serial.parseInt();
-        uid = uid + key;
-        Serial.print(uid);
+        //uid = uid + key;
+        Serial.print(key);
 }

@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import serial
 #import python_code_for_reading_uid
 
 root = Tk()
@@ -150,10 +149,7 @@ def search_rights_gui():
 
 
 def add_user():
-    ser = serial.Serial(COMPOORT - 1)
-    s = ser.read(10)
-    CID = int.from_bytes(s, byteorder='big')
-    UseDatabase.add(CID, inputVar4, inputVar5)
+    UseDatabase.add(python_code_for_reading_uid.readArduino(), inputVar4, inputVar5)
 
 
 def popup_search(data):

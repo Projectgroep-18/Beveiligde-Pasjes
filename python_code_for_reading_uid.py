@@ -8,7 +8,20 @@ import UseDatabase
 c = conn.cursor()
 
 COMPOORT = int(input("De Arduino is aangesloten op COM-poort "))
-		
+
+ser = serial.Serial(COMPOORT - 1)
+
+def decrypt(userid):
+	return userid - key
+	
+def readArduino():
+	while ser.readline().strip() != b'test':
+		time.sleep(1)
+	
+	ser.write(str(key).encode())
+	s = ser.readline().strip()
+	userid = decrypt(int(s))
+	
 while True:
 	temp = []
 	while not temp:
@@ -19,18 +32,21 @@ while True:
 			print('Maar deze deur bestaat helemaal niet! D:')
 			time.sleep(3)
 			
-	#key = randint(1, 100)
+	key = randint(1, 10000000)
 	print('Scan pasje a.u.b.')
-	ser = serial.Serial(COMPOORT - 1)
-	#s = ser.read(1)
-	#ser.write(bytes([key]))
-	s = ser.read(10)
-	userid = int.from_bytes(s, byteorder='big')
+	
+	while ser.readline().strip() != b'test':
+		time.sleep(1)
+	
+	ser.write(str(key).encode())
+	s = ser.readline().strip()
+	userid = decrypt(int(s))
 	Door = UseDatabase.check(userid, TID)
 	print(Door)
-	ser.close()
 
 	if Door:
 		time.sleep(5)
 		Door = False
 		print(Door)
+		
+ser.close()

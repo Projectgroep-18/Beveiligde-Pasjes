@@ -3,86 +3,111 @@ __author__ = 'Joël'
 
 import sqlite3
 conn = sqlite3.connect('data.db')
+import tkinter.messagebox
 
 c = conn.cursor()
 
-
-def check(CID, TID=1):
-    c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % CID)
+def check(cid, tid=1):
+    c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % cid)
     persoon = c.fetchall()
+    c.execute("""SELECT Rechten from terminal where TID = %i""" % tid)
+    rechten = c.fetchall()
+    if rechten:
+        rechten = rechten[0][0]
+    else:
+        print("Deze terminal bestaat niet")
+        return False
     if persoon:
         persoon = persoon[0][0]
-    print("persoon =", persoon)
-    c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % TID)
-    terminal = c.fetchall()
-    if terminal:
-        terminal = terminal[0][0]
-    else:
-        return "Deze deur bestaat niet!"
-    print("terminal =", terminal)
     if not persoon:
-        print('Deze Card ID staat niet in de database.')
+        print('Deze Card ID staat niet in de database, of de kaart is gedisabled.')
         return False
-    elif persoon >= terminal:
+    elif persoon > rechten:
         print('Open deur!')
         return True
+    elif persoon == rechten:
+        c.execute("""SELECT cid FROM terminal WHERE tid = %i""" % tid)
+        temp = c.fetchall()
+        temp = temp[0][0]
+        if temp != 0:
+            c.execute("""SELECT Rechten from terminal WHERE TID = %i AND cid = %i""" % (tid, cid))
+            terminal = c.fetchall()
+            if terminal:
+                terminal = terminal[0][0]
+                if temp == cid:
+                    print("Welkom!")
+                    return True
+            elif not terminal:
+                print("Deze gebruiker mag deze deur niet in.")
+                return False
+        else:
+            c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % tid)
+            terminal = c.fetchall()
+            terminal = terminal[0][0]
+            if persoon >= terminal:
+                print("Welkom!")
+                return True
     else:
-        print('Deze gebruiker heeft geen toegang tot deze deur.')
+        print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
         return False
 
-
 #functie om nieuwe users toe te voegen
-def add(CID, Naam, Rechten):
+def add(cid, naam, rechten):
+    if naam == '':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul een naam in")
+    elif rechten == '':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
+    elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
     c.execute("""SELECT COUNT(UID) from persoon""")
-    UID = c.fetchall()[0][0]+1
-    c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%s', 'Aan') """ % (UID, CID, Naam, Rechten))
+    uid = c.fetchall()[0][0]+1
+    c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechten))
     conn.commit()
     print(Naam, ' toegevoegd')
 
 
 # functie om users te verwijderen
-def delete(CID):
-    c.execute("""SELECT UID from persoon WHERE CID = %i """ % CID)
-    UIDlist = c.fetchall()
-    if UIDlist:
-        UID = UIDlist[0][0]
-        c.execute("""SELECT Naam from persoon WHERE CID = %i """ % CID)
-        Naam = c.fetchall()[0][0]
-        c.execute("""SELECT COUNT(CID) from persoon""")
-        lastUID = c.fetchall()[0][0]
-        c.execute("""DELETE from persoon WHERE CID=%i """ % CID)
-        c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (UID, lastUID))
-        print(Naam, 'verwijderd')
+def delete(uid):
+    c.execute("""SELECT UID from persoon WHERE UID = %i """ % uid)
+    uidlist = c.fetchall()
+    if uidlist:
+        c.execute("""SELECT Naam from persoon WHERE UID = %i """ % uid)
+        naam = c.fetchall()[0][0]
+        c.execute("""SELECT COUNT(UID) from persoon""")
+        # Zet het element op de laatste index op de index van het verwijderde element.
+        lastuid = c.fetchall()[0][0]
+        c.execute("""DELETE from persoon WHERE UID=%i """ % Uid)
+        c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
+        print(naam, 'verwijderd')
     else:
-        print('Invalid Card ID')
+        print('Invalid User ID')
     conn.commit()
 
 
-def activeer(CID):
-    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Uit'""" % CID)
-    NaamTupel = c.fetchall()
-    if NaamTupel:
-        c.execute("""UPDATE persoon SET Access = 'Aan' WHERE CID = %i """ % CID)
-        Naam = NaamTupel[0][0]
-        print('Het pasje van', Naam, 'staat nu aan!')
-        return Naam
+def activeer(cid):
+    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Uit'""" % cid)
+    naamtupel = c.fetchall()
+    if naamtupel:
+        c.execute("""UPDATE persoon SET Access = 'Aan' WHERE CID = %i """ % cid)
+        naam = naamtupel[0][0]
+        print('Het pasje van', naam, 'staat nu aan!')
+        return naam
     else:
         print('Card ID bestaat niet of staat al aan.')
     conn.commit()
 
 
-def deactiveer(CID):
-    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % CID)
-    NaamTupel = c.fetchall()
-    if NaamTupel:
-        c.execute("""UPDATE persoon SET Access = 'Uit' WHERE CID = %i""" % CID)
-        Naam = NaamTupel[0][0]
-        print('Het pasje van', Naam, 'staat nu uit!')
-        return Naam
+def deactiveer(cid):
+    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % cid)
+    naamtupel = c.fetchall()
+    if naamtupel:
+        c.execute("""UPDATE persoon SET Access = 'Uit' WHERE CID = %i""" % cid)
+        naam = naamtupel[0][0]
+        print('Het pasje van', naam, 'staat nu uit!')
+        return naam
     else:
         print('Card ID bestaat niet of staat al uit.')
     conn.commit()
-
 
 
 def search_naam(naam):
@@ -94,15 +119,17 @@ def search_naam(naam):
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])
             print('CID = ', data[x][1])
+            print('UID = ', data[x][0])
             print('Access = ', data[x][4])
+        print(data)
         return data
     else:
         print('not found.')
         return False
 
 
-def search_cid(CID):
-    c.execute("""SELECT * from persoon WHERE CID = %i""" % CID)
+def search_uid(uid):
+    c.execute("""SELECT * from persoon WHERE UID = %i""" % uid)
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
@@ -110,6 +137,7 @@ def search_cid(CID):
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])
             print('CID = ', data[x][1])
+            print('UID = ', data[x][0])
             print('Access = ', data[x][4])
         return data
     else:
@@ -117,9 +145,8 @@ def search_cid(CID):
         return False
 
 
-
-def search_rechten(Rechten):
-    c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % Rechten)
+def search_rechten(rechten):
+    c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % rechten)
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
@@ -127,11 +154,27 @@ def search_rechten(Rechten):
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])
             print('CID = ', data[x][1])
+            print('UID = ', data[x][0])
             print('Access = ', data[x][4])
         return data
     else:
         print('not found.')
         return False
+
+
+def verander_naam(naam, nieuwenaam):
+    data = search_naam(naam)
+    if len(data) > 1:
+        print("Er zijn meerdere mensen met deze naam!")
+        return "Niets veranderd."
+    elif len(data) == 0:
+        print("Er is niemand met deze naam!")
+        return "Niets veranderd."
+    data = data[0][0]
+    c.execute("""UPDATE persoon SET naam = '%s' WHERE uid = %i""" % (nieuwenaam, data))
+    print(naam, "is van naam veranderd. Hij/zij heet nu", nieuwenaam)
+    return "Naam is veranderd."
+
 
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.

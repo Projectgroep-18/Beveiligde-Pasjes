@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
+import time
 #import python_code_for_reading_uid
 
 root = Tk()
@@ -12,46 +13,46 @@ def emergency():
     doorC = PhotoImage(file="door_closed.png")
     if fire == 1:
         root.configure(bg="red")
-        root.bg = "red"
         leftFrame.configure(bg="red")
-        leftFrame.bg = "red"
         rightFrame.configure(bg="red")
-        rightFrame.bg = "red"
+        Whitespace9.configure(bg="red")
+        Whitespace8.configure(bg="red")
+        Whitespace7.configure(bg="red")
+        Whitespace6.configure(bg="red")
+        Whitespace5.configure(bg="red")
+        Whitespace4.configure(bg="red")
+        Whitespace3.configure(bg="red")
+        Whitespace2.configure(bg="red")
+        Whitespace1.configure(bg="red")
         door1.configure(image=doorO)
         door1.image = doorO
         door2.configure(image=doorO)
-        door2.image = doorO
         door3.configure(image=doorO)
-        door3.image = doorO
         door4.configure(image=doorO)
-        door4.image = doorO
         door5.configure(image=doorO)
-        door5.image = doorO
         door6.configure(image=doorO)
-        door6.image = doorO
         door7.configure(image=doorO)
-        door7.image = doorO
     else:
         root.configure(bg="green")
-        root.bg = "green"
         leftFrame.configure(bg="green")
-        leftFrame.bg = "green"
         rightFrame.configure(bg="green")
-        rightFrame.bg = "green"
+        Whitespace9.configure(bg="green")
+        Whitespace8.configure(bg="green")
+        Whitespace7.configure(bg="green")
+        Whitespace6.configure(bg="green")
+        Whitespace5.configure(bg="green")
+        Whitespace4.configure(bg="green")
+        Whitespace3.configure(bg="green")
+        Whitespace2.configure(bg="green")
+        Whitespace1.configure(bg="green")
         door1.configure(image=doorC)
         door1.image = doorC
         door2.configure(image=doorC)
-        door2.image = doorC
         door3.configure(image=doorC)
-        door3.image = doorC
         door4.configure(image=doorC)
-        door4.image = doorC
         door5.configure(image=doorC)
-        door5.image = doorC
         door6.configure(image=doorC)
-        door6.image = doorC
         door7.configure(image=doorC)
-        door7.image = doorC
 
 
 def door1Func():
@@ -62,10 +63,12 @@ def door1Func():
     if var == True:
         door1.configure(image=doorO)
         door1.image = doorO
+        time.sleep(5)
+        door1.configure(image=doorC)
+        door1.image = doorC
     else:
         door1.configure(image=doorC)
         door1.image = doorC
-
 
 def door2Func():
     doorO = PhotoImage(file="door_opened.png")
@@ -75,6 +78,9 @@ def door2Func():
     if var == True:
         door2.configure(image=doorO)
         door2.image = doorO
+        time.sleep(5)
+        door2.configure(image=doorC)
+        door2.image = doorC
     else:
         door2.configure(image=doorC)
         door2.image = doorC
@@ -88,6 +94,9 @@ def door3Func():
     if var == True:
         door3.configure(image=doorO)
         door3.image = doorO
+        time.sleep(5)
+        door3.configure(image=doorC)
+        door3.image = doorC
     else:
         door3.configure(image=doorC)
         door3.image = doorC
@@ -101,6 +110,9 @@ def door4Func():
     if var == True:
         door4.configure(image=doorO)
         door4.image = doorO
+        time.sleep(5)
+        door4.configure(image=doorC)
+        door4.image = doorC
     else:
         door4.configure(image=doorC)
         door4.image = doorC
@@ -114,10 +126,12 @@ def door5Func():
     if var == True:
         door5.configure(image=doorO)
         door5.image = doorO
+        time.sleep(5)
+        door5.configure(image=doorC)
+        door5.image = doorC
     else:
         door5.configure(image=doorC)
         door5.image = doorC
-
 
 def door6Func():
     doorO = PhotoImage(file="door_opened.png")
@@ -127,10 +141,12 @@ def door6Func():
     if var == True:
         door6.configure(image=doorO)
         door6.image = doorO
+        time.sleep(5)
+        door6.configure(image=doorC)
+        door6.image = doorC
     else:
         door6.configure(image=doorC)
         door6.image = doorC
-
 
 def door7Func():
     doorO = PhotoImage(file="door_opened.png")
@@ -140,6 +156,9 @@ def door7Func():
     if var == True:
         door7.configure(image=doorO)
         door7.image = doorO
+        time.sleep(5)
+        door7.configure(image=doorC)
+        door7.image = doorC
     else:
         door7.configure(image=doorC)
         door7.image = doorC

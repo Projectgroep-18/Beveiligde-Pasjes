@@ -115,7 +115,7 @@ def delete(uid):
 
 
 # Functie om een pasje te activeren die al in de database staat
-def activeer(cid):
+def activeer_cid(cid):
     c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Uit'""" % cid)
     naamtupel = c.fetchall()
     if naamtupel:
@@ -129,7 +129,7 @@ def activeer(cid):
 
 
 # Functie om een pasje te activeren die al in de database staat
-def activeer(uid):
+def activeer_uid(uid):
     c.execute("""SELECT Naam FROM persoon WHERE UID = %i AND Access = 'Uit'""" % uid)
     naamtupel = c.fetchall()
     if naamtupel:
@@ -143,7 +143,7 @@ def activeer(uid):
 
 
 # Functie om een pasje te deactiveren
-def deactiveer(uid):
+def deactiveer_uid(uid):
     c.execute("""SELECT Naam FROM persoon WHERE UID = %i AND Access = 'Aan'""" % uid)
     naamtupel = c.fetchall()
     if naamtupel:
@@ -157,7 +157,7 @@ def deactiveer(uid):
 
 
 # Functie om een pasje te deactiveren
-def deactiveer(cid):
+def deactiveer_cid(cid):
     c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % cid)
     naamtupel = c.fetchall()
     if naamtupel:

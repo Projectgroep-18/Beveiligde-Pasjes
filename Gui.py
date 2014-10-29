@@ -106,7 +106,7 @@ def string_int(string):
 
 
 def deleteFromDB():
-    if string_int(inputVar6) != -1:
+    if string_int(entryDeleteID.get()) != -1:
         UseDatabase.delete(string_int(entryDeleteID.get()))
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")

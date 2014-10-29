@@ -11,12 +11,4 @@ data.db
 *.db
 Database.py
 UseDatabase.py
-data.db
-Database.py
-Database.py
-UseDatabase.py
 DumpInfo/DumpInfo.ino
-UseDatabase.py
-DumpInfo/DumpInfo.ino
-Database.py
-*.db

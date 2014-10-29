@@ -51,7 +51,7 @@ def search_name_gui():
         UseDatabase.search_naam(var1)
 
 
-def search_cid_gui():
+def search_uid_gui():
     var1 = entryCID1.get()
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
@@ -104,14 +104,14 @@ inputVar5 = ""                                                              # In
 inputVar6 = ""                                                              # Input UID
 
 buttonSearchName = Button(root, text="Search", command=search_name_gui)
-buttonSearchCID = Button(root, text="Search", command=search_cid_gui)
+buttonSearchCID = Button(root, text="Search", command=search_uid_gui)
 buttonSearchRights = Button(root, text="Search", command=search_rights_gui)
 
 #buttonSearch = Button(root, text="Search", command=search, height=3)
 entryName1 = Entry(root, textvariable=inputVar1)
 labelName1 = Label(root, text="Name")
 entryCID1 = Entry(root, textvariable=inputVar2)
-labelCID1 = Label(root, text="Card ID")
+labelCID1 = Label(root, text="User ID")
 entryRights1 = Entry(root, textvariable=inputVar3)
 labelRights1 = Label(root, text="Rights")
 
@@ -153,7 +153,8 @@ buttonEnter.grid(row=4, column=2, rowspan=2)
 labelDoor.grid(row=7, column=1)
 doorButton.grid(row=7, column=0)
 
-entryDeleteID.grid(root, row=6, column=1)
-labelDeleteID.grid(root, row=6, column=2, sticky=E)
-buttonDeleteID.grid(root, row=6, column=3)
+labelDeleteID.grid(row=6, column=0, sticky=E)
+entryDeleteID.grid(row=6, column=1)
+buttonDeleteID.grid(row=6, column=2)
+
 root.mainloop()

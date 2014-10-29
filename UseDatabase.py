@@ -11,6 +11,9 @@ c = conn.cursor()
 
 #Functie om te controleren of de gebruiker de deur mag openen
 def check(cid, tid=1):
+    if cid == 1189998819991197253:
+        print("Er gaat een deur open door het brandalarm.")
+        return True
     c.execute("""SELECT UID from persoon where CID = %i""" % cid)
     uid = c.fetchall()
     if uid:
@@ -212,6 +215,37 @@ def gethistory():
     history = c.fetchall()
     return history
 
+
+# Forces door of terminal TID open.
+def opendoor(tid):
+    Door = check(1189998819991197253, tid)
+    return Door
+
+
+# Forces door of terminal TID closed.
+def closedoor(tid):
+    Door = False
+    return Door
+
+
+# De functie die het brandalarm aan of uit zet.
+def fire():
+    c.execute("""SELECT count(*) FROM terminal""")
+    amountofdoors = c.fetchall()[0][0]
+    c.execute("""SELECT * from fire""")
+    firestate = c.fetchall()[0][0]
+    if firestate == 1:
+        firestate = 0
+        for x in range(0, amountofdoors):
+            closedoor(x)
+            print("Er gaat een deur dicht.")
+        print("Het brandalarm staat nu weer uit.")
+    elif firestate == 0:
+        firestate = 1
+        for x in range(0, amountofdoors):
+            opendoor(x)
+        print("Het brandalarm staat nu aan.")
+    return firestate
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
 
@@ -220,3 +254,5 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
+
+fire()

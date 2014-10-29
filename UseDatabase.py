@@ -92,6 +92,7 @@ def search_naam(naam):
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
+            print('')
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])
             print('CID = ', data[x][1])
@@ -107,6 +108,7 @@ def search_cid(CID):
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
+            print('')
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])
             print('CID = ', data[x][1])
@@ -123,6 +125,7 @@ def search_rechten(Rechten):
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
+            print('')
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])
             print('CID = ', data[x][1])
@@ -132,20 +135,6 @@ def search_rechten(Rechten):
         print('not found.')
         return False
 
-
-# search_rechten('Eigenaar')
-# activeer(246452191867917525661493)
-# add(123123189371937128937912, 'Jan Jaap', 3)
-# delete(241821987043432866395696)
-# add(12, 'Piet Pietersen', -1)
-# c.execute("""SELECT * from persoon where cid = 12""")
-# persoon = c.fetchall()
-# print(persoon)
-# check(12)
-# c.execute("""SELECT * from persoon""")
-# persoon = (c.fetchall())
-# print(persoon)
-search
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
 

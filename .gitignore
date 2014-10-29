@@ -9,6 +9,3 @@
 .idea/*
 data.db
 *.db
-Database.py
-UseDatabase.py
-DumpInfo/DumpInfo.ino

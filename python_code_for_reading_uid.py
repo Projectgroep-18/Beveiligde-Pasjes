@@ -9,7 +9,7 @@ c = conn.cursor()
 COMPOORT = int(input("De Arduino is aangesloten op COM-poort "))
 TID = int(input("Ik wil graag toegang tot deur "))
 
-def check(userid):
+def check(userid, TID):
 	c.execute("""SELECT UID from persoon WHERE UID = %i """ % userid)
 	persoon = c.fetchall()
 	if persoon:
@@ -24,10 +24,8 @@ while True:
 	#s = ser.read(1)
 	#ser.write(bytes([key]))
 	s = ser.read(10)
-	print(s)
 	userid = int.from_bytes(s, byteorder='big')
-	Door = check(userid)
-	print(userid)
+	Door = check(userid, TID)
 	print(Door)
 	ser.close()
 

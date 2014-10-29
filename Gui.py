@@ -1,9 +1,11 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
+import serial
 
 root = Tk()
 
+COMPOORT = 4
 
 def change_img():
     doorO = PhotoImage(file="door_opened.png")
@@ -63,20 +65,11 @@ def search_rights_gui():
         UseDatabase.search_rechten(var1)
 
 
-def add_vars():
-    var1 = entryName2.get()
-    var2 = entryCID2.get()
-    if var2 != "":
-        var2 = string_int(var2)
-    var3 = entryRights2.get()
-    if var1 != "" and var2 != "" and var3 != "":
-        if var2 != -1:
-            UseDatabase.add(var2, var1, var3)
-        else:
-            tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
-    else:
-        tkinter.messagebox.showerror("Wrong Input", "Some fields are empty")
-
+def add_user():
+    ser = serial.Serial(COMPOORT - 1)
+    s = ser.read(10)
+    CID = int.from_bytes(s, byteorder='big')
+    UseDatabase.add(CID, inputVar4, inputVar5)
 
 def popup_search():
     top_search = Toplevel()
@@ -101,8 +94,7 @@ inputVar1 = ""                                                              # Se
 inputVar2 = ""                                                              # Search UID
 inputVar3 = ""                                                              # Search rights
 inputVar4 = ""                                                              # Input name
-inputVar5 = ""                                                              # Input UID
-inputVar6 = ""                                                              # Input rights
+inputVar5 = ""                                                              # Input rights
 
 buttonSearchName = Button(root, text="Search", command=search_name_gui)
 buttonSearchCID = Button(root, text="Search", command=search_cid_gui)
@@ -116,12 +108,10 @@ labelCID1 = Label(root, text="Card ID")
 entryRights1 = Entry(root, textvariable=inputVar3)
 labelRights1 = Label(root, text="Rights")
 
-buttonEnter = Button(root, text="Enter", command=add_vars, height=3)
+buttonEnter = Button(root, text="Enter", command=add_user, height=3)
 entryName2 = Entry(root, textvariable=inputVar4)
 labelName2 = Label(root, text="Name")
-entryCID2 = Entry(root, textvariable=inputVar5)
-labelCID2 = Label(root, text="Card ID")
-entryRights2 = Entry(root, textvariable=inputVar6)
+entryRights2 = Entry(root, textvariable=inputVar5)
 labelRights2 = Label(root, text="Rights")
 labelWhite = Label(root, text="")
 
@@ -145,14 +135,12 @@ entryRights1.grid(row=2, column=1)
 labelWhite.grid(row=3)
 labelName2.grid(row=4, column=0, sticky=E)
 entryName2.grid(row=4, column=1)
-labelCID2.grid(row=5, column=0, sticky=E)
-entryCID2.grid(row=5, column=1)
-labelRights2.grid(row=6, column=0, sticky=E)
-entryRights2.grid(row=6, column=1)
-buttonEnter.grid(row=4, column=2, rowspan=3)
+labelRights2.grid(row=5, column=0, sticky=E)
+entryRights2.grid(row=5, column=1)
+buttonEnter.grid(row=4, column=2, rowspan=2)
 
-labelDoor.grid(row=7, column=1)
-doorButton.grid(row=7, column=0)
+labelDoor.grid(row=6, column=1)
+doorButton.grid(row=6, column=0)
 
 
 root.mainloop()

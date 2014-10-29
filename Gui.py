@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 root = Tk()
 
@@ -173,6 +173,7 @@ def popup_add_vars():
 
 
 root.title("Hotelpasjes beheer")
+root.resizable(0,0)
 
 leftFrame = Frame(root)
 rightFrame = Frame(root)
@@ -197,9 +198,9 @@ door5 = Button(rightFrame, image=doorStart, command=door5Func)
 door6 = Button(rightFrame, image=doorStart, command=door6Func)
 door7 = Button(rightFrame, image=doorStart, command=door7Func)
 
-buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui)
-buttonSearchCID = Button(leftFrame, text="Search", command=search_uid_gui)
-buttonSearchRights = Button(leftFrame, text="Search", command=search_rights_gui)
+buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui, width=6)
+buttonSearchCID = Button(leftFrame, text="Search", command=search_uid_gui,width=6)
+buttonSearchRights = Button(leftFrame, text="Search", command=search_rights_gui, width=6)
 
 # buttonSearch = Button(root, text="Search", command=search, height=3)
 entryName1 = Entry(leftFrame, textvariable=inputVar1)
@@ -211,14 +212,17 @@ labelRights1 = Label(leftFrame, text="Rights")
 
 entryDeleteID = Entry(leftFrame, textvariable=inputVar6)
 labelDeleteID = Label(leftFrame, text="User ID")
-buttonDeleteID = Button(leftFrame, text="Delete", command=deleteFromDB)
+buttonDeleteID = Button(leftFrame, text="Delete", command=deleteFromDB, width=6)
 
-buttonEnter = Button(leftFrame, text="Enter", command=add_user, height=3)
+buttonEnter = Button(leftFrame, text="Enter", command=add_user, height=3, width=6)
 entryName2 = Entry(leftFrame, textvariable=inputVar4)
 labelName2 = Label(leftFrame, text="Name")
 entryRights2 = Entry(leftFrame, textvariable=inputVar5)
 labelRights2 = Label(leftFrame, text="Rights")
-labelWhite = Label(leftFrame, text="")
+
+labelSearch = Label(leftFrame, text="Search by Name, UID or rights")
+labelEnter = Label(leftFrame, text="Add someone to database")
+labelDelete = Label(leftFrame, text="Delete someone from database")
 
 door1Label = Label(rightFrame, text="Door 1")
 door2Label = Label(rightFrame, text="Door 2")
@@ -228,35 +232,39 @@ door5Label = Label(rightFrame, text="Door 5")
 door6Label = Label(rightFrame, text="Door 6")
 door7Label = Label(rightFrame, text="Door 7")
 
-buttonSearchName.grid(row=1, column=2)
-buttonSearchCID.grid(row=2, column=2)
-buttonSearchRights.grid(row=3, column=2)
+Whitespace1 = Label(leftFrame, text="   ")
+Whitespace2 = Label(leftFrame, text=" ")
+Whitespace3 = Label(leftFrame, text=" ")
+Whitespace4 = Label(leftFrame, text=" ")
 
-labelName1.grid(row=1, column=0, sticky=E)
-entryName1.grid(row=1, column=1)
-labelCID1.grid(row=2, column=0, sticky=E)
-entryCID1.grid(row=2, column=1)
-labelRights1.grid(row=3, column=0, sticky=E)
-entryRights1.grid(row=3, column=1)
+buttonSearchName.grid(row=2, column=2)
+buttonSearchCID.grid(row=3, column=2)
+buttonSearchRights.grid(row=4, column=2)
+
+Whitespace1.grid(row=0, column=4)
+labelSearch.grid(row=1, column=0, columnspan=3)
+labelName1.grid(row=2, column=0, sticky=E)
+entryName1.grid(row=2, column=1)
+labelCID1.grid(row=3, column=0, sticky=E)
+entryCID1.grid(row=3, column=1)
+labelRights1.grid(row=4, column=0, sticky=E)
+entryRights1.grid(row=4, column=1)
 
 #buttonSearch.grid(row=0, column=3, rowspan=3)
+Whitespace2.grid(row=5, column=0)
+labelEnter.grid(row=6, column=0, columnspan=3)
+labelName2.grid(row=7, column=0, sticky=E)
+entryName2.grid(row=7, column=1)
+labelRights2.grid(row=8, column=0, sticky=E)
+entryRights2.grid(row=8, column=1)
+buttonEnter.grid(row=7, column=2, rowspan=2)
 
-labelName2.grid(row=6, column=0, sticky=E)
-entryName2.grid(row=6, column=1)
-labelRights2.grid(row=7, column=0, sticky=E)
-entryRights2.grid(row=7, column=1)
-buttonEnter.grid(row=6, column=2, rowspan=2)
-labelWhite.grid(row=9)
-
-labelName2.grid(row=6, column=0, sticky=E)
-entryName2.grid(row=6, column=1)
-labelRights2.grid(row=7, column=0, sticky=E)
-entryRights2.grid(row=7, column=1)
-buttonEnter.grid(row=6, column=2, rowspan=2)
-
-labelDeleteID.grid(row=8, column=0, sticky=E)
-entryDeleteID.grid(row=8, column=1)
-buttonDeleteID.grid(row=8, column=2)
+Whitespace3.grid(row=9, column=0)
+labelDelete.grid(row=10, column=0, columnspan=3)
+labelDeleteID.grid(row=11, column=0, sticky=E)
+entryDeleteID.grid(row=11, column=1)
+buttonDeleteID.grid(row=11, column=2)
+Whitespace4.grid(row=12, column=0)
 
 door1.grid(row=1, column=2)
 door2.grid(row=2, column=2)

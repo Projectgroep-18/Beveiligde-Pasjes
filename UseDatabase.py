@@ -114,7 +114,7 @@ def delete(uid):
     conn.commit()
 
 
-# Functe om een pasje te activeren die al in de database staat
+# Functie om een pasje te activeren die al in de database staat
 def activeer(cid):
     c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Uit'""" % cid)
     naamtupel = c.fetchall()
@@ -128,12 +128,40 @@ def activeer(cid):
     conn.commit()
 
 
+# Functie om een pasje te activeren die al in de database staat
+def activeer(uid):
+    c.execute("""SELECT Naam FROM persoon WHERE UID = %i AND Access = 'Uit'""" % uid)
+    naamtupel = c.fetchall()
+    if naamtupel:
+        c.execute("""UPDATE persoon SET Access = 'Aan' WHERE UID = %i """ % uid)
+        naam = naamtupel[0][0]
+        print('Het pasje van', naam, 'staat nu aan!')
+        return naam
+    else:
+        print('User ID bestaat niet of staat al aan.')
+    conn.commit()
+
+
 # Functie om een pasje te deactiveren
 def deactiveer(uid):
     c.execute("""SELECT Naam FROM persoon WHERE UID = %i AND Access = 'Aan'""" % uid)
     naamtupel = c.fetchall()
     if naamtupel:
         c.execute("""UPDATE persoon SET Access = 'Uit' WHERE UID = %i""" % uid)
+        naam = naamtupel[0][0]
+        print('Het pasje van', naam, 'staat nu uit!')
+        return naam
+    else:
+        print('User ID bestaat niet of staat al uit.')
+    conn.commit()
+
+
+# Functie om een pasje te deactiveren
+def deactiveer(uid):
+    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % cid)
+    naamtupel = c.fetchall()
+    if naamtupel:
+        c.execute("""UPDATE persoon SET Access = 'Uit' WHERE CID = %i""" % cid)
         naam = naamtupel[0][0]
         print('Het pasje van', naam, 'staat nu uit!')
         return naam
@@ -243,12 +271,12 @@ def closedoor(tid):
 # De functie die het brandalarm aan of uit zet.
 def fire():
     c.execute("""SELECT count(*) FROM terminal""")
-    amountofdoors = c.fetchall()[0][0]
+    amountofdoors = c.fetchall()[0][0] + 1
     c.execute("""SELECT Fire from fire""")
     firestate = c.fetchall()[0][0]
     if firestate == 1:
         firestate = 0
-        for x in range(0, amountofdoors):
+        for x in range(1, amountofdoors):
             closedoor(x)
             print("Er gaat een deur dicht, namelijk deur", x)
         c.execute("""UPDATE fire SET Fire = 0""")
@@ -271,7 +299,3 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
-
-
-fire()
-fire()

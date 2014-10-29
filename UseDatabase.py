@@ -72,21 +72,20 @@ def add(cid, naam, rechten):
 
 
 # functie om users te verwijderen
-def delete(cid):
-    c.execute("""SELECT UID from persoon WHERE CID = %i """ % cid)
+def delete(uid):
+    c.execute("""SELECT UID from persoon WHERE UID = %i """ % uid)
     uidlist = c.fetchall()
     if uidlist:
-        uid = UIDlist[0][0]
-        c.execute("""SELECT Naam from persoon WHERE CID = %i """ % cid)
+        c.execute("""SELECT Naam from persoon WHERE UID = %i """ % uid)
         naam = c.fetchall()[0][0]
-        c.execute("""SELECT COUNT(CID) from persoon""")
+        c.execute("""SELECT COUNT(UID) from persoon""")
         # Zet het element op de laatste index op de index van het verwijderde element.
         lastuid = c.fetchall()[0][0]
-        c.execute("""DELETE from persoon WHERE CID=%i """ % cid)
+        c.execute("""DELETE from persoon WHERE UID=%i """ % Uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')
     else:
-        print('Invalid Card ID')
+        print('Invalid User ID')
     conn.commit()
 
 
@@ -116,7 +115,6 @@ def deactiveer(cid):
     conn.commit()
 
 
-
 def search_naam(naam):
     c.execute("""SELECT * from persoon WHERE Naam LIKE '%%%s%%'""" % naam)
     data = c.fetchall()
@@ -128,6 +126,7 @@ def search_naam(naam):
             print('CID = ', data[x][1])
             print('UID = ', data[x][0])
             print('Access = ', data[x][4])
+        print(data)
         return data
     else:
         print('not found.')
@@ -151,7 +150,6 @@ def search_uid(uid):
         return False
 
 
-
 def search_rechten(rechten):
     c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % rechten)
     data = c.fetchall()
@@ -167,6 +165,20 @@ def search_rechten(rechten):
     else:
         print('not found.')
         return False
+
+
+def verander_naam(naam, nieuwenaam):
+    data = search_naam(naam)
+    if len(data) > 1:
+        print("Er zijn meerdere mensen met deze naam!")
+        return "Niets veranderd."
+    elif len(data) == 0:
+        print("Er is niemand met deze naam!")
+        return "Niets veranderd."
+    data = data[0][0]
+    c.execute("""UPDATE persoon SET naam = '%s' WHERE uid = %i""" % (nieuwenaam, data))
+    print(naam, "is van naam veranderd. Hij/zij heet nu", nieuwenaam)
+    return "Naam is veranderd."
 
 
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven

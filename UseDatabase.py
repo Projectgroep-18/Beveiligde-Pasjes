@@ -78,6 +78,7 @@ def add(cid, naam, rechten):
     elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
         tkinter.messagebox.showerror("Incorrecte input",
                                      "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
+        return False
     if rechten == 'Eigenaar':
         rechtnum = 4
     elif rechten == 'Gast':
@@ -89,7 +90,8 @@ def add(cid, naam, rechten):
 
     c.execute("""SELECT COUNT(UID) from persoon""")
     uid = c.fetchall()[0][0] + 1
-    c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechtnum))
+    if rechtnum:
+        c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechtnum))
     conn.commit()
     print(naam, ' toegevoegd')
 

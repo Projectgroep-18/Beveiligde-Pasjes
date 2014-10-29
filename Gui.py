@@ -99,7 +99,7 @@ def door7Func():
 
 def dis_user():
     if string_int(entryDisableID.get()) != -1:
-        UseDatabase.deactiveer(string_int(entryDisableID))
+        UseDatabase.deactiveer(string_int(entryDisableID.get()))
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 

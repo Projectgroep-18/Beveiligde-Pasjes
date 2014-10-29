@@ -7,13 +7,51 @@ root = Tk()
 
 
 def emergency():
-    UseDatabase.fire()
-    root.configure(bg="red")
-    root.bg = "red"
-    leftFrame.configure(bg="red")
-    leftFrame.bg = "red"
-    rightFrame.configure(bg="red")
-    rightFrame.bg = "red"
+    fire = UseDatabase.fire()
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    if fire == 1:
+        root.configure(bg="red")
+        root.bg = "red"
+        leftFrame.configure(bg="red")
+        leftFrame.bg = "red"
+        rightFrame.configure(bg="red")
+        rightFrame.bg = "red"
+        door1.configure(image=doorO)
+        door1.image = doorO
+        door2.configure(image=doorO)
+        door2.image = doorO
+        door3.configure(image=doorO)
+        door3.image = doorO
+        door4.configure(image=doorO)
+        door4.image = doorO
+        door5.configure(image=doorO)
+        door5.image = doorO
+        door6.configure(image=doorO)
+        door6.image = doorO
+        door7.configure(image=doorO)
+        door7.image = doorO
+    else:
+        root.configure(bg="green")
+        root.bg = "green"
+        leftFrame.configure(bg="green")
+        leftFrame.bg = "green"
+        rightFrame.configure(bg="green")
+        rightFrame.bg = "green"
+        door1.configure(image=doorC)
+        door1.image = doorC
+        door2.configure(image=doorC)
+        door2.image = doorC
+        door3.configure(image=doorC)
+        door3.image = doorC
+        door4.configure(image=doorC)
+        door4.image = doorC
+        door5.configure(image=doorC)
+        door5.image = doorC
+        door6.configure(image=doorC)
+        door6.image = doorC
+        door7.configure(image=doorC)
+        door7.image = doorC
 
 
 def door1Func():

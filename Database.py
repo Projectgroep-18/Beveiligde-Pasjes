@@ -9,13 +9,16 @@ c = conn.cursor()
 c.execute('''DROP TABLE IF EXISTS persoon''')
 c.execute('''DROP TABLE IF EXISTS versleuteling''')
 c.execute('''DROP TABLE IF EXISTS history''')
-
+c.execute('''DROP TABLE IF EXISTS terminal''')
 # Create table
 c.execute('''CREATE TABLE persoon
              ('UID' integer primary key, 'CID' integer, 'Naam' text, 'Rechten' text, 'Access' text)''')
 
 c.execute('''CREATE TABLE versleuteling
              ('KID' integer, 'key' text)''')
+
+c.execute('''CREATE TABLE terminal
+             ('TID' integer primary key, 'beschrijving' text)''')
 
 c.execute('''CREATE TABLE history
              ('UID' integer primary key, 'CID' integer, 'Datum' text, 'tijd' text, 'TID' integer)''')

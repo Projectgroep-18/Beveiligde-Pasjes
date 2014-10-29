@@ -25,6 +25,10 @@ c.execute('''CREATE TABLE history
 
 c.execute('''INSERT INTO persoon VALUES (1, 241821987043432866395696, 'Dirk-Jan Verandering', 'Gast', 'Uit')''')
 c.execute('''INSERT INTO persoon VALUES (2, 246452191867917525661493, 'Jan Janssen', 'Eigenaar', 'Aan')''')
+c.execute('''INSERT INTO terminal VALUES (1, 'Dit is de kamer van de eigenaar.')''')
+c.execute('''INSERT INTO terminal VALUES (2, 'Dit is de kamer van een gast.')''')
+c.execute('''INSERT INTO terminal VALUES (3, 'Het hok waar de schoonmaakspullen liggen.')''')
+
 # Save (commit) the changes
 conn.commit()
 

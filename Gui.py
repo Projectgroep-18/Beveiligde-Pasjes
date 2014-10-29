@@ -97,6 +97,10 @@ def door7Func():
         door7.image = doorC
 
 
+def dis_user():
+    UseDatabase.deactiveer(entryDisableID.get())
+
+
 def string_int(string):
     try:
         int(string)
@@ -191,6 +195,7 @@ inputVar3 = ""  # Search rights
 inputVar4 = ""  # Input name
 inputVar5 = ""  # Input rights
 inputVar6 = ""  # Input UID
+inputVar7 = ""  # Input UID
 
 doorStart = PhotoImage(file="door_closed.png")
 
@@ -240,6 +245,18 @@ Whitespace1 = Label(leftFrame, text="   ")
 Whitespace2 = Label(leftFrame, text=" ")
 Whitespace3 = Label(leftFrame, text=" ")
 Whitespace4 = Label(leftFrame, text=" ")
+Whitespace5 = Label(leftFrame, text=" ")
+
+labelDisableID = Label(leftFrame, text="User ID")
+labelDisable = Label(leftFrame, text="Disable someone in database")
+entryDisableID = Entry(leftFrame, textvariable=inputVar7)
+disableButton = Button(leftFrame, text="Disable", command=dis_user, width=6)
+
+labelDisableID.grid(row=14, column=0, sticky=E)
+labelDisable.grid(row=13, column=0, columnspan=3)
+entryDisableID.grid(row=14, column=1)
+disableButton.grid(row=14, column=2)
+Whitespace5.grid(row=15, column=0)
 
 buttonSearchName.grid(row=2, column=2)
 buttonSearchCID.grid(row=3, column=2)

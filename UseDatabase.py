@@ -8,7 +8,6 @@ from time import strftime
 
 c = conn.cursor()
 
-
 def check(cid, tid=1):
     c.execute("""SELECT UID from persoon where CID = %i""" % cid)
     uid = c.fetchall()[0][0]
@@ -203,5 +202,8 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
+<<<<<<< HEAD
 
 check(3529442660, 3)
+=======
+>>>>>>> origin/master

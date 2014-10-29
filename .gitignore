@@ -9,3 +9,5 @@
 .idea/*
 data.db
 *.db
+*.pyc
+*.pyc

@@ -21,7 +21,6 @@ def readArduino():
 	ser.write(str(key).encode())
 	s = ser.readline().strip()
 	userid = decrypt(int(s))
-	return userid
 	
 while True:
 	temp = []
@@ -35,7 +34,13 @@ while True:
 			
 	key = randint(1, 10000000)
 	print('Scan pasje a.u.b.')
-	userid = readArduino()
+	
+	while ser.readline().strip() != b'test':
+		time.sleep(1)
+	
+	ser.write(str(key).encode())
+	s = ser.readline().strip()
+	userid = decrypt(int(s))
 	Door = UseDatabase.check(userid, TID)
 	print(Door)
 

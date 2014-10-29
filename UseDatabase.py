@@ -11,13 +11,13 @@ userid = 246452191867917525661493  # int.from_bytes(b'3529442660', byteorder='bi
 def check(CID, TID=1):
     c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % CID)
     persoon = c.fetchall()[0][0]
-    print(persoon)
+    print("persoon =", persoon)
     c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % TID)
     terminal = c.fetchall()[0][0]
-    print(terminal)
+    print("terminal =", terminal)
     if persoon == terminal:
         print('Open deur!')
-        return persoon
+        return True
     elif persoon:
         print('Deze gebruiker heeft geen toegang tot deze deur')
         return False

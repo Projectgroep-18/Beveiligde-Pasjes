@@ -157,7 +157,7 @@ def deactiveer(uid):
 
 
 # Functie om een pasje te deactiveren
-def deactiveer(uid):
+def deactiveer(cid):
     c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % cid)
     naamtupel = c.fetchall()
     if naamtupel:

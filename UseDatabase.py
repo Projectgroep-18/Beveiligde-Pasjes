@@ -243,12 +243,12 @@ def closedoor(tid):
 # De functie die het brandalarm aan of uit zet.
 def fire():
     c.execute("""SELECT count(*) FROM terminal""")
-    amountofdoors = c.fetchall()[0][0]
+    amountofdoors = c.fetchall()[0][0] + 1
     c.execute("""SELECT Fire from fire""")
     firestate = c.fetchall()[0][0]
     if firestate == 1:
         firestate = 0
-        for x in range(0, amountofdoors):
+        for x in range(1, amountofdoors):
             closedoor(x)
             print("Er gaat een deur dicht, namelijk deur", x)
         c.execute("""UPDATE fire SET Fire = 0""")

@@ -16,6 +16,9 @@ void loop() {
 	uint32_t uid = rfid.readUID();
         Serial.println("test");
         uint32_t key = Serial.parseInt();
-        uid = uid + key;
+        uint32_t key2 = key/1000;
+        uint32_t key3 = key/100;
+        uint32_t key4 = key/10;
+        uid = uid - (key4 - key2)(key - key3);
         Serial.println(uid);
 }

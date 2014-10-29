@@ -86,7 +86,7 @@ def deactiveer(CID):
     conn.commit()
 
 
-def searchNaam(Naam):
+def search_naam(Naam):
     c.execute("""SELECT * from persoon WHERE Naam = '%s'""" % Naam)
     data = c.fetchall()
     if data:
@@ -104,7 +104,7 @@ def searchNaam(Naam):
         return False
 
 
-def searchCID(CID):
+def search_cid(CID):
     c.execute("""SELECT * from persoon WHERE CID = %i""" % CID)
     data = c.fetchall()
     if data:
@@ -122,7 +122,7 @@ def searchCID(CID):
         return False
 
 
-def searchRechten(Rechten):
+def search_rechten(Rechten):
     c.execute("""SELECT * from persoon WHERE Rechten = '%s'""" % Rechten)
     data = c.fetchall()
     if data:
@@ -140,7 +140,7 @@ def searchRechten(Rechten):
         return False
 
 
-#searchRechten('Eigenaar')
+#search_rechten('Eigenaar')
 activeer(246452191867917525661493)
 add(123123189371937128937912, 'Jan Jaap', 3)
 delete(241821987043432866395696)

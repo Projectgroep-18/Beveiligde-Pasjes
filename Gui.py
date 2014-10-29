@@ -42,7 +42,7 @@ def search_name_gui():
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     else:
-        UseDatabase.searchNaam(var1)
+        UseDatabase.search_naam(var1)
 
 
 def search_cid_gui():
@@ -52,7 +52,7 @@ def search_cid_gui():
     elif string_int(var1) == -1:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
     else:
-        UseDatabase.searchCID(string_int(var1))
+        UseDatabase.search_cid(string_int(var1))
 
 
 def search_rights_gui():
@@ -60,7 +60,7 @@ def search_rights_gui():
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     else:
-        UseDatabase.searchRechten(var1)
+        UseDatabase.search_rechten(var1)
 
 
 def add_vars():

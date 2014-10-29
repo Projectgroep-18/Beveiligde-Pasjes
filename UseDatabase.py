@@ -14,12 +14,12 @@ def check(CID, TID=1):
     persoon = c.fetchall()
     if persoon:
         persoon = persoon[0][0]
-    print("persoon =", persoon)
+    print("rechten van de persoon =", persoon)
     c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % TID)
     terminal = c.fetchall()
     if terminal:
         terminal = terminal[0][0]
-    print("terminal =", terminal)
+    print("rechten die nodig zijn om de terminal te openen =", terminal)
     if not persoon:
         print('Deze Card ID staat niet in de database.')
         return False

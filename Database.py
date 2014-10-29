@@ -30,7 +30,7 @@ c.execute('''CREATE TABLE history
              ('UID' integer primary key, 'CID' integer, 'Datum' text, 'tijd' text, 'TID' integer)''')
 
 c.execute('''INSERT INTO persoon VALUES (1, 241821987043432866395696, 'Dirk-Jan Verandering', 0, 'Aan')''')
-c.execute('''INSERT INTO persoon VALUES (2, 246452191867917525661493, 'Jan Janssen', 3, 'Uit')''')
+c.execute('''INSERT INTO persoon VALUES (2, 246452191867917525661493, 'Jan Janssen', 3, 'Aan')''')
 c.execute('''INSERT INTO persoon VALUES (3, 100000000000000000000000, 'Mevrouw De Schoonmaakster', 2, 'Aan')''')
 c.execute('''INSERT INTO terminal VALUES (1, 3)''')
 c.execute('''INSERT INTO terminal VALUES (2, 0)''')

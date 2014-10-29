@@ -84,19 +84,16 @@ def deactiveer(CID):
     conn.commit()
 
 
-def searchNaam(Naam):
-    c.execute("""SELECT * from persoon WHERE Naam = '%s'""" % Naam)
+def searchNaam(naam):
+    c.execute("""SELECT * from persoon WHERE Naam LIKE '%%%s%%'""" % naam)
     data = c.fetchall()
     if data:
-        CID = data[0][1]
-        Naam = data[0][2]
-        Rechten = data[0][3]
-        Access = data[0][4]
-        print('Naam = ',Naam)
-        print('Rechten = ',Rechten)
-        print('CID = ',CID)
-        print('Access = ',Access)
-        return Naam, Rechten, CID, Access
+        for x in range(0, len(data)):
+            print('Naam = ', data[x][2])
+            print('Rechten = ', data[x][3])
+            print('CID = ', data[x][1])
+            print('Access = ', data[x][4])
+        return data
     else:
         print('not found.')
         return False
@@ -106,33 +103,27 @@ def searchCID(CID):
     c.execute("""SELECT * from persoon WHERE CID = %i""" % CID)
     data = c.fetchall()
     if data:
-        CID = data[0][1]
-        Naam = data[0][2]
-        Rechten = data[0][3]
-        Access = data[0][4]
-        print('Naam = ',Naam)
-        print('Rechten = ',Rechten)
-        print('CID = ',CID)
-        print('Access = ',Access)
-        return Naam, Rechten, CID, Access
+        for x in range(0, len(data)):
+            print('Naam = ', data[x][2])
+            print('Rechten = ', data[x][3])
+            print('CID = ', data[x][1])
+            print('Access = ', data[x][4])
+        return data
     else:
         print('not found.')
         return False
 
 
 def searchRechten(Rechten):
-    c.execute("""SELECT * from persoon WHERE Rechten = '%s'""" % Rechten)
+    c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % Rechten)
     data = c.fetchall()
     if data:
-        CID = data[0][1]
-        Naam = data[0][2]
-        Rechten = data[0][3]
-        Access = data[0][4]
-        print('Naam = ',Naam)
-        print('Rechten = ',Rechten)
-        print('CID = ',CID)
-        print('Access = ',Access)
-        return Naam, Rechten, CID, Access
+        for x in range(0, len(data)):
+            print('Naam = ', data[x][2])
+            print('Rechten = ', data[x][3])
+            print('CID = ', data[x][1])
+            print('Access = ', data[x][4])
+        return data
     else:
         print('not found.')
         return False

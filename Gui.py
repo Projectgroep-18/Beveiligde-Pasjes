@@ -5,7 +5,7 @@ import UseDatabase
 root = Tk()
 
 
-def changeImg():
+def change_img():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     if doorState.get() == 1:
@@ -36,14 +36,16 @@ def search():
     else:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
 
-def searchNameGUI():
+
+def search_name_gui():
     var1 = entryName1.get()
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     else:
         UseDatabase.searchNaam(var1)
 
-def searchCIDGUI():
+
+def search_cid_gui():
     var1 = entryCID1.get()
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
@@ -52,12 +54,14 @@ def searchCIDGUI():
     else:
         UseDatabase.searchCID(string_int(var1))
 
-def searchRightsGUI():
+
+def search_rights_gui():
     var1 = entryRights1.get()
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     else:
         UseDatabase.searchRechten(var1)
+
 
 def add_vars():
     var1 = entryName2.get()
@@ -74,6 +78,23 @@ def add_vars():
         tkinter.messagebox.showerror("Wrong Input", "Some fields are empty")
 
 
+def popup_search():
+    top_search = Toplevel()
+    top_search.title("Search results")
+    top_search.focus_set()
+
+
+def popup_insert():
+    top = Toplevel()
+    top.title('Confirmation')
+    top.focus_set()
+
+    msg = Message(top, text="Data added")
+    msg.pack()
+
+    button = Button(top, text="Dismiss", command=top.destroy)
+    button.pack()
+
 
 root.title("Dit is de titel")
 inputVar1 = ""                                                              # Search name
@@ -83,9 +104,9 @@ inputVar4 = ""                                                              # In
 inputVar5 = ""                                                              # Input UID
 inputVar6 = ""                                                              # Input rights
 
-buttonSearchName = Button(root, text="Search", command=searchNameGUI)
-buttonSearchCID = Button(root, text="Search", command=searchCIDGUI)
-buttonSearchRights = Button(root, text="Search", command=searchRightsGUI)
+buttonSearchName = Button(root, text="Search", command=search_name_gui)
+buttonSearchCID = Button(root, text="Search", command=search_cid_gui)
+buttonSearchRights = Button(root, text="Search", command=search_rights_gui)
 
 #buttonSearch = Button(root, text="Search", command=search, height=3)
 entryName1 = Entry(root, textvariable=inputVar1)
@@ -107,7 +128,7 @@ labelWhite = Label(root, text="")
 doorStart = PhotoImage(file="door_closed.png")
 labelDoor = Label(root, image=doorStart)
 doorState = IntVar()
-doorButton = Checkbutton(root, variable=doorState, command=changeImg)
+doorButton = Checkbutton(root, variable=doorState, command=change_img)
 
 buttonSearchName.grid(row=0, column=2)
 buttonSearchCID.grid(row=1, column=2)

@@ -20,7 +20,7 @@ def decrypt(userid):
 
 def readArduino():
     while ser.readline().strip() != b'test':
-        #nope
+        time.sleep(1)
 
     ser.write(str(key).encode())
     s = ser.readline().strip()

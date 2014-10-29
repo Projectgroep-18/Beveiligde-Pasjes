@@ -77,9 +77,18 @@ def add(cid, naam, rechten):
     elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
         tkinter.messagebox.showerror("Incorrecte input",
                                      "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
+    if rechten == 'Eigenaar':
+        rechtnum = 4
+    elif rechten == 'Gast':
+        rechtnum = 1
+    elif rechten == 'Schoonmaker':
+        rechtnum = 2
+    elif rechten == 'Beveiliging':
+        rechtnum = 3
+
     c.execute("""SELECT COUNT(UID) from persoon""")
     uid = c.fetchall()[0][0] + 1
-    c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechten))
+    c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechtnum))
     conn.commit()
     print(naam, ' toegevoegd')
 
@@ -254,5 +263,3 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
-
-fire()

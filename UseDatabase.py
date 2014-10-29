@@ -19,7 +19,7 @@ def check(cid, tid=1):
     if uid:
         uid = uid[0][0]
     else:
-        print("Ongeldige Card ID")
+        print("De Card ID staat niet in de database")
         return False
     c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % cid)
     persoon = c.fetchall()
@@ -33,7 +33,7 @@ def check(cid, tid=1):
     if persoon:
         persoon = persoon[0][0]
     if not persoon:
-        print('Deze Card ID staat niet in de database, of de kaart is gedisabled.')
+        print('Deze Card ID is gedisabled.')
         return False
     elif persoon > rechten:
         print('Welkom!')

@@ -4,10 +4,18 @@ __author__ = 'Joël'
 import sqlite3
 conn = sqlite3.connect('data.db')
 import tkinter.messagebox
+from time import strftime
 
 c = conn.cursor()
 
 def check(cid, tid=1):
+    c.execute("""SELECT UID from persoon where CID = %i""" % cid)
+    uid = c.fetchall()
+    if uid:
+        uid = uid[0][0]
+    else:
+        print("Ongeldige Card ID")
+        return False
     c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % cid)
     persoon = c.fetchall()
     c.execute("""SELECT Rechten from terminal where TID = %i""" % tid)
@@ -24,6 +32,7 @@ def check(cid, tid=1):
         return False
     elif persoon > rechten:
         print('Open deur!')
+        opendoor(uid, tid)
         return True
     elif persoon == rechten:
         c.execute("""SELECT cid FROM terminal WHERE tid = %i""" % tid)
@@ -36,6 +45,7 @@ def check(cid, tid=1):
                 terminal = terminal[0][0]
                 if temp == cid:
                     print("Welkom!")
+                    opendoor(uid, tid)
                     return True
             elif not terminal:
                 print("Deze gebruiker mag deze deur niet in.")
@@ -46,6 +56,7 @@ def check(cid, tid=1):
             terminal = terminal[0][0]
             if persoon >= terminal:
                 print("Welkom!")
+                opendoor(uid, tid)
                 return True
     else:
         print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
@@ -176,6 +187,15 @@ def verander_naam(naam, nieuwenaam):
     return "Naam is veranderd."
 
 
+def opendoor(uid, tid):
+    time = strftime("%Y-%m-%d %H:%M:%S")
+    c.execute("""SELECT cid from persoon WHERE uid = %i""" % uid)
+    cid = c.fetchall()[0][0]
+    c.execute("""INSERT INTO history VALUES (%i, %i, '%s', %i)""" % (uid, cid, time, tid))
+    conn.commit()
+
+
+
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
 
@@ -184,3 +204,5 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
+
+check(3529442660, 3)

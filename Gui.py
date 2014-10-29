@@ -77,7 +77,9 @@ def popup_search():
     top_search.focus_set()
 
 
-def popup_insert():
+
+
+def popup_add_vars():
     top = Toplevel()
     top.title('Confirmation')
     top.focus_set()

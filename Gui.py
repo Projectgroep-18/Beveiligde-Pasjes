@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-#import python_code_for_reading_uid
+import python_code_for_reading_uid
 
 root = Tk()
 

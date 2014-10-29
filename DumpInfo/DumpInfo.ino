@@ -46,5 +46,5 @@ void loop() {
         //Serial.print('A');
         //int key = Serial.parseInt();
         //uid = uid + key;
-        Serial.print(uid);
+        Serial.println(uid);
 }

@@ -111,7 +111,7 @@ def search_name_gui():
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     else:
-        UseDatabase.search_naam(var1)
+        popup_search(UseDatabase.search_naam(var1))
 
 
 def search_cid_gui():
@@ -139,10 +139,12 @@ def add_user():
     UseDatabase.add(CID, inputVar4, inputVar5)
 
 
-def popup_search():
+def popup_search(data):
     top_search = Toplevel()
     top_search.title("Search results")
     top_search.focus_set()
+
+    results = Message(top_search, text=data).pack()
 
 
 def popup_add_vars():
@@ -205,31 +207,32 @@ doorStart7 = PhotoImage(file="door_closed.png")
 labelDoor7 = Label(root, image=doorStart7)
 doorState7 = IntVar()
 
-buttonSearchName.grid(row=0, column=2)
-buttonSearchCID.grid(row=1, column=2)
-buttonSearchRights.grid(row=2, column=2)
+buttonSearchName.grid(row=1, column=2)
+buttonSearchCID.grid(row=2, column=2)
+buttonSearchRights.grid(row=3, column=2)
 
-labelName1.grid(row=0, column=0, sticky=E)
-entryName1.grid(row=0, column=1)
-labelCID1.grid(row=1, column=0, sticky=E)
-entryCID1.grid(row=1, column=1)
-labelRights1.grid(row=2, column=0, sticky=E)
-entryRights1.grid(row=2, column=1)
+labelWhite.grid(row=0)
+labelName1.grid(row=1, column=0, sticky=E)
+entryName1.grid(row=1, column=1)
+labelCID1.grid(row=2, column=0, sticky=E)
+entryCID1.grid(row=2, column=1)
+labelRights1.grid(row=3, column=0, sticky=E)
+entryRights1.grid(row=3, column=1)
 #buttonSearch.grid(row=0, column=3, rowspan=3)
 
-labelWhite.grid(row=3)
-labelName2.grid(row=4, column=0, sticky=E)
-entryName2.grid(row=4, column=1)
-labelRights2.grid(row=5, column=0, sticky=E)
-entryRights2.grid(row=5, column=1)
-buttonEnter.grid(row=4, column=2, rowspan=2)
+labelName2.grid(row=6, column=0, sticky=E)
+entryName2.grid(row=6, column=1)
+labelRights2.grid(row=7, column=0, sticky=E)
+entryRights2.grid(row=7, column=1)
+buttonEnter.grid(row=6, column=2, rowspan=2)
+labelWhite.grid(row=8)
 
-labelDoor1.grid(row=6, column=1)
-labelDoor2.grid(row=6, column=3)
-labelDoor3.grid(row=6, column=5)
-labelDoor4.grid(row=6, column=7)
-labelDoor5.grid(row=6, column=9)
-labelDoor6.grid(row=6, column=11)
-labelDoor7.grid(row=6, column=13)
+labelDoor1.grid(row=4, column=4)
+labelDoor2.grid(row=4, column=5)
+labelDoor3.grid(row=4, column=6)
+labelDoor4.grid(row=4, column=7)
+labelDoor5.grid(row=5, column=4)
+labelDoor6.grid(row=5, column=5)
+labelDoor7.grid(row=5, column=6)
 
 root.mainloop()

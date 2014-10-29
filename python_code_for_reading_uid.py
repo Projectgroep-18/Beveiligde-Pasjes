@@ -11,11 +11,14 @@ c = conn.cursor()
 COMPOORT = int(input("De Arduino is aangesloten op COM-poort "))
 
 ser = serial.Serial(COMPOORT - 1)
-key = randint(0, 10000000)
+key = randint(10000, 90000)
+key2 = int(key/1000)
+key3 = int(key/100)
+key4 = int(key/10)
 
 
 def decrypt(userid):
-    return userid - key
+    return userid + int(key4 - key2)*int(key - key3)
 
 
 def readArduino():
@@ -26,4 +29,3 @@ def readArduino():
     s = ser.readline().strip()
     userid = decrypt(int(s))
     return userid
-

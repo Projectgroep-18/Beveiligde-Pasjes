@@ -26,6 +26,10 @@ def string_int(string):
         return -1
 
 
+def deleteFromDB():
+    UseDatabase.delete(inputVar6)
+
+
 def search():
     var1 = entryName1.get()
     var2 = entryCID1.get()
@@ -97,6 +101,7 @@ inputVar2 = ""                                                              # Se
 inputVar3 = ""                                                              # Search rights
 inputVar4 = ""                                                              # Input name
 inputVar5 = ""                                                              # Input rights
+inputVar6 = ""                                                              # Input UID
 
 buttonSearchName = Button(root, text="Search", command=search_name_gui)
 buttonSearchCID = Button(root, text="Search", command=search_cid_gui)
@@ -109,6 +114,10 @@ entryCID1 = Entry(root, textvariable=inputVar2)
 labelCID1 = Label(root, text="Card ID")
 entryRights1 = Entry(root, textvariable=inputVar3)
 labelRights1 = Label(root, text="Rights")
+
+entryDeleteID = Entry(root, textvariable=inputVar6)
+labelDeleteID = Label(root, text="User ID")
+buttonDeleteID = Button(root, text="Delete", command=deleteFromDB)
 
 buttonEnter = Button(root, text="Enter", command=add_user, height=3)
 entryName2 = Entry(root, textvariable=inputVar4)
@@ -141,8 +150,10 @@ labelRights2.grid(row=5, column=0, sticky=E)
 entryRights2.grid(row=5, column=1)
 buttonEnter.grid(row=4, column=2, rowspan=2)
 
-labelDoor.grid(row=6, column=1)
-doorButton.grid(row=6, column=0)
+labelDoor.grid(row=7, column=1)
+doorButton.grid(row=7, column=0)
 
-
+entryDeleteID.grid(root, row=6, column=1)
+labelDeleteID.grid(root, row=6, column=2, sticky=E)
+buttonDeleteID.grid(root, row=6, column=3)
 root.mainloop()

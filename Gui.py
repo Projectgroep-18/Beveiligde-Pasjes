@@ -1,8 +1,8 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
 import serial
+import python_code_for_reading_uid
 
 root = Tk()
 
@@ -12,43 +12,85 @@ def door1Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     cid = python_code_for_reading_uid.readArduino()
-    UseDatabase.check(cid, 1)
+    var = UseDatabase.check(cid, 1)
+    if var == True:
+        labelDoor.configure(image=doorO)
+        labelDoor.image = doorO
+    else:
+        labelDoor.configure(image=doorC)
+        labelDoor.image = doorC
 
 def door2Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     cid = python_code_for_reading_uid.readArduino()
-    UseDatabase.check(cid, 2)
+    var = UseDatabase.check(cid, 2)
+    if var == True:
+        labelDoor.configure(image=doorO)
+        labelDoor.image = doorO
+    else:
+        labelDoor.configure(image=doorC)
+        labelDoor.image = doorC
 
 def door3Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     cid = python_code_for_reading_uid.readArduino()
-    UseDatabase.check(cid, 3)
+    var = UseDatabase.check(cid, 3)
+    if var == True:
+        labelDoor.configure(image=doorO)
+        labelDoor.image = doorO
+    else:
+        labelDoor.configure(image=doorC)
+        labelDoor.image = doorC
 
 def door4Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     cid = python_code_for_reading_uid.readArduino()
-    UseDatabase.check(cid, 4)
+    var = UseDatabase.check(cid, 4)
+    if var == True:
+        labelDoor.configure(image=doorO)
+        labelDoor.image = doorO
+    else:
+        labelDoor.configure(image=doorC)
+        labelDoor.image = doorC
 
 def door5Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     cid = python_code_for_reading_uid.readArduino()
-    UseDatabase.check(cid, 5)
+    var = UseDatabase.check(cid, 5)
+    if var == True:
+        labelDoor.configure(image=doorO)
+        labelDoor.image = doorO
+    else:
+        labelDoor.configure(image=doorC)
+        labelDoor.image = doorC
 
 def door6Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     cid = python_code_for_reading_uid.readArduino()
-    UseDatabase.check(cid, 6)
+    var = UseDatabase.check(cid, 6)
+    if var == True:
+        labelDoor.configure(image=doorO)
+        labelDoor.image = doorO
+    else:
+        labelDoor.configure(image=doorC)
+        labelDoor.image = doorC
 
 def door7Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     cid = python_code_for_reading_uid.readArduino()
-    UseDatabase.check(cid, 7)
+    var = UseDatabase.check(cid, 7)
+    if var == True:
+        door7.configure(image=doorO)
+        door17image = doorO
+    else:
+        door7.configure(image=doorC)
+        door7.image = doorC
 
 def change_img():
     doorO = PhotoImage(file="door_opened.png")
@@ -212,11 +254,11 @@ entryDeleteID.grid(row=6, column=1)
 buttonDeleteID.grid(row=6, column=2)
 
 
-door1.grid(row=8, column=1)
-door2.grid(row=8, column=2)
-door3.grid(row=8, column=3)
-door4.grid(row=8, column=4)
-door5.grid(row=8, column=5)
-door6.grid(row=8, column=6)
-door7.grid(row=8, column=7)
+door1.grid(row=8, column=3)
+door2.grid(row=8, column=4)
+door3.grid(row=8, column=5)
+door4.grid(row=8, column=6)
+door5.grid(row=8, column=7)
+door6.grid(row=8, column=8)
+door7.grid(row=8, column=9)
 root.mainloop()

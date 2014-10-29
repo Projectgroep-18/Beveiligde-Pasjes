@@ -250,15 +250,18 @@ def fire():
         firestate = 0
         for x in range(0, amountofdoors):
             closedoor(x)
-            print("Er gaat een deur dicht.")
+            print("Er gaat een deur dicht, namelijk deur", x)
+        c.execute("""UPDATE fire SET Fire = 0""")
         print("Het brandalarm staat nu weer uit.")
         firestate = 1
     elif firestate == 0:
         firestate = 1
         for x in range(0, amountofdoors):
             opendoor(x)
+        c.execute("""UPDATE fire SET Fire = 1""")
         print("Het brandalarm staat nu aan.")
         firestate = 1
+    conn.commit()
     return firestate
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
@@ -268,3 +271,7 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
+
+
+fire()
+fire()

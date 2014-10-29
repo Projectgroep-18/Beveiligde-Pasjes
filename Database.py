@@ -35,7 +35,6 @@ c.execute("""CREATE TABLE history
              ('UID' integer, 'CID' integer, 'Datum' text, 'TID' integer)""")
 
 c.execute("""INSERT INTO fire VALUES (0)""")
-c.execute("""INSERT INTO persoon VALUES (0, 01189998819991197253, 'EMERGENCY', 9001, 'Aan')""")
 c.execute("""INSERT INTO persoon VALUES (1, 3529442660, 'Dirk-Jan Verandering', 3, 'Aan')""")
 c.execute("""INSERT INTO persoon VALUES (2, 4039826975, 'Jan Janssen', 4, 'Aan')""")
 c.execute("""INSERT INTO persoon VALUES (3, 1694667529, 'Meneer De Schoonmaker', 2, 'Aan')""")

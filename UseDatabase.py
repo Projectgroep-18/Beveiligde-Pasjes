@@ -3,22 +3,34 @@ __author__ = 'Joël'
 
 import sqlite3
 conn = sqlite3.connect('data.db')
+import tkinter.messagebox
 
 c = conn.cursor()
 
 
-def check(CID, TID=1):
-    c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % CID)
+def check(cid, tid=1):
+    c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % cid)
     persoon = c.fetchall()
     if persoon:
         persoon = persoon[0][0]
     print("persoon =", persoon)
-    c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % TID)
-    terminal = c.fetchall()
+    c.execute("""SELECT cid FROM terminal WHERE tid = %i""" % tid)
+    temp = c.fetchall()
+    temp = temp[0][0]
+    if temp != 0:
+        c.execute("""SELECT Rechten from terminal WHERE TID = %i AND cid = %i""" % (tid, cid))
+        terminal = c.fetchall()
+        if not terminal:
+            print("Deze gebruiker mag deze deur niet in.")
+            return False
+    else:
+        c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % tid)
+        terminal = c.fetchall()
     if terminal:
         terminal = terminal[0][0]
     else:
-        return "Deze deur bestaat niet!"
+        print("Deze deur bestaat niet!")
+        return False
     print("terminal =", terminal)
     if not persoon:
         print('Deze Card ID staat niet in de database.')
@@ -32,53 +44,60 @@ def check(CID, TID=1):
 
 
 #functie om nieuwe users toe te voegen
-def add(CID, Naam, Rechten):
+def add(cid, naam, rechten):
+    if naam == '':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul een naam in")
+    elif rechten == '':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
+    elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
     c.execute("""SELECT COUNT(UID) from persoon""")
-    UID = c.fetchall()[0][0]+1
-    c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%s', 'Aan') """ % (UID, CID, Naam, Rechten))
+    uid = c.fetchall()[0][0]+1
+    c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechten))
     conn.commit()
     print(Naam, ' toegevoegd')
 
 
 # functie om users te verwijderen
-def delete(CID):
-    c.execute("""SELECT UID from persoon WHERE CID = %i """ % CID)
-    UIDlist = c.fetchall()
-    if UIDlist:
-        UID = UIDlist[0][0]
-        c.execute("""SELECT Naam from persoon WHERE CID = %i """ % CID)
-        Naam = c.fetchall()[0][0]
+def delete(cid):
+    c.execute("""SELECT UID from persoon WHERE CID = %i """ % cid)
+    uidlist = c.fetchall()
+    if uidlist:
+        uid = UIDlist[0][0]
+        c.execute("""SELECT Naam from persoon WHERE CID = %i """ % cid)
+        naam = c.fetchall()[0][0]
         c.execute("""SELECT COUNT(CID) from persoon""")
-        lastUID = c.fetchall()[0][0]
-        c.execute("""DELETE from persoon WHERE CID=%i """ % CID)
-        c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (UID, lastUID))
-        print(Naam, 'verwijderd')
+        # Zet het element op de laatste index op de index van het verwijderde element.
+        lastuid = c.fetchall()[0][0]
+        c.execute("""DELETE from persoon WHERE CID=%i """ % cid)
+        c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
+        print(naam, 'verwijderd')
     else:
         print('Invalid Card ID')
     conn.commit()
 
 
-def activeer(CID):
-    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Uit'""" % CID)
-    NaamTupel = c.fetchall()
-    if NaamTupel:
-        c.execute("""UPDATE persoon SET Access = 'Aan' WHERE CID = %i """ % CID)
-        Naam = NaamTupel[0][0]
-        print('Het pasje van', Naam, 'staat nu aan!')
-        return Naam
+def activeer(cid):
+    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Uit'""" % cid)
+    naamtupel = c.fetchall()
+    if naamtupel:
+        c.execute("""UPDATE persoon SET Access = 'Aan' WHERE CID = %i """ % cid)
+        naam = naamtupel[0][0]
+        print('Het pasje van', naam, 'staat nu aan!')
+        return naam
     else:
         print('Card ID bestaat niet of staat al aan.')
     conn.commit()
 
 
-def deactiveer(CID):
-    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % CID)
-    NaamTupel = c.fetchall()
-    if NaamTupel:
-        c.execute("""UPDATE persoon SET Access = 'Uit' WHERE CID = %i""" % CID)
-        Naam = NaamTupel[0][0]
-        print('Het pasje van', Naam, 'staat nu uit!')
-        return Naam
+def deactiveer(cid):
+    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % cid)
+    naamtupel = c.fetchall()
+    if naamtupel:
+        c.execute("""UPDATE persoon SET Access = 'Uit' WHERE CID = %i""" % cid)
+        naam = naamtupel[0][0]
+        print('Het pasje van', naam, 'staat nu uit!')
+        return naam
     else:
         print('Card ID bestaat niet of staat al uit.')
     conn.commit()
@@ -101,8 +120,8 @@ def search_naam(naam):
         return False
 
 
-def search_cid(CID):
-    c.execute("""SELECT * from persoon WHERE CID = %i""" % CID)
+def search_cid(cid):
+    c.execute("""SELECT * from persoon WHERE CID = %i""" % cid)
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
@@ -118,8 +137,8 @@ def search_cid(CID):
 
 
 
-def search_rechten(Rechten):
-    c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % Rechten)
+def search_rechten(rechten):
+    c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % rechten)
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
@@ -132,6 +151,8 @@ def search_rechten(Rechten):
     else:
         print('not found.')
         return False
+
+check(255970565998217052893709, 4)
 
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.

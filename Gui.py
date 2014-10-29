@@ -6,6 +6,16 @@ import UseDatabase
 root = Tk()
 
 
+def emergency():
+    UseDatabase.fire()
+    root.configure(bg="red")
+    root.bg = "red"
+    leftFrame.configure(bg="red")
+    leftFrame.bg = "red"
+    rightFrame.configure(bg="red")
+    rightFrame.bg = "red"
+
+
 def door1Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
@@ -206,7 +216,6 @@ rightFrame = Frame(root)
 leftFrame.pack(side=LEFT, anchor=NW)
 rightFrame.pack(side=RIGHT, anchor=NW)
 
-
 inputVar1 = ""  # Search name
 inputVar2 = ""  # Search UID
 inputVar3 = ""  # Search rights
@@ -217,6 +226,7 @@ inputVar7 = ""  # Input UID
 inputVar8 = ""
 
 doorStart = PhotoImage(file="door_closed.png")
+fire = PhotoImage(file="fire.png")
 
 door1 = Button(rightFrame, image=doorStart, command=door1Func)
 door2 = Button(rightFrame, image=doorStart, command=door2Func)
@@ -282,6 +292,12 @@ enableButton = Button(leftFrame, text="Enable", command=en_user, width=6)
 labelENDIS = Label(leftFrame, text="Enable or Disable using keycard")
 buttonEN = Button(leftFrame, text="Enable", command=en_card, width=7)
 buttonDIS = Button(leftFrame, text="Disable", command=dis_card, width=7)
+
+buttonFire = Button(rightFrame, image=fire, command=emergency)
+labelFire = Label(rightFrame, text="Fire")
+
+buttonFire.grid(row=8, column=2)
+labelFire.grid(row=8, column=1)
 
 labelENDIS.grid(row=19, column=0, columnspan=3)
 buttonEN.grid(row=20, column=1)

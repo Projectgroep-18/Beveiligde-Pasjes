@@ -78,7 +78,7 @@ def add(cid, naam, rechten):
     uid = c.fetchall()[0][0] + 1
     c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechten))
     conn.commit()
-    print(Naam, ' toegevoegd')
+    print(naam, ' toegevoegd')
 
 
 # Functie om users te verwijderen uit de database
@@ -91,7 +91,7 @@ def delete(uid):
         c.execute("""SELECT COUNT(UID) from persoon""")
         # Zet het element op de laatste index op de index van het verwijderde element.
         lastuid = c.fetchall()[0][0]
-        c.execute("""DELETE from persoon WHERE UID=%i """ % Uid)
+        c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')
     else:
@@ -220,4 +220,3 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
-

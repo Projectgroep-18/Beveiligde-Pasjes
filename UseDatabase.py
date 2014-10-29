@@ -53,7 +53,7 @@ def check(cid, tid=1):
                 print("Welkom!")
                 return True
     else:
-        print("You shall not pass!")
+        print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
         return False
 
 #functie om nieuwe users toe te voegen

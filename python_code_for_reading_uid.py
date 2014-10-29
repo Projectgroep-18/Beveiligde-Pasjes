@@ -21,7 +21,7 @@ while True:
 			print('Maar deze deur bestaat helemaal niet! D:')
 			time.sleep(3)
 			
-	key = randint(1, 100)
+	key = randint(1, 10000000)
 	print('Scan pasje a.u.b.')
 	
 	while ser.readline().strip() != b'test':
@@ -30,8 +30,8 @@ while True:
 	ser.write(str(key).encode())
 	s = ser.readline().strip()
 	userid = int(s)
-	print(userid)
 	userid = userid - key
+	print(userid)
 	Door = UseDatabase.check(userid, TID)
 	print(Door)
 

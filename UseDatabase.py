@@ -133,24 +133,21 @@ def searchRechten(Rechten):
         return False
 
 
-#search_rechten('Eigenaar')
-activeer(246452191867917525661493)
-add(123123189371937128937912, 'Jan Jaap', 3)
-delete(241821987043432866395696)
-add(12, 'Piet Pietersen', -1)
-c.execute("""SELECT * from persoon where cid = 12""")
-persoon = c.fetchall()
-print(persoon)
-check(12)
-c.execute("""SELECT * from persoon""")
-persoon = (c.fetchall())
-print(persoon)
+# search_rechten('Eigenaar')
+# activeer(246452191867917525661493)
+# add(123123189371937128937912, 'Jan Jaap', 3)
+# delete(241821987043432866395696)
+# add(12, 'Piet Pietersen', -1)
+# c.execute("""SELECT * from persoon where cid = 12""")
+# persoon = c.fetchall()
+# print(persoon)
+# check(12)
+# c.execute("""SELECT * from persoon""")
+# persoon = (c.fetchall())
+# print(persoon)
 
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
-
-# Aan de rechten wordt een integer toegewezen, bijv. Eigenaar = 4, Schoonmaker = 3, Beveiliging = 2, Gast = 1
-# Als het integer bij de rechten >= de minimaal nodige rechten om deze deur binnen te komen, gaat de deur open.
 
 # Save (commit) the changes
 conn.commit()

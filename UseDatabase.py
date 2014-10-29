@@ -50,7 +50,7 @@ def check(cid, tid=1):
                     addhistory(uid, tid)
                     return True
             elif not terminal:
-                print("Deze gebruiker mag deze deur niet in.")
+                print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
                 return False
         else:
             c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % tid)

@@ -2,11 +2,9 @@ from tkinter import *
 import tkinter.messagebox
 import UseDatabase
 import serial
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 root = Tk()
-
-COMPOORT = 4
 
 
 def door1Func():

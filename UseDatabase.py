@@ -1,12 +1,13 @@
 __author__ = 'Joël'
 
-
 import sqlite3
+
 conn = sqlite3.connect('data.db')
 import tkinter.messagebox
 from time import strftime
 
 c = conn.cursor()
+
 
 def check(cid, tid=1):
     c.execute("""SELECT UID from persoon where CID = %i""" % cid)
@@ -62,16 +63,18 @@ def check(cid, tid=1):
         print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
         return False
 
-#functie om nieuwe users toe te voegen
+
+# functie om nieuwe users toe te voegen
 def add(cid, naam, rechten):
     if naam == '':
         tkinter.messagebox.showerror("Incorrecte input", "Vul een naam in")
     elif rechten == '':
         tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
     elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
-        tkinter.messagebox.showerror("Incorrecte input", "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
+        tkinter.messagebox.showerror("Incorrecte input",
+                                     "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
     c.execute("""SELECT COUNT(UID) from persoon""")
-    uid = c.fetchall()[0][0]+1
+    uid = c.fetchall()[0][0] + 1
     c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechten))
     conn.commit()
     print(Naam, ' toegevoegd')
@@ -193,7 +196,6 @@ def opendoor(uid, tid):
     cid = c.fetchall()[0][0]
     c.execute("""INSERT INTO history VALUES (%i, %i, '%s', %i)""" % (uid, cid, time, tid))
     conn.commit()
-
 
 
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven

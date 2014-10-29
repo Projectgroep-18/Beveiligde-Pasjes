@@ -8,6 +8,7 @@ root = Tk()
 
 COMPOORT = 4
 
+
 def door1Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
@@ -178,13 +179,12 @@ def popup_add_vars():
 
 
 root.title("Hotelpasjes beheer")
-inputVar1 = ""                                                              # Search name
-inputVar2 = ""                                                              # Search UID
-inputVar3 = ""                                                              # Search rights
-inputVar4 = ""                                                              # Input name
-inputVar5 = ""                                                              # Input rights
-inputVar6 = ""                                                              # Input UID
-
+inputVar1 = ""  # Search name
+inputVar2 = ""  # Search UID
+inputVar3 = ""  # Search rights
+inputVar4 = ""  # Input name
+inputVar5 = ""  # Input rights
+inputVar6 = ""  # Input UID
 
 doorStart = PhotoImage(file="door_closed.png")
 
@@ -200,7 +200,7 @@ buttonSearchName = Button(root, text="Search", command=search_name_gui)
 buttonSearchCID = Button(root, text="Search", command=search_uid_gui)
 buttonSearchRights = Button(root, text="Search", command=search_rights_gui)
 
-#buttonSearch = Button(root, text="Search", command=search, height=3)
+# buttonSearch = Button(root, text="Search", command=search, height=3)
 entryName1 = Entry(root, textvariable=inputVar1)
 labelName1 = Label(root, text="Name")
 entryCID1 = Entry(root, textvariable=inputVar2)

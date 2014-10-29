@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 root = Tk()
 
@@ -107,7 +107,7 @@ def string_int(string):
 
 def deleteFromDB():
     if string_int(inputVar6) != -1:
-        UseDatabase.delete(string_int(inputVar6.get()))
+        UseDatabase.delete(string_int(entryDeleteID.get()))
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -152,7 +152,7 @@ def search_rights_gui():
 
 
 def add_user():
-    UseDatabase.add(python_code_for_reading_uid.readArduino(), inputVar4.get(), inputVar5.get())
+    UseDatabase.add(python_code_for_reading_uid.readArduino(), entryName2.get(), entryRights2.get())
 
 
 def popup_search(data):

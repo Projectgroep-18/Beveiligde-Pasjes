@@ -1,11 +1,54 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
+import python_code_for_reading_uid
 import serial
 
 root = Tk()
 
 COMPOORT = 4
+
+def door1Func():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    cid = python_code_for_reading_uid.readArduino()
+    UseDatabase.check(cid, 1)
+
+def door2Func():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    cid = python_code_for_reading_uid.readArduino()
+    UseDatabase.check(cid, 2)
+
+def door3Func():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    cid = python_code_for_reading_uid.readArduino()
+    UseDatabase.check(cid, 3)
+
+def door4Func():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    cid = python_code_for_reading_uid.readArduino()
+    UseDatabase.check(cid, 4)
+
+def door5Func():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    cid = python_code_for_reading_uid.readArduino()
+    UseDatabase.check(cid, 5)
+
+def door6Func():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    cid = python_code_for_reading_uid.readArduino()
+    UseDatabase.check(cid, 6)
+
+def door7Func():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    cid = python_code_for_reading_uid.readArduino()
+    UseDatabase.check(cid, 7)
 
 def change_img():
     doorO = PhotoImage(file="door_opened.png")
@@ -103,6 +146,17 @@ inputVar4 = ""                                                              # In
 inputVar5 = ""                                                              # Input rights
 inputVar6 = ""                                                              # Input UID
 
+
+doorStart = PhotoImage(file="door_closed.png")
+
+door1 = Button(root, image=doorStart, command=door1Func)
+door2 = Button(root, image=doorStart, command=door2Func)
+door3 = Button(root, image=doorStart, command=door3Func)
+door4 = Button(root, image=doorStart, command=door4Func)
+door5 = Button(root, image=doorStart, command=door5Func)
+door6 = Button(root, image=doorStart, command=door6Func)
+door7 = Button(root, image=doorStart, command=door7Func)
+
 buttonSearchName = Button(root, text="Search", command=search_name_gui)
 buttonSearchCID = Button(root, text="Search", command=search_uid_gui)
 buttonSearchRights = Button(root, text="Search", command=search_rights_gui)
@@ -126,7 +180,7 @@ entryRights2 = Entry(root, textvariable=inputVar5)
 labelRights2 = Label(root, text="Rights")
 labelWhite = Label(root, text="")
 
-doorStart = PhotoImage(file="door_closed.png")
+
 labelDoor = Label(root, image=doorStart)
 doorState = IntVar()
 doorButton = Checkbutton(root, variable=doorState, command=change_img)
@@ -157,4 +211,12 @@ labelDeleteID.grid(row=6, column=0, sticky=E)
 entryDeleteID.grid(row=6, column=1)
 buttonDeleteID.grid(row=6, column=2)
 
+
+door1.grid(row=8, column=1)
+door2.grid(row=8, column=2)
+door3.grid(row=8, column=3)
+door4.grid(row=8, column=4)
+door5.grid(row=8, column=5)
+door6.grid(row=8, column=6)
+door7.grid(row=8, column=7)
 root.mainloop()

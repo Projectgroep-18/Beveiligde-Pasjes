@@ -32,8 +32,7 @@ while True:
 	
 	ser.write(str(key).encode())
 	s = ser.readline().strip()
-	userid = int(s)
-	userid = decrypt(userid)
+	userid = decrypt(int(s))
 	Door = UseDatabase.check(userid, TID)
 	print(Door)
 

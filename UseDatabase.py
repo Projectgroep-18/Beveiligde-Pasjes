@@ -8,11 +8,8 @@ from time import strftime
 
 c = conn.cursor()
 
-<<<<<<< HEAD
-#Functie om te controleren of de gebruiker de deur mag openen
-=======
 
->>>>>>> origin/master
+#Functie om te controleren of de gebruiker de deur mag openen
 def check(cid, tid=1):
     c.execute("""SELECT UID from persoon where CID = %i""" % cid)
     uid = c.fetchall()
@@ -36,7 +33,7 @@ def check(cid, tid=1):
         print('Deze Card ID staat niet in de database, of de kaart is gedisabled.')
         return False
     elif persoon > rechten:
-        print('Open deur!')
+        print('Welkom!')
         addhistory(uid, tid)
         return True
     elif persoon == rechten:
@@ -67,12 +64,8 @@ def check(cid, tid=1):
         print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
         return False
 
-<<<<<<< HEAD
-# Functie om nieuwe users toe te voegen aan de database
-=======
 
-# functie om nieuwe users toe te voegen
->>>>>>> origin/master
+# Functie om nieuwe users toe te voegen aan de database
 def add(cid, naam, rechten):
     if naam == '':
         tkinter.messagebox.showerror("Incorrecte input", "Vul een naam in")
@@ -213,15 +206,12 @@ def addhistory(uid, tid):
     conn.commit()
 
 
-<<<<<<< HEAD
 # Functie die de history-tabel van de database opvraagt.
 def gethistory():
     c.execute("""SELECT * from history""")
     history = c.fetchall()
     return history
 
-=======
->>>>>>> origin/master
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
 

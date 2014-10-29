@@ -114,7 +114,7 @@ def delete(uid):
     conn.commit()
 
 
-# Functe om een pasje te activeren die al in de database staat
+# Functie om een pasje te activeren die al in de database staat
 def activeer(cid):
     c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Uit'""" % cid)
     naamtupel = c.fetchall()
@@ -128,12 +128,40 @@ def activeer(cid):
     conn.commit()
 
 
+# Functie om een pasje te activeren die al in de database staat
+def activeer(uid):
+    c.execute("""SELECT Naam FROM persoon WHERE UID = %i AND Access = 'Uit'""" % uid)
+    naamtupel = c.fetchall()
+    if naamtupel:
+        c.execute("""UPDATE persoon SET Access = 'Aan' WHERE UID = %i """ % uid)
+        naam = naamtupel[0][0]
+        print('Het pasje van', naam, 'staat nu aan!')
+        return naam
+    else:
+        print('User ID bestaat niet of staat al aan.')
+    conn.commit()
+
+
 # Functie om een pasje te deactiveren
 def deactiveer(uid):
     c.execute("""SELECT Naam FROM persoon WHERE UID = %i AND Access = 'Aan'""" % uid)
     naamtupel = c.fetchall()
     if naamtupel:
         c.execute("""UPDATE persoon SET Access = 'Uit' WHERE UID = %i""" % uid)
+        naam = naamtupel[0][0]
+        print('Het pasje van', naam, 'staat nu uit!')
+        return naam
+    else:
+        print('User ID bestaat niet of staat al uit.')
+    conn.commit()
+
+
+# Functie om een pasje te deactiveren
+def deactiveer(uid):
+    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % cid)
+    naamtupel = c.fetchall()
+    if naamtupel:
+        c.execute("""UPDATE persoon SET Access = 'Uit' WHERE CID = %i""" % cid)
         naam = naamtupel[0][0]
         print('Het pasje van', naam, 'staat nu uit!')
         return naam
@@ -271,7 +299,3 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
-
-
-fire()
-fire()

@@ -12,7 +12,7 @@ c = conn.cursor()
 #Functie om te controleren of de gebruiker de deur mag openen
 def check(cid, tid=1):
     if cid == 1189998819991197253:
-        print("Er gaat een deur open door het brandalarm.")
+        print("Er gaat een deur open door het brandalarm, namelijk deur", tid)
         return True
     c.execute("""SELECT UID from persoon where CID = %i""" % cid)
     uid = c.fetchall()
@@ -78,6 +78,7 @@ def add(cid, naam, rechten):
     elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
         tkinter.messagebox.showerror("Incorrecte input",
                                      "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
+        return False
     if rechten == 'Eigenaar':
         rechtnum = 4
     elif rechten == 'Gast':
@@ -89,7 +90,8 @@ def add(cid, naam, rechten):
 
     c.execute("""SELECT COUNT(UID) from persoon""")
     uid = c.fetchall()[0][0] + 1
-    c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechtnum))
+    if rechtnum:
+        c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechtnum))
     conn.commit()
     print(naam, ' toegevoegd')
 
@@ -103,7 +105,7 @@ def delete(uid):
         naam = c.fetchall()[0][0]
         c.execute("""SELECT COUNT(UID) from persoon""")
         # Zet het element op de laatste index op de index van het verwijderde element.
-        lastuid = c.fetchall()[0][0]
+        lastuid = c.fetchall()[0][0]-1
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')
@@ -127,11 +129,11 @@ def activeer(cid):
 
 
 # Functie om een pasje te deactiveren
-def deactiveer(cid):
-    c.execute("""SELECT Naam FROM persoon WHERE CID = %i AND Access = 'Aan'""" % cid)
+def deactiveer(uid):
+    c.execute("""SELECT Naam FROM persoon WHERE UID = %i AND Access = 'Aan'""" % uid)
     naamtupel = c.fetchall()
     if naamtupel:
-        c.execute("""UPDATE persoon SET Access = 'Uit' WHERE CID = %i""" % cid)
+        c.execute("""UPDATE persoon SET Access = 'Uit' WHERE UID = %i""" % uid)
         naam = naamtupel[0][0]
         print('Het pasje van', naam, 'staat nu uit!')
         return naam
@@ -242,7 +244,7 @@ def closedoor(tid):
 def fire():
     c.execute("""SELECT count(*) FROM terminal""")
     amountofdoors = c.fetchall()[0][0]
-    c.execute("""SELECT * from fire""")
+    c.execute("""SELECT Fire from fire""")
     firestate = c.fetchall()[0][0]
     if firestate == 1:
         firestate = 0
@@ -250,11 +252,13 @@ def fire():
             closedoor(x)
             print("Er gaat een deur dicht.")
         print("Het brandalarm staat nu weer uit.")
+        firestate = 1
     elif firestate == 0:
         firestate = 1
         for x in range(0, amountofdoors):
             opendoor(x)
         print("Het brandalarm staat nu aan.")
+        firestate = 1
     return firestate
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
@@ -264,3 +268,91 @@ conn.commit()
 
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
+
+
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Je dacht zeker dat ik snel zou stoppen of niet?")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Dat heb je mis hoor")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Muhahaha trololol")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Hoi")
+tkinter.messagebox.showerror("Trololol", "Kthxbb")

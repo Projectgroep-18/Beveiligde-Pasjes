@@ -8,16 +8,22 @@ c = conn.cursor()
 # We gaan uit van byteorder = big
 userid = 246452191867917525661493  # int.from_bytes(b'3529442660', byteorder='big')
 
-def check(CID):
-    c.execute("""SELECT CID from persoon WHERE CID = %i AND Access='Aan' """ % CID)
-    persoon = c.fetchall()
-    if persoon:
+def check(CID, TID=1):
+    c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % CID)
+    persoon = c.fetchall()[0][0]
+    print(persoon)
+    c.execute("""SELECT Rechten from terminal WHERE TID = %i""" % TID)
+    terminal = c.fetchall()[0][0]
+    print(terminal)
+    if persoon == terminal:
         print('Open deur!')
         return persoon
-    else:
-        print('NO.')
+    elif persoon:
+        print('Deze gebruiker heeft geen toegang tot deze deur')
         return False
-
+    else:
+        print('Deze Card ID staat niet in de database.')
+        return False
 #functie om nieuwe users toe te voegen
 def add(CID, Naam, Rechten):
     c.execute("""SELECT COUNT(UID) from persoon""")
@@ -97,6 +103,7 @@ def searchCID(CID):
         print('not found.')
         return False
 
+
 def searchRechten(Rechten):
     c.execute("""SELECT * from persoon WHERE Rechten = '%s'""" % Rechten)
     data = c.fetchall()
@@ -115,15 +122,21 @@ def searchRechten(Rechten):
         return False
 
 
-searchRechten('Eigenaar')
-#activeer(246452191867917525661493)
-#check(246452191867917525661493)
-#add(123123189371937128937912, 'Jan Jaap', 'Eggeneer')
-#delete(241821987043432866395696)
-add(12, 'Jan Janssen', 'KIP')
+#searchRechten('Eigenaar')
+activeer(246452191867917525661493)
+check(246452191867917525661493)
+add(123123189371937128937912, 'Jan Jaap', 'Eggeneer')
+# delete(241821987043432866395696)
+add(12, 'Piet Pietersen', 'KIP')
 c.execute("""SELECT * from persoon""")
 persoon = (c.fetchall())
 print(persoon)
+
+# Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
+# Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
+
+# Aan de rechten wordt een integer toegewezen, bijv. Eigenaar = 3, Schoonmaker = 2, Beveiliging = 1, Gast = 0
+# Als het integer bij de rechten >= de minimaal nodige rechten om deze deur binnen te komen, gaat de deur open.
 
 # Save (commit) the changes
 conn.commit()

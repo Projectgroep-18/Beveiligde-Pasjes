@@ -93,6 +93,10 @@ def string_int(string):
         return -1
 
 
+def deleteFromDB():
+    UseDatabase.delete(inputVar6)
+
+
 def search():
     var1 = entryName1.get()
     var2 = entryCID1.get()
@@ -114,14 +118,14 @@ def search_name_gui():
         popup_search(UseDatabase.search_naam(var1))
 
 
-def search_cid_gui():
+def search_uid_gui():
     var1 = entryCID1.get()
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     elif string_int(var1) == -1:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
     else:
-        UseDatabase.search_cid(string_int(var1))
+        UseDatabase.search_uid(string_int(var1))
 
 
 def search_rights_gui():
@@ -165,18 +169,23 @@ inputVar2 = ""                                                              # Se
 inputVar3 = ""                                                              # Search rights
 inputVar4 = ""                                                              # Input name
 inputVar5 = ""                                                              # Input rights
+inputVar6 = ""                                                              # Input UID
 
 buttonSearchName = Button(root, text="Search", command=search_name_gui)
-buttonSearchCID = Button(root, text="Search", command=search_cid_gui)
+buttonSearchCID = Button(root, text="Search", command=search_uid_gui)
 buttonSearchRights = Button(root, text="Search", command=search_rights_gui)
 
 #buttonSearch = Button(root, text="Search", command=search, height=3)
 entryName1 = Entry(root, textvariable=inputVar1)
 labelName1 = Label(root, text="Name")
 entryCID1 = Entry(root, textvariable=inputVar2)
-labelCID1 = Label(root, text="Card ID")
+labelCID1 = Label(root, text="User ID")
 entryRights1 = Entry(root, textvariable=inputVar3)
 labelRights1 = Label(root, text="Rights")
+
+entryDeleteID = Entry(root, textvariable=inputVar6)
+labelDeleteID = Label(root, text="User ID")
+buttonDeleteID = Button(root, text="Delete", command=deleteFromDB)
 
 buttonEnter = Button(root, text="Enter", command=add_user, height=3)
 entryName2 = Entry(root, textvariable=inputVar4)
@@ -211,7 +220,6 @@ buttonSearchName.grid(row=1, column=2)
 buttonSearchCID.grid(row=2, column=2)
 buttonSearchRights.grid(row=3, column=2)
 
-labelWhite.grid(row=0)
 labelName1.grid(row=1, column=0, sticky=E)
 entryName1.grid(row=1, column=1)
 labelCID1.grid(row=2, column=0, sticky=E)
@@ -225,7 +233,7 @@ entryName2.grid(row=6, column=1)
 labelRights2.grid(row=7, column=0, sticky=E)
 entryRights2.grid(row=7, column=1)
 buttonEnter.grid(row=6, column=2, rowspan=2)
-labelWhite.grid(row=8)
+labelWhite.grid(row=9)
 
 labelDoor1.grid(row=4, column=4)
 labelDoor2.grid(row=4, column=5)
@@ -234,5 +242,15 @@ labelDoor4.grid(row=4, column=7)
 labelDoor5.grid(row=5, column=4)
 labelDoor6.grid(row=5, column=5)
 labelDoor7.grid(row=5, column=6)
+
+labelName2.grid(row=6, column=0, sticky=E)
+entryName2.grid(row=6, column=1)
+labelRights2.grid(row=7, column=0, sticky=E)
+entryRights2.grid(row=7, column=1)
+buttonEnter.grid(row=6, column=2, rowspan=2)
+
+labelDeleteID.grid(row=8, column=0, sticky=E)
+entryDeleteID.grid(row=8, column=1)
+buttonDeleteID.grid(row=8, column=2)
 
 root.mainloop()

@@ -5,8 +5,6 @@ import sqlite3
 conn = sqlite3.connect('data.db')
 
 c = conn.cursor()
-# We gaan uit van byteorder = big
-userid = 246452191867917525661493  # int.from_bytes(b'3529442660', byteorder='big')
 
 
 def check(CID, TID=1):

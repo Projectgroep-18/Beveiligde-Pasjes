@@ -39,9 +39,10 @@ c.execute("""INSERT INTO persoon VALUES (7, 237118211425339845326898, 'Menno Sch
 c.execute('''INSERT INTO terminal VALUES (1, 4, 0)''')
 c.execute('''INSERT INTO terminal VALUES (2, 3, 0)''')
 c.execute('''INSERT INTO terminal VALUES (3, 2, 0)''')
-c.execute('''INSERT INTO terminal VALUES (4, 1, 0)''')
-c.execute('''INSERT INTO terminal VALUES (5, 1, 246452191867917525661493)''')
-c.execute('''INSERT INTO terminal VALUES (6, 1, 0)''')
+c.execute('''INSERT INTO terminal VALUES (4, 1, 255970565998217052893709)''')
+c.execute('''INSERT INTO terminal VALUES (5, 1, 232450968716023256199986)''')
+c.execute('''INSERT INTO terminal VALUES (6, 1, 232396204097943329323057)''')
+c.execute('''INSERT INTO terminal VALUES (7, 1, 237118211425339845326898)''')
 
 
 # Save (commit) the changes

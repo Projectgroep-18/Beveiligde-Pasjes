@@ -87,7 +87,7 @@ def deactiveer(CID):
 
 
 
-def searchNaam(naam):
+def search_naam(naam):
     c.execute("""SELECT * from persoon WHERE Naam LIKE '%%%s%%'""" % naam)
     data = c.fetchall()
     if data:
@@ -118,7 +118,7 @@ def search_cid(CID):
 
 
 
-def searchRechten(Rechten):
+def search_rechten(Rechten):
     c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % Rechten)
     data = c.fetchall()
     if data:
@@ -145,7 +145,7 @@ def searchRechten(Rechten):
 # c.execute("""SELECT * from persoon""")
 # persoon = (c.fetchall())
 # print(persoon)
-
+search
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
 

@@ -70,6 +70,7 @@ def check(cid, tid=1):
 
 # Functie om nieuwe users toe te voegen aan de database
 def add(cid, naam, rechten):
+    rechtnum = 0
     if naam == '':
         tkinter.messagebox.showerror("Incorrecte input", "Vul een naam in")
     elif rechten == '':

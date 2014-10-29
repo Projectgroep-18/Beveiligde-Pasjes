@@ -152,7 +152,8 @@ def search_rights_gui():
 
 
 def add_user():
-    UseDatabase.add(python_code_for_reading_uid.readArduino(), entryName2.get(), entryRights2.get())
+    var1 = (python_code_for_reading_uid.readArduino())
+    UseDatabase.add(var1, entryName2.get(), entryRights2.get())
 
 
 def popup_search(data):

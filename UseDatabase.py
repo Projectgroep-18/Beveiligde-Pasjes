@@ -105,7 +105,7 @@ def delete(uid):
         naam = c.fetchall()[0][0]
         c.execute("""SELECT COUNT(UID) from persoon""")
         # Zet het element op de laatste index op de index van het verwijderde element.
-        lastuid = c.fetchall()[0][0]-1
+        lastuid = c.fetchall()[0][0]
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')

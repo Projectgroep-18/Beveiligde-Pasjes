@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
+import time
 #import python_code_for_reading_uid
 
 root = Tk()
@@ -62,6 +63,9 @@ def door1Func():
     if var == True:
         door1.configure(image=doorO)
         door1.image = doorO
+        time.sleep(5)
+        door1.configure(image=doorC)
+        door1.image = doorC
     else:
         door1.configure(image=doorC)
         door1.image = doorC
@@ -74,6 +78,9 @@ def door2Func():
     if var == True:
         door2.configure(image=doorO)
         door2.image = doorO
+        time.sleep(5)
+        door2.configure(image=doorC)
+        door2.image = doorC
     else:
         door2.configure(image=doorC)
         door2.image = doorC
@@ -87,6 +94,9 @@ def door3Func():
     if var == True:
         door3.configure(image=doorO)
         door3.image = doorO
+        time.sleep(5)
+        door3.configure(image=doorC)
+        door3.image = doorC
     else:
         door3.configure(image=doorC)
         door3.image = doorC
@@ -100,6 +110,9 @@ def door4Func():
     if var == True:
         door4.configure(image=doorO)
         door4.image = doorO
+        time.sleep(5)
+        door4.configure(image=doorC)
+        door4.image = doorC
     else:
         door4.configure(image=doorC)
         door4.image = doorC
@@ -113,6 +126,9 @@ def door5Func():
     if var == True:
         door5.configure(image=doorO)
         door5.image = doorO
+        time.sleep(5)
+        door5.configure(image=doorC)
+        door5.image = doorC
     else:
         door5.configure(image=doorC)
         door5.image = doorC
@@ -125,6 +141,9 @@ def door6Func():
     if var == True:
         door6.configure(image=doorO)
         door6.image = doorO
+        time.sleep(5)
+        door6.configure(image=doorC)
+        door6.image = doorC
     else:
         door6.configure(image=doorC)
         door6.image = doorC
@@ -137,6 +156,9 @@ def door7Func():
     if var == True:
         door7.configure(image=doorO)
         door7.image = doorO
+        time.sleep(5)
+        door7.configure(image=doorC)
+        door7.image = doorC
     else:
         door7.configure(image=doorC)
         door7.image = doorC

@@ -58,7 +58,7 @@ def search_uid_gui():
     elif string_int(var1) == -1:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
     else:
-        UseDatabase.search_cid(string_int(var1))
+        UseDatabase.search_uid(string_int(var1))
 
 
 def search_rights_gui():

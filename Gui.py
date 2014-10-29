@@ -7,15 +7,82 @@ root = Tk()
 
 COMPOORT = 4
 
-def change_img():
+
+def change_img1():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    if doorState.get() == 1:
-        labelDoor.configure(image=doorO)
-        labelDoor.image = doorO
+    if doorState1.get() == 1:
+        labelDoor1.configure(image=doorO)
+        labelDoor1.image = doorO
     else:
-        labelDoor.configure(image=doorC)
-        labelDoor.image = doorC
+        labelDoor1.configure(image=doorC)
+        labelDoor1.image = doorC
+
+
+def change_img2():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    if doorState2.get() == 1:
+        labelDoor2.configure(image=doorO)
+        labelDoor2.image = doorO
+    else:
+        labelDoor2.configure(image=doorC)
+        labelDoor2.image = doorC
+
+
+def change_img3():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    if doorState3.get() == 1:
+        labelDoor3.configure(image=doorO)
+        labelDoor3.image = doorO
+    else:
+        labelDoor3.configure(image=doorC)
+        labelDoor3.image = doorC
+
+
+def change_img4():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    if doorState4.get() == 1:
+        labelDoor4.configure(image=doorO)
+        labelDoor4.image = doorO
+    else:
+        labelDoor4.configure(image=doorC)
+        labelDoor4.image = doorC
+
+
+def change_img5():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    if doorState5.get() == 1:
+        labelDoor5.configure(image=doorO)
+        labelDoor5.image = doorO
+    else:
+        labelDoor5.configure(image=doorC)
+        labelDoor5.image = doorC
+
+
+def change_img6():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    if doorState6.get() == 1:
+        labelDoor6.configure(image=doorO)
+        labelDoor6.image = doorO
+    else:
+        labelDoor6.configure(image=doorC)
+        labelDoor6.image = doorC
+
+
+def change_img7():
+    doorO = PhotoImage(file="door_opened.png")
+    doorC = PhotoImage(file="door_closed.png")
+    if doorState7.get() == 1:
+        labelDoor7.configure(image=doorO)
+        labelDoor7.image = doorO
+    else:
+        labelDoor7.configure(image=doorC)
+        labelDoor7.image = doorC
 
 
 def string_int(string):
@@ -71,12 +138,11 @@ def add_user():
     CID = int.from_bytes(s, byteorder='big')
     UseDatabase.add(CID, inputVar4, inputVar5)
 
+
 def popup_search():
     top_search = Toplevel()
     top_search.title("Search results")
     top_search.focus_set()
-
-
 
 
 def popup_add_vars():
@@ -91,7 +157,7 @@ def popup_add_vars():
     button.pack()
 
 
-root.title("Dit is de titel")
+root.title("Hotelpasjes beheer")
 inputVar1 = ""                                                              # Search name
 inputVar2 = ""                                                              # Search UID
 inputVar3 = ""                                                              # Search rights
@@ -117,10 +183,27 @@ entryRights2 = Entry(root, textvariable=inputVar5)
 labelRights2 = Label(root, text="Rights")
 labelWhite = Label(root, text="")
 
-doorStart = PhotoImage(file="door_closed.png")
-labelDoor = Label(root, image=doorStart)
-doorState = IntVar()
-doorButton = Checkbutton(root, variable=doorState, command=change_img)
+doorStart1 = PhotoImage(file="door_closed.png")
+labelDoor1 = Label(root, image=doorStart1)
+doorState1 = IntVar()
+doorStart2 = PhotoImage(file="door_closed.png")
+labelDoor2 = Label(root, image=doorStart2)
+doorState2 = IntVar()
+doorStart3 = PhotoImage(file="door_closed.png")
+labelDoor3 = Label(root, image=doorStart3)
+doorState3 = IntVar()
+doorStart4 = PhotoImage(file="door_closed.png")
+labelDoor4 = Label(root, image=doorStart4)
+doorState4 = IntVar()
+doorStart5 = PhotoImage(file="door_closed.png")
+labelDoor5 = Label(root, image=doorStart5)
+doorState5 = IntVar()
+doorStart6 = PhotoImage(file="door_closed.png")
+labelDoor6 = Label(root, image=doorStart6)
+doorState6 = IntVar()
+doorStart7 = PhotoImage(file="door_closed.png")
+labelDoor7 = Label(root, image=doorStart7)
+doorState7 = IntVar()
 
 buttonSearchName.grid(row=0, column=2)
 buttonSearchCID.grid(row=1, column=2)
@@ -141,8 +224,12 @@ labelRights2.grid(row=5, column=0, sticky=E)
 entryRights2.grid(row=5, column=1)
 buttonEnter.grid(row=4, column=2, rowspan=2)
 
-labelDoor.grid(row=6, column=1)
-doorButton.grid(row=6, column=0)
-
+labelDoor1.grid(row=6, column=1)
+labelDoor2.grid(row=6, column=3)
+labelDoor3.grid(row=6, column=5)
+labelDoor4.grid(row=6, column=7)
+labelDoor5.grid(row=6, column=9)
+labelDoor6.grid(row=6, column=11)
+labelDoor7.grid(row=6, column=13)
 
 root.mainloop()

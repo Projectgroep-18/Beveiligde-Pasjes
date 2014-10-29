@@ -97,16 +97,24 @@ def door7Func():
         door7.image = doorC
 
 
+def en_card():
+    UseDatabase.activeer_cid(python_code_for_reading_uid.readArduino())
+
+
+def dis_card():
+    UseDatabase.deactiveer_cid(python_code_for_reading_uid.readArduino())
+
+
 def dis_user():
     if string_int(entryDisableID.get()) != -1:
-        UseDatabase.deactiveer(string_int(entryDisableID.get()))
+        UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
 
 def en_user():
     if string_int(entryEnableID.get()) != -1:
-        UseDatabase.activeer(string_int(entryEnableID.get()))
+        UseDatabase.activeer_uid(string_int(entryEnableID.get()))
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -260,6 +268,7 @@ Whitespace5 = Label(leftFrame, text=" ")
 Whitespace6 = Label(leftFrame, text=" ")
 Whitespace7 = Label(rightFrame, text=" ")
 Whitespace8 = Label(rightFrame, text=" ")
+Whitespace9 = Label(leftFrame, text=" ")
 
 labelDisableID = Label(leftFrame, text="User ID")
 labelDisable = Label(leftFrame, text="Disable someone in database")
@@ -269,6 +278,15 @@ labelEnableID = Label(leftFrame, text="User ID")
 labelEnable = Label(leftFrame, text="Enable someone in database")
 entryEnableID = Entry(leftFrame, textvariable=inputVar8)
 enableButton = Button(leftFrame, text="Enable", command=en_user, width=6)
+
+labelENDIS = Label(leftFrame, text="Enable or Disable using keycard")
+buttonEN = Button(leftFrame, text="Enable", command=en_card, width=7)
+buttonDIS = Button(leftFrame, text="Disable", command=dis_card, width=7)
+
+labelENDIS.grid(row=19, column=0, columnspan=3)
+buttonEN.grid(row=20, column=1)
+buttonDIS.grid(row=21, column=1)
+Whitespace9.grid(row=22, column=0)
 
 labelDisableID.grid(row=14, column=0, sticky=E)
 labelDisable.grid(row=13, column=0, columnspan=3)

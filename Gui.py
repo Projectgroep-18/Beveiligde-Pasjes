@@ -1,8 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import time
-#import python_code_for_reading_uid
+import python_code_for_reading_uid
 
 root = Tk()
 
@@ -27,11 +26,17 @@ def emergency():
         door1.configure(image=doorO)
         door1.image = doorO
         door2.configure(image=doorO)
+        door2.image = doorO
         door3.configure(image=doorO)
+        door3.image = doorO
         door4.configure(image=doorO)
+        door4.image = doorO
         door5.configure(image=doorO)
+        door5.image = doorO
         door6.configure(image=doorO)
+        door6.image = doorO
         door7.configure(image=doorO)
+        door7.image = doorO
     else:
         root.configure(bg="green")
         leftFrame.configure(bg="green")
@@ -46,26 +51,41 @@ def emergency():
         Whitespace2.configure(bg="green")
         Whitespace1.configure(bg="green")
         door1.configure(image=doorC)
-        door1.image = doorC
+        door2.image = doorC
         door2.configure(image=doorC)
+        door3.image = doorC
         door3.configure(image=doorC)
+        door4.image = doorC
         door4.configure(image=doorC)
+        door5.image = doorC
         door5.configure(image=doorC)
+        door6.image = doorC
         door6.configure(image=doorC)
+        door6.image = doorC
         door7.configure(image=doorC)
+        door7.image = doorC
+
+door1 = False
+door2 = False
+door3 = False
+door4 = False
+door5 = False
+door6 = False
+door7 = False
 
 
 def door1Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    cid = python_code_for_reading_uid.readArduino()
-    var = UseDatabase.check(cid, 1)
-    if var == True:
-        door1.configure(image=doorO)
-        door1.image = doorO
-        time.sleep(5)
-        door1.configure(image=doorC)
-        door1.image = doorC
+    if door1 == False:
+        cid = python_code_for_reading_uid.readArduino()
+        var = UseDatabase.check(cid, 1)
+        if var == True:
+            door1.configure(image=doorO)
+            door1.image = doorO
+        else:
+            door1.configure(image=doorC)
+            door1.image = doorC
     else:
         door1.configure(image=doorC)
         door1.image = doorC
@@ -73,14 +93,15 @@ def door1Func():
 def door2Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    cid = python_code_for_reading_uid.readArduino()
-    var = UseDatabase.check(cid, 2)
-    if var == True:
-        door2.configure(image=doorO)
-        door2.image = doorO
-        time.sleep(5)
-        door2.configure(image=doorC)
-        door2.image = doorC
+    if door2 == False:
+        cid = python_code_for_reading_uid.readArduino()
+        var = UseDatabase.check(cid, 2)
+        if var == True:
+            door2.configure(image=doorO)
+            door2.image = doorO
+        else:
+            door2.configure(image=doorC)
+            door2.image = doorC
     else:
         door2.configure(image=doorC)
         door2.image = doorC
@@ -89,14 +110,15 @@ def door2Func():
 def door3Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    cid = python_code_for_reading_uid.readArduino()
-    var = UseDatabase.check(cid, 3)
-    if var == True:
-        door3.configure(image=doorO)
-        door3.image = doorO
-        time.sleep(5)
-        door3.configure(image=doorC)
-        door3.image = doorC
+    if door3 == False:
+        cid = python_code_for_reading_uid.readArduino()
+        var = UseDatabase.check(cid, 3)
+        if var == True:
+            door3.configure(image=doorO)
+            door3.image = doorO
+        else:
+            door3.configure(image=doorC)
+            door3.image = doorC
     else:
         door3.configure(image=doorC)
         door3.image = doorC
@@ -105,14 +127,15 @@ def door3Func():
 def door4Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    cid = python_code_for_reading_uid.readArduino()
-    var = UseDatabase.check(cid, 4)
-    if var == True:
-        door4.configure(image=doorO)
-        door4.image = doorO
-        time.sleep(5)
-        door4.configure(image=doorC)
-        door4.image = doorC
+    if door4 == False:
+        cid = python_code_for_reading_uid.readArduino()
+        var = UseDatabase.check(cid, 4)
+        if var == True:
+            door4.configure(image=doorO)
+            door4.image = doorO
+        else:
+            door4.configure(image=doorC)
+            door4.image = doorC
     else:
         door4.configure(image=doorC)
         door4.image = doorC
@@ -121,14 +144,15 @@ def door4Func():
 def door5Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    cid = python_code_for_reading_uid.readArduino()
-    var = UseDatabase.check(cid, 5)
-    if var == True:
-        door5.configure(image=doorO)
-        door5.image = doorO
-        time.sleep(5)
-        door5.configure(image=doorC)
-        door5.image = doorC
+    if door5 == False:
+        cid = python_code_for_reading_uid.readArduino()
+        var = UseDatabase.check(cid, 5)
+        if var == True:
+            door5.configure(image=doorO)
+            door5.image = doorO
+        else:
+            door5.configure(image=doorC)
+            door5.image = doorC
     else:
         door5.configure(image=doorC)
         door5.image = doorC
@@ -136,14 +160,15 @@ def door5Func():
 def door6Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    cid = python_code_for_reading_uid.readArduino()
-    var = UseDatabase.check(cid, 6)
-    if var == True:
-        door6.configure(image=doorO)
-        door6.image = doorO
-        time.sleep(5)
-        door6.configure(image=doorC)
-        door6.image = doorC
+    if door6 == False:
+        cid = python_code_for_reading_uid.readArduino()
+        var = UseDatabase.check(cid, 6)
+        if var == True:
+            door6.configure(image=doorO)
+            door6.image = doorO
+        else:
+            door6.configure(image=doorC)
+            door6.image = doorC
     else:
         door6.configure(image=doorC)
         door6.image = doorC
@@ -151,14 +176,15 @@ def door6Func():
 def door7Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    cid = python_code_for_reading_uid.readArduino()
-    var = UseDatabase.check(cid, 7)
-    if var == True:
-        door7.configure(image=doorO)
-        door7.image = doorO
-        time.sleep(5)
-        door7.configure(image=doorC)
-        door7.image = doorC
+    if door7 == False:
+        cid = python_code_for_reading_uid.readArduino()
+        var = UseDatabase.check(cid, 7)
+        if var == True:
+            door7.configure(image=doorO)
+            door7.image = doorO
+        else:
+            door7.configure(image=doorC)
+            door7.image = doorC
     else:
         door7.configure(image=doorC)
         door7.image = doorC

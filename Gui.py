@@ -104,6 +104,13 @@ def dis_user():
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
 
+def en_user():
+    if string_int(entryEnableID.get()) != -1:
+        UseDatabase.deactiveer(string_int(entryEnableID.get()))
+    else:
+        tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+
+
 def string_int(string):
     try:
         int(string)
@@ -188,8 +195,8 @@ root.resizable(0,0)
 
 leftFrame = Frame(root)
 rightFrame = Frame(root)
-leftFrame.pack(side=LEFT, anchor=NE)
-rightFrame.pack(side=RIGHT)
+leftFrame.pack(side=LEFT, anchor=NW)
+rightFrame.pack(side=RIGHT, anchor=NW)
 
 
 inputVar1 = ""  # Search name
@@ -199,6 +206,7 @@ inputVar4 = ""  # Input name
 inputVar5 = ""  # Input rights
 inputVar6 = ""  # Input UID
 inputVar7 = ""  # Input UID
+inputVar8 = ""
 
 doorStart = PhotoImage(file="door_closed.png")
 
@@ -249,17 +257,29 @@ Whitespace2 = Label(leftFrame, text=" ")
 Whitespace3 = Label(leftFrame, text=" ")
 Whitespace4 = Label(leftFrame, text=" ")
 Whitespace5 = Label(leftFrame, text=" ")
+Whitespace6 = Label(leftFrame, text=" ")
+Whitespace7 = Label(rightFrame, text=" ")
+Whitespace8 = Label(rightFrame, text=" ")
 
 labelDisableID = Label(leftFrame, text="User ID")
 labelDisable = Label(leftFrame, text="Disable someone in database")
 entryDisableID = Entry(leftFrame, textvariable=inputVar7)
 disableButton = Button(leftFrame, text="Disable", command=dis_user, width=6)
+labelEnableID = Label(leftFrame, text="User ID")
+labelEnable = Label(leftFrame, text="Enable someone in database")
+entryEnableID = Entry(leftFrame, textvariable=inputVar8)
+enableButton = Button(leftFrame, text="Enable", command=en_user, width=6)
 
 labelDisableID.grid(row=14, column=0, sticky=E)
 labelDisable.grid(row=13, column=0, columnspan=3)
 entryDisableID.grid(row=14, column=1)
 disableButton.grid(row=14, column=2)
 Whitespace5.grid(row=15, column=0)
+labelEnableID.grid(row=17, column=0, sticky=E)
+labelEnable.grid(row=16, column=0, columnspan=3)
+entryEnableID.grid(row=17, column=1)
+enableButton.grid(row=17, column=2)
+Whitespace6.grid(row=18, column=0)
 
 buttonSearchName.grid(row=2, column=2)
 buttonSearchCID.grid(row=3, column=2)
@@ -294,17 +314,19 @@ door1.grid(row=1, column=2)
 door2.grid(row=2, column=2)
 door3.grid(row=3, column=2)
 door4.grid(row=4, column=2)
-door5.grid(row=1, column=4)
-door6.grid(row=2, column=4)
-door7.grid(row=3, column=4)
+door5.grid(row=5, column=2)
+door6.grid(row=6, column=2)
+door7.grid(row=7, column=2)
 
+Whitespace7.grid(row=0, column=0)
+Whitespace8.grid(row=0, column=3)
 
 door1Label.grid(row=1, column=1)
 door2Label.grid(row=2, column=1)
 door3Label.grid(row=3, column=1)
 door4Label.grid(row=4, column=1)
-door5Label.grid(row=1, column=3)
-door6Label.grid(row=2, column=3)
-door7Label.grid(row=3, column=3)
+door5Label.grid(row=5, column=1)
+door6Label.grid(row=6, column=1)
+door7Label.grid(row=7, column=1)
 
 root.mainloop()

@@ -10,7 +10,12 @@ c = conn.cursor()
 
 def check(cid, tid=1):
     c.execute("""SELECT UID from persoon where CID = %i""" % cid)
-    uid = c.fetchall()[0][0]
+    uid = c.fetchall()
+    if uid:
+        uid = uid[0][0]
+    else:
+        print("Ongeldige Card ID")
+        return False
     c.execute("""SELECT Rechten from persoon WHERE CID = %i AND Access='Aan' """ % cid)
     persoon = c.fetchall()
     c.execute("""SELECT Rechten from terminal where TID = %i""" % tid)
@@ -186,10 +191,7 @@ def opendoor(uid, tid):
     time = strftime("%Y-%m-%d %H:%M:%S")
     c.execute("""SELECT cid from persoon WHERE uid = %i""" % uid)
     cid = c.fetchall()[0][0]
-    print(cid)
     c.execute("""INSERT INTO history VALUES (%i, %i, '%s', %i)""" % (uid, cid, time, tid))
-    c.execute("""select * from history""")
-    print(c.fetchall())
     conn.commit()
 
 

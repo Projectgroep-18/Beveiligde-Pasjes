@@ -107,7 +107,7 @@ def string_int(string):
 
 def deleteFromDB():
     if string_int(inputVar6) != -1:
-        UseDatabase.delete(string_int(inputVar6))
+        UseDatabase.delete(string_int(inputVar6.get()))
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -152,7 +152,7 @@ def search_rights_gui():
 
 
 def add_user():
-    UseDatabase.add(python_code_for_reading_uid.readArduino(), inputVar4, inputVar5)
+    UseDatabase.add(python_code_for_reading_uid.readArduino(), inputVar4.get(), inputVar5.get())
 
 
 def popup_search(data):
@@ -202,7 +202,7 @@ door6 = Button(rightFrame, image=doorStart, command=door6Func)
 door7 = Button(rightFrame, image=doorStart, command=door7Func)
 
 buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui, width=6)
-buttonSearchCID = Button(leftFrame, text="Search", command=search_uid_gui,width=6)
+buttonSearchCID = Button(leftFrame, text="Search", command=search_uid_gui, width=6)
 buttonSearchRights = Button(leftFrame, text="Search", command=search_rights_gui, width=6)
 
 # buttonSearch = Button(root, text="Search", command=search, height=3)

@@ -19,6 +19,8 @@ def check(CID, TID=1):
     terminal = c.fetchall()
     if terminal:
         terminal = terminal[0][0]
+    else:
+        return "Deze deur bestaat niet!"
     print("terminal =", terminal)
     if not persoon:
         print('Deze Card ID staat niet in de database.')
@@ -84,6 +86,7 @@ def deactiveer(CID):
     conn.commit()
 
 
+
 def searchNaam(naam):
     c.execute("""SELECT * from persoon WHERE Naam LIKE '%%%s%%'""" % naam)
     data = c.fetchall()
@@ -99,7 +102,7 @@ def searchNaam(naam):
         return False
 
 
-def searchCID(CID):
+def search_cid(CID):
     c.execute("""SELECT * from persoon WHERE CID = %i""" % CID)
     data = c.fetchall()
     if data:
@@ -112,6 +115,7 @@ def searchCID(CID):
     else:
         print('not found.')
         return False
+
 
 
 def searchRechten(Rechten):
@@ -129,7 +133,7 @@ def searchRechten(Rechten):
         return False
 
 
-#searchRechten('Eigenaar')
+#search_rechten('Eigenaar')
 activeer(246452191867917525661493)
 add(123123189371937128937912, 'Jan Jaap', 3)
 delete(241821987043432866395696)

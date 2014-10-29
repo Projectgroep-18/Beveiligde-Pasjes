@@ -106,7 +106,7 @@ def dis_user():
 
 def en_user():
     if string_int(entryEnableID.get()) != -1:
-        UseDatabase.deactiveer(string_int(entryEnableID.get()))
+        UseDatabase.activeer(string_int(entryEnableID.get()))
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 

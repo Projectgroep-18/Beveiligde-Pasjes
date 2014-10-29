@@ -9,83 +9,6 @@ root = Tk()
 COMPOORT = 4
 
 
-def change_img1():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
-    if doorState1.get() == 1:
-        labelDoor1.configure(image=doorO)
-        labelDoor1.image = doorO
-    else:
-        labelDoor1.configure(image=doorC)
-        labelDoor1.image = doorC
-
-
-def change_img2():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
-    if doorState2.get() == 1:
-        labelDoor2.configure(image=doorO)
-        labelDoor2.image = doorO
-    else:
-        labelDoor2.configure(image=doorC)
-        labelDoor2.image = doorC
-
-
-def change_img3():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
-    if doorState3.get() == 1:
-        labelDoor3.configure(image=doorO)
-        labelDoor3.image = doorO
-    else:
-        labelDoor3.configure(image=doorC)
-        labelDoor3.image = doorC
-
-
-def change_img4():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
-    if doorState4.get() == 1:
-        labelDoor4.configure(image=doorO)
-        labelDoor4.image = doorO
-    else:
-        labelDoor4.configure(image=doorC)
-        labelDoor4.image = doorC
-
-
-def change_img5():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
-    if doorState5.get() == 1:
-        labelDoor5.configure(image=doorO)
-        labelDoor5.image = doorO
-    else:
-        labelDoor5.configure(image=doorC)
-        labelDoor5.image = doorC
-
-
-def change_img6():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
-    if doorState6.get() == 1:
-        labelDoor6.configure(image=doorO)
-        labelDoor6.image = doorO
-    else:
-        labelDoor6.configure(image=doorC)
-        labelDoor6.image = doorC
-
-
-def change_img7():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
-    if doorState7.get() == 1:
-        labelDoor7.configure(image=doorO)
-        labelDoor7.image = doorO
-    else:
-        labelDoor7.configure(image=doorC)
-        labelDoor7.image = doorC
-
-
 def door1Func():
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
@@ -256,68 +179,60 @@ def popup_add_vars():
 
 
 root.title("Hotelpasjes beheer")
-inputVar1 = ""                                                              # Search name
-inputVar2 = ""                                                              # Search UID
-inputVar3 = ""                                                              # Search rights
-inputVar4 = ""                                                              # Input name
-inputVar5 = ""                                                              # Input rights
-inputVar6 = ""                                                              # Input UID
 
+leftFrame = Frame(root)
+rightFrame = Frame(root)
+leftFrame.pack(side=LEFT, anchor=NE)
+rightFrame.pack(side=RIGHT)
+
+
+inputVar1 = ""  # Search name
+inputVar2 = ""  # Search UID
+inputVar3 = ""  # Search rights
+inputVar4 = ""  # Input name
+inputVar5 = ""  # Input rights
+inputVar6 = ""  # Input UID
 
 doorStart = PhotoImage(file="door_closed.png")
 
-door1 = Button(root, image=doorStart, command=door1Func)
-door2 = Button(root, image=doorStart, command=door2Func)
-door3 = Button(root, image=doorStart, command=door3Func)
-door4 = Button(root, image=doorStart, command=door4Func)
-door5 = Button(root, image=doorStart, command=door5Func)
-door6 = Button(root, image=doorStart, command=door6Func)
-door7 = Button(root, image=doorStart, command=door7Func)
+door1 = Button(rightFrame, image=doorStart, command=door1Func)
+door2 = Button(rightFrame, image=doorStart, command=door2Func)
+door3 = Button(rightFrame, image=doorStart, command=door3Func)
+door4 = Button(rightFrame, image=doorStart, command=door4Func)
+door5 = Button(rightFrame, image=doorStart, command=door5Func)
+door6 = Button(rightFrame, image=doorStart, command=door6Func)
+door7 = Button(rightFrame, image=doorStart, command=door7Func)
 
-buttonSearchName = Button(root, text="Search", command=search_name_gui)
-buttonSearchCID = Button(root, text="Search", command=search_uid_gui)
-buttonSearchRights = Button(root, text="Search", command=search_rights_gui)
+buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui)
+buttonSearchCID = Button(leftFrame, text="Search", command=search_uid_gui)
+buttonSearchRights = Button(leftFrame, text="Search", command=search_rights_gui)
 
-#buttonSearch = Button(root, text="Search", command=search, height=3)
-entryName1 = Entry(root, textvariable=inputVar1)
-labelName1 = Label(root, text="Name")
-entryCID1 = Entry(root, textvariable=inputVar2)
-labelCID1 = Label(root, text="User ID")
-entryRights1 = Entry(root, textvariable=inputVar3)
-labelRights1 = Label(root, text="Rights")
+# buttonSearch = Button(root, text="Search", command=search, height=3)
+entryName1 = Entry(leftFrame, textvariable=inputVar1)
+labelName1 = Label(leftFrame, text="Name")
+entryCID1 = Entry(leftFrame, textvariable=inputVar2)
+labelCID1 = Label(leftFrame, text="User ID")
+entryRights1 = Entry(leftFrame, textvariable=inputVar3)
+labelRights1 = Label(leftFrame, text="Rights")
 
-entryDeleteID = Entry(root, textvariable=inputVar6)
-labelDeleteID = Label(root, text="User ID")
-buttonDeleteID = Button(root, text="Delete", command=deleteFromDB)
+entryDeleteID = Entry(leftFrame, textvariable=inputVar6)
+labelDeleteID = Label(leftFrame, text="User ID")
+buttonDeleteID = Button(leftFrame, text="Delete", command=deleteFromDB)
 
-buttonEnter = Button(root, text="Enter", command=add_user, height=3)
-entryName2 = Entry(root, textvariable=inputVar4)
-labelName2 = Label(root, text="Name")
-entryRights2 = Entry(root, textvariable=inputVar5)
-labelRights2 = Label(root, text="Rights")
-labelWhite = Label(root, text="")
+buttonEnter = Button(leftFrame, text="Enter", command=add_user, height=3)
+entryName2 = Entry(leftFrame, textvariable=inputVar4)
+labelName2 = Label(leftFrame, text="Name")
+entryRights2 = Entry(leftFrame, textvariable=inputVar5)
+labelRights2 = Label(leftFrame, text="Rights")
+labelWhite = Label(leftFrame, text="")
 
-doorStart1 = PhotoImage(file="door_closed.png")
-labelDoor1 = Label(root, image=doorStart1)
-doorState1 = IntVar()
-doorStart2 = PhotoImage(file="door_closed.png")
-labelDoor2 = Label(root, image=doorStart2)
-doorState2 = IntVar()
-doorStart3 = PhotoImage(file="door_closed.png")
-labelDoor3 = Label(root, image=doorStart3)
-doorState3 = IntVar()
-doorStart4 = PhotoImage(file="door_closed.png")
-labelDoor4 = Label(root, image=doorStart4)
-doorState4 = IntVar()
-doorStart5 = PhotoImage(file="door_closed.png")
-labelDoor5 = Label(root, image=doorStart5)
-doorState5 = IntVar()
-doorStart6 = PhotoImage(file="door_closed.png")
-labelDoor6 = Label(root, image=doorStart6)
-doorState6 = IntVar()
-doorStart7 = PhotoImage(file="door_closed.png")
-labelDoor7 = Label(root, image=doorStart7)
-doorState7 = IntVar()
+door1Label = Label(rightFrame, text="Door 1")
+door2Label = Label(rightFrame, text="Door 2")
+door3Label = Label(rightFrame, text="Door 3")
+door4Label = Label(rightFrame, text="Door 4")
+door5Label = Label(rightFrame, text="Door 5")
+door6Label = Label(rightFrame, text="Door 6")
+door7Label = Label(rightFrame, text="Door 7")
 
 buttonSearchName.grid(row=1, column=2)
 buttonSearchCID.grid(row=2, column=2)
@@ -339,14 +254,6 @@ entryRights2.grid(row=7, column=1)
 buttonEnter.grid(row=6, column=2, rowspan=2)
 labelWhite.grid(row=9)
 
-labelDoor1.grid(row=4, column=4)
-labelDoor2.grid(row=4, column=5)
-labelDoor3.grid(row=4, column=6)
-labelDoor4.grid(row=4, column=7)
-labelDoor5.grid(row=5, column=4)
-labelDoor6.grid(row=5, column=5)
-labelDoor7.grid(row=5, column=6)
-
 labelName2.grid(row=6, column=0, sticky=E)
 entryName2.grid(row=6, column=1)
 labelRights2.grid(row=7, column=0, sticky=E)
@@ -357,12 +264,21 @@ labelDeleteID.grid(row=8, column=0, sticky=E)
 entryDeleteID.grid(row=8, column=1)
 buttonDeleteID.grid(row=8, column=2)
 
-door1.grid(row=8, column=3)
-door2.grid(row=8, column=4)
-door3.grid(row=8, column=5)
-door4.grid(row=8, column=6)
-door5.grid(row=8, column=7)
-door6.grid(row=8, column=8)
-door7.grid(row=8, column=9)
+door1.grid(row=1, column=2)
+door2.grid(row=2, column=2)
+door3.grid(row=3, column=2)
+door4.grid(row=4, column=2)
+door5.grid(row=1, column=4)
+door6.grid(row=2, column=4)
+door7.grid(row=3, column=4)
+
+
+door1Label.grid(row=1, column=1)
+door2Label.grid(row=2, column=1)
+door3Label.grid(row=3, column=1)
+door4Label.grid(row=4, column=1)
+door5Label.grid(row=1, column=3)
+door6Label.grid(row=2, column=3)
+door7Label.grid(row=3, column=3)
 
 root.mainloop()

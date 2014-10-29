@@ -105,7 +105,7 @@ def delete(uid):
         naam = c.fetchall()[0][0]
         c.execute("""SELECT COUNT(UID) from persoon""")
         # Zet het element op de laatste index op de index van het verwijderde element.
-        lastuid = c.fetchall()[0][0]
+        lastuid = c.fetchall()[0][0]-1
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')
@@ -281,7 +281,6 @@ def fire():
             print("Er gaat een deur dicht, namelijk deur", x)
         c.execute("""UPDATE fire SET Fire = 0""")
         print("Het brandalarm staat nu weer uit.")
-        firestate = 1
     elif firestate == 0:
         firestate = 1
         for x in range(1, amountofdoors):

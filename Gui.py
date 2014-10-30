@@ -45,6 +45,7 @@ def emergency():
     firestate = UseDatabase.fire()
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
+    doorO_eigenaar = PhotoImage(file="door_eigenaar_open.png")
     doorC_eigenaar = PhotoImage(file="door_eigenaar_closed.png")
     if firestate:
         root.configure(bg="red")
@@ -59,8 +60,8 @@ def emergency():
         Whitespace3.configure(bg="red")
         Whitespace2.configure(bg="red")
         Whitespace1.configure(bg="red")
-        door1.configure(image=doorO)
-        door1.image = doorO
+        door1.configure(image=doorO_eigenaar)
+        door1.image = doorO_eigenaar
         door2.configure(image=doorO)
         door2.image = doorO
         door3.configure(image=doorO)
@@ -131,7 +132,7 @@ def emergency():
 
 
 def door1Func():
-    doorO = PhotoImage(file="door_opened.png")
+    doorO = PhotoImage(file="door_eigenaar_open.png")
     doorC = PhotoImage(file="door_eigenaar_closed.png")
     global ddoor1
     if ddoor1 == False:
@@ -416,6 +417,7 @@ door4 = Button(rightFrame, image=doorStart, command=door4Func)
 door5 = Button(rightFrame, image=doorStart, command=door5Func)
 door6 = Button(rightFrame, image=doorStart, command=door6Func)
 door7 = Button(rightFrame, image=doorStart, command=door7Func)
+history = Button(rightFrame, text="History", command=get_history)
 
 buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui, width=6)
 buttonSearchCID = Button(leftFrame, text="Search", command=search_uid_gui, width=6)
@@ -542,6 +544,7 @@ door4.grid(row=4, column=2)
 door5.grid(row=5, column=2)
 door6.grid(row=6, column=2)
 door7.grid(row=7, column=2)
+history.grid(row=9, column=2)
 
 Whitespace7.grid(row=0, column=0)
 Whitespace8.grid(row=0, column=3)
@@ -577,6 +580,5 @@ Whitespace4.configure(bg="green")
 Whitespace3.configure(bg="green")
 Whitespace2.configure(bg="green")
 Whitespace1.configure(bg="green")
-
 
 root.mainloop()

@@ -16,7 +16,6 @@ ddoor7 = False
 
 
 def emergency():
-    global fire
     fire = UseDatabase.fire()
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")

@@ -14,10 +14,10 @@ def check(cid, tid=1):
     if cid == 1189998819991197253:
         print("Er gaat een deur open door het brandalarm, namelijk deur", tid)
         return True
-    c.execute("""SELECT UID from persoon where CID = %i""" % cid)
-    uid = c.fetchall()
-    if uid:
-        uid = uid[0][0]
+    c.execute("""SELECT Naam from persoon where CID = %i""" % cid)
+    naam = c.fetchall()
+    if naam:
+        naam = naam[0][0]
     else:
         print("De Card ID staat niet in de database")
         return False
@@ -37,7 +37,7 @@ def check(cid, tid=1):
         return False
     elif persoon > rechten:
         print('Welkom!')
-        addhistory(uid, tid)
+        addhistory(naam, tid)
         return True
     elif persoon == rechten:
         c.execute("""SELECT cid FROM terminal WHERE tid = %i""" % tid)
@@ -50,7 +50,7 @@ def check(cid, tid=1):
                 terminal = terminal[0][0]
                 if temp == cid:
                     print("Welkom!")
-                    addhistory(uid, tid)
+                    addhistory(naam, tid)
                     return True
             elif not terminal:
                 print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
@@ -61,7 +61,7 @@ def check(cid, tid=1):
             terminal = terminal[0][0]
             if persoon >= terminal:
                 print("Welkom!")
-                addhistory(uid, tid)
+                addhistory(naam, tid)
                 return True
     else:
         print("Toegang geweigerd. Ongeautoriseerde gebruiker.")

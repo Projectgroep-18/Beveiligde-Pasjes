@@ -106,7 +106,7 @@ def emergency():
 
 def door1Func():
     doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed_special.png")
+    doorC = PhotoImage(file="door_eigenaar_closed.png")
     global ddoor1
     if ddoor1 == False:
         cid = python_code_for_reading_uid.readArduino()

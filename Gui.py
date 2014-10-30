@@ -308,24 +308,11 @@ def string_int(string):
         return -1
 
 
-def deleteFromDB():
+def delete_from_db():
     if string_int(entryDeleteID.get()) != -1:
         UseDatabase.delete(string_int(entryDeleteID.get()))
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
-
-
-def search():
-    var1 = entryName1.get()
-    var2 = entryCID1.get()
-    if var2 != "":
-        var2 = string_int(var2)
-    var3 = entryRights1.get()
-    if var2 != -1:
-        if var1 != "":
-            print(var1, var2, var3)
-    else:
-        tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
 
 
 def search_name_gui():
@@ -384,7 +371,6 @@ leftFrame.pack(side=LEFT, anchor=NW)
 rightFrame.pack(side=RIGHT, anchor=NW)
 
 inputVar1 = ""  # Search name
-
 inputVar2 = ""  # Search rights
 inputVar3 = ""  # Input name
 inputVar4 = ""  # Input rights
@@ -411,17 +397,16 @@ buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui, wid
 buttonSearchCID = Button(leftFrame, text="Search", command=search_cid_gui, width=6)
 buttonSearchRights = Button(leftFrame, text="Search", command=search_rights_gui, width=6)
 
-# buttonSearch = Button(root, text="Search", command=search, height=3)
 entryName1 = Entry(leftFrame, textvariable=inputVar1)
 labelName1 = Label(leftFrame, text="Name")
-entryCID1 = Entry(leftFrame, textvariable=inputVar2)
-labelCID1 = Label(leftFrame, text="User ID")
+#entryCID1 = Entry(leftFrame, textvariable=inputVar2)
+labelCID1 = Label(leftFrame, text="Card ID")
 entryRights1 = Entry(leftFrame, textvariable=inputVar2)
 labelRights1 = Label(leftFrame, text="Rights")
 
 entryDeleteID = Entry(leftFrame, textvariable=inputVar5)
 labelDeleteID = Label(leftFrame, text="User ID")
-buttonDeleteID = Button(leftFrame, text="Delete", command=deleteFromDB, width=6)
+buttonDeleteID = Button(leftFrame, text="Delete", command=delete_from_db, width=6)
 
 buttonEnter = Button(leftFrame, text="Enter", command=add_user, height=3, width=6)
 entryName2 = Entry(leftFrame, textvariable=inputVar3)
@@ -441,7 +426,7 @@ door5Label = Label(rightFrame, text="Guestroom 2")
 door6Label = Label(rightFrame, text="Guestroom 3")
 door7Label = Label(rightFrame, text="Guestroom 4")
 
-Whitespace1 = Label(leftFrame, text="   ")
+Whitespace1 = Label(leftFrame, text=" ")
 Whitespace2 = Label(leftFrame, text=" ")
 Whitespace3 = Label(leftFrame, text=" ")
 Whitespace4 = Label(leftFrame, text=" ")
@@ -505,11 +490,10 @@ labelSearch.grid(row=1, column=0, columnspan=3)
 labelName1.grid(row=2, column=0, sticky=E)
 entryName1.grid(row=2, column=1)
 labelCID1.grid(row=3, column=0, sticky=E)
-entryCID1.grid(row=3, column=1)
+#entryCID1.grid(row=3, column=1)
 labelRights1.grid(row=4, column=0, sticky=E)
 entryRights1.grid(row=4, column=1)
 
-#buttonSearch.grid(row=0, column=3, rowspan=3)
 Whitespace2.grid(row=5, column=0)
 labelEnter.grid(row=6, column=0, columnspan=3)
 labelName2.grid(row=7, column=0, sticky=E)

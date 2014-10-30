@@ -415,7 +415,7 @@ door7 = Button(rightFrame, image=doorStart, command=door7Func)
 history = Button(rightFrame, text="History", command=get_history)
 
 buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui, width=6)
-buttonSearchCID = Button(leftFrame, text="Search", command=search_uid_gui, width=6)
+buttonSearchCID = Button(leftFrame, text="Search", command=search_cid_gui, width=6)
 buttonSearchRights = Button(leftFrame, text="Search", command=search_rights_gui, width=6)
 
 # buttonSearch = Button(root, text="Search", command=search, height=3)

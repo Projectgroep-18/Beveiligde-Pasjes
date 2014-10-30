@@ -295,7 +295,7 @@ def verander_naam(naam, nieuwenaam):
 # Functie die een entry toevoegt aan de database als een deur open gaat
 def addhistory(naam, tid):
     time = strftime("%Y-%m-%d %H:%M:%S")
-    c.execute("""SELECT cid from persoon WHERE naam = %i""" % naam)
+    c.execute("""SELECT cid from persoon WHERE naam = '%s'""" % naam)
     cid = c.fetchall()
     if cid:
         cid = cid[0][0]

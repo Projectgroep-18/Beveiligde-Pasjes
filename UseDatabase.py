@@ -299,6 +299,9 @@ def addhistory(naam, tid):
     cid = c.fetchall()
     if cid:
         cid = cid[0][0]
+    else:
+        print("Deze gebruiker bestaat niet, lul!")
+        return False
     c.execute("""INSERT INTO history VALUES (%i, %i, '%s', %i)""" % (naam, cid, time, tid))
     conn.commit()
 

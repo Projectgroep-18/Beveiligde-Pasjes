@@ -339,13 +339,9 @@ def search_cid_gui():
 def search_rights_gui():
     var1 = entryRights1.get()
     if var1:
-<<<<<<< HEAD
         searchresults = UseDatabase.search_rechten(var1)
         if searchresults:
             popup_search(searchresults)
-=======
-        popup_search_rights(UseDatabase.search_rechten(var1))
->>>>>>> origin/master
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 

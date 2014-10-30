@@ -5,7 +5,7 @@ import python_code_for_reading_uid
 
 root = Tk()
 
-
+firestate = 0
 ddoor1 = False
 ddoor2 = False
 ddoor3 = False

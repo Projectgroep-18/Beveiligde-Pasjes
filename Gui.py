@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-#import python_code_for_reading_uid
+import python_code_for_reading_uid
 
 root = Tk()
 
@@ -16,26 +16,26 @@ ddoor7 = False
 stdbg = root.cget("bg")
 
 def get_history():
-    popup_search(UseDatabase.gethistory())
+    popup(UseDatabase.gethistory())
 
 
 def get_history_name():
     var1 = entryHistoryName.get()
     if var1:
-        popup_search(UseDatabase.gethistoryName(var1))
+        popup(UseDatabase.gethistoryName(var1))
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
 def get_history_cid():
     var1 = (python_code_for_reading_uid.readArduino())
-    popup_search(UseDatabase.gethistoryCID(var1))
+    popup(UseDatabase.gethistoryCID(var1))
 
 
 def get_history_rights():
     var1 = entryHistoryRights
     if var1:
-        popup_search(UseDatabase.gethistoryRights(var1))
+        popup(UseDatabase.gethistoryRights(var1))
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 
@@ -249,7 +249,7 @@ def door6Func():
     if firestate:
         print("This door is open")
     else:
-        if ddoor1 == False:
+        if ddoor6 == False:
             cid = python_code_for_reading_uid.readArduino()
             var = UseDatabase.check(cid, 6)
             if var == True:
@@ -326,37 +326,107 @@ def delete_from_db():
 def search_name_gui():
     var1 = entryName1.get()
     if var1:
-        popup_search(UseDatabase.search_naam(var1))
+        popup_search_name(UseDatabase.search_naam(var1))
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
 def search_cid_gui():
     var1 = (python_code_for_reading_uid.readArduino())
-    popup_search(UseDatabase.search_uid(string_int(var1)))
+    popup_search_name(UseDatabase.search_cid(string_int(var1)))
 
 
 def search_rights_gui():
     var1 = entryRights1.get()
     if var1:
+<<<<<<< HEAD
         searchresults = UseDatabase.search_rechten(var1)
         if searchresults:
             popup_search(searchresults)
+=======
+        popup_search_rights(UseDatabase.search_rechten(var1))
+>>>>>>> origin/master
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
 def add_user():
-    var1 = (python_code_for_reading_uid.readArduino())
-    UseDatabase.add(var1, entryName2.get(), entryRights2.get())
+    var2, var3 = entryName2.get(), entryRights2.get()
+    if var2 and var3:
+        var1 = (python_code_for_reading_uid.readArduino())
+        UseDatabase.add(var1, var2, var3)
+    else:
+        tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
-def popup_search(data):
+def popup(data):
     top_search = Toplevel()
     top_search.title("Search results")
     top_search.focus_set()
 
-    results = Message(top_search, text=data).pack()
+    Message(top_search, text=data).pack()
+
+
+def popup_search_name(data):
+    top_search = Toplevel()
+    top_search.title("Search results")
+    top_search.focus_set()
+
+    if data != 0:
+        for x in range(0, len(data)):
+            naam = "Naam: %s" % data[x][2]
+            uid = "UID: %s" % data[x][3]
+            cid = "CID: %s" % data[x][1]
+            if data[x][0] == 1:
+                rechten = "Rechten: Gast"
+            elif data[x][0] == 2:
+                rechten = "Rechten: Schoonmaker"
+            elif data[x][0] == 3:
+                rechten = "Rechten: Medewerker"
+            elif data[x][0] == 4:
+                rechten = "Rechten: Directie"
+            access = "Access: %s" % data[x][4]
+
+            Message(top_search, text=naam, width=500, anchor=NE).pack()
+            Message(top_search, text=uid, width=500, anchor=NE).pack()
+            Message(top_search, text=cid, width=500, anchor=NE).pack()
+            Message(top_search, text=rechten, width=500, anchor=NE).pack()
+            Message(top_search, text=access, width=500, anchor=NE).pack()
+            Message(top_search, text=" ", width=500).pack()
+
+        top_search.geometry('{}x{}'.format(300, 300))
+    else:
+        Message(top_search, text="Person not found", width=500, anchor=NE).pack()
+
+
+def popup_search_rights(data):
+    if data != 0:
+        top_search = Toplevel()
+        top_search.title("Search results")
+        top_search.focus_set()
+
+        for x in range(0, len(data)):
+            naam = "Naam: %s" % data[x][2]
+            uid = "UID: %s" % data[x][3]
+            cid = "CID: %s" % data[x][1]
+            if data[x][0] == 1:
+                rechten = "Rechten: Gast"
+            elif data[x][0] == 2:
+                rechten = "Rechten: Schoonmaker"
+            elif data[x][0] == 3:
+                rechten = "Rechten: Medewerker"
+            elif data[x][0] == 4:
+                rechten = "Rechten: Directie"
+            access = "Access: %s" % data[x][4]
+
+            Message(top_search, text=naam, width=500, anchor=NE).pack()
+            Message(top_search, text=uid, width=500, anchor=NE).pack()
+            Message(top_search, text=cid, width=500, anchor=NE).pack()
+            Message(top_search, text=rechten, width=500, anchor=NE).pack()
+            Message(top_search, text=access, width=500, anchor=NE).pack()
+            Message(top_search, text=" ", width=500).pack()
+
+        top_search.geometry('{}x{}'.format(300, 300))
 
 
 def popup_add_vars():
@@ -369,7 +439,6 @@ def popup_add_vars():
 
     button = Button(top, text="Dismiss", command=top.destroy)
     button.pack()
-
 
 
 root.title("Hotelpasjes beheer")

@@ -13,3 +13,4 @@ data.db
 *.pyc
 __pycache__/UseDatabase.cpython-34.pyc
 data.db
+data.db

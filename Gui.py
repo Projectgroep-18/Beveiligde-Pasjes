@@ -351,6 +351,20 @@ def popup_add_vars():
     button.pack()
 
 
+# Zorgt dat de bg groen is
+root.configure(bg="green")
+leftFrame.configure(bg="green")
+rightFrame.configure(bg="green")
+Whitespace9.configure(bg="green")
+Whitespace8.configure(bg="green")
+Whitespace7.configure(bg="green")
+Whitespace6.configure(bg="green")
+Whitespace5.configure(bg="green")
+Whitespace4.configure(bg="green")
+Whitespace3.configure(bg="green")
+Whitespace2.configure(bg="green")
+Whitespace1.configure(bg="green")
+
 root.title("Hotelpasjes beheer")
 root.resizable(0, 0)
 

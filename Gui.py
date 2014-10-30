@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-#import python_code_for_reading_uid
+import python_code_for_reading_uid
 
 login = Tk()
 go = False
@@ -332,14 +332,22 @@ if go:
 
 
     def dis_card():
-        UseDatabase.deactiveer_cid(python_code_for_reading_uid.readArduino())
-        popup("Card disabled")
+        naam = UseDatabase.deactiveer_cid(python_code_for_reading_uid.readArduino())
+        if naam:
+            UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
+            popup("%s is disabled" % naam)
+        else:
+            popup("User ID doesn't exist or is already disabled")
 
 
     def dis_user():
         if string_int(entryDisableID.get()) != -1:
-            UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
-            popup("User disabled")
+            naam = UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
+            if naam:
+                UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
+                popup("%s is disabled" % naam)
+            else:
+                popup("User ID doesn't exist or is already disabled")
         else:
             tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -407,7 +415,7 @@ if go:
         top.focus_set()
 
         Message(top, text=string).pack()
-        Button(top, text="Dismiss").pack()
+        Button(top, text="Dismiss", command=top.destroy).pack()
 
 
     def popup_search_name(data):
@@ -418,15 +426,15 @@ if go:
         if data != 0:
             for x in range(0, len(data)):
                 name = "Name: %s" % data[x][2]
-                uid = "UID: %s" % data[x][3]
+                uid = "UID: %s" % data[x][0]
                 cid = "CID: %s" % data[x][1]
-                if data[x][0] == 1:
+                if data[x][3] == 1:
                     rights = "Rights: Gast"
-                elif data[x][0] == 2:
+                elif data[x][3] == 2:
                     rights = "Rights: Schoonmaker"
-                elif data[x][0] == 3:
+                elif data[x][3] == 3:
                     rights = "Rights: Beveiliger"
-                elif data[x][0] == 4:
+                elif data[x][3] == 4:
                     rights = "Rights: Eigenaar"
                 access = "Access: %s" % data[x][4]
 
@@ -450,16 +458,16 @@ if go:
 
             for x in range(0, len(data)):
                 name = "Name: %s" % data[x][2]
-                uid = "UID: %s" % data[x][3]
+                uid = "UID: %s" % data[x][0]
                 cid = "CID: %s" % data[x][1]
-                if data[x][0] == 1:
+                if data[x][3] == 1:
                     rights = "Rights: Gast"
-                elif data[x][0] == 2:
+                elif data[x][3] == 2:
                     rights = "Rights: Schoonmaker"
-                elif data[x][0] == 3:
-                    rights = "Rights: Medewerker"
-                elif data[x][0] == 4:
-                    rights = "Rights: Directie"
+                elif data[x][3] == 3:
+                    rights = "Rights: Beveiliger"
+                elif data[x][3] == 4:
+                    rights = "Rights: Eigenaar"
                 access = "Access: %s" % data[x][4]
 
                 Message(top, text=name, width=500, anchor=NE).pack()

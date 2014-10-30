@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 login = Tk()
 go = False
@@ -45,7 +45,8 @@ if go:
     stdbg = root.cget("bg")
 
     def get_history():
-        popup(UseDatabase.gethistory())
+        var1 = UseDatabase.gethistory()
+        popup_get_history(var1)
 
 
     def get_history_name():
@@ -327,15 +328,18 @@ if go:
 
     def en_card():
         UseDatabase.activeer_cid(python_code_for_reading_uid.readArduino())
+        popup("Card enabled")
 
 
     def dis_card():
         UseDatabase.deactiveer_cid(python_code_for_reading_uid.readArduino())
+        popup("Card disabled")
 
 
     def dis_user():
         if string_int(entryDisableID.get()) != -1:
             UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
+            popup("User disabled")
         else:
             tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -343,6 +347,7 @@ if go:
     def en_user():
         if string_int(entryEnableID.get()) != -1:
             UseDatabase.activeer_uid(string_int(entryEnableID.get()))
+            popup("User enabled")
         else:
             tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -358,7 +363,7 @@ if go:
     def delete_from_db():
         if string_int(entryDeleteID.get()) != -1:
             UseDatabase.delete(string_int(entryDeleteID.get()))
-            popup_data_deleted()
+            popup("Data deleted")
         else:
             tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -391,22 +396,24 @@ if go:
         if var2 and var3:
             var1 = (python_code_for_reading_uid.readArduino())
             UseDatabase.add(var1, var2, var3)
+            popup("User added")
         else:
             tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
-    def popup(data):
-        top_search = Toplevel()
-        top_search.title("Search results")
-        top_search.focus_set()
+    def popup(string):
+        top = Toplevel()
+        top.title("Results")
+        top.focus_set()
 
-        Message(top_search, text=data).pack()
+        Message(top, text=string).pack()
+        Button(top, text="Dismiss").pack()
 
 
     def popup_search_name(data):
-        top_search = Toplevel()
-        top_search.title("Search results")
-        top_search.focus_set()
+        top = Toplevel()
+        top.title("Search results")
+        top.focus_set()
 
         if data != 0:
             for x in range(0, len(data)):
@@ -423,23 +430,23 @@ if go:
                     rights = "Rights: Eigenaar"
                 access = "Access: %s" % data[x][4]
 
-                Message(top_search, text=name, width=500, anchor=NE).pack()
-                Message(top_search, text=uid, width=500, anchor=NE).pack()
-                Message(top_search, text=cid, width=500, anchor=NE).pack()
-                Message(top_search, text=rights, width=500, anchor=NE).pack()
-                Message(top_search, text=access, width=500, anchor=NE).pack()
-                Message(top_search, text=" ", width=500).pack()
+                Message(top, text=name, width=500, anchor=NE).pack()
+                Message(top, text=uid, width=500, anchor=NE).pack()
+                Message(top, text=cid, width=500, anchor=NE).pack()
+                Message(top, text=rights, width=500, anchor=NE).pack()
+                Message(top, text=access, width=500, anchor=NE).pack()
+                Message(top, text=" ", width=500).pack()
 
-            top_search.geometry('{}x{}'.format(300, 300))
+            top.geometry('{}x{}'.format(300, 300))
         else:
-            Message(top_search, text="Person not found", width=500, anchor=NE).pack()
+            Message(top, text="Person not found", width=500, anchor=NE).pack()
 
 
     def popup_search_rights(data):
         if data != 0:
-            top_search = Toplevel()
-            top_search.title("Search results")
-            top_search.focus_set()
+            top = Toplevel()
+            top.title("Search results")
+            top.focus_set()
 
             for x in range(0, len(data)):
                 name = "Name: %s" % data[x][2]
@@ -455,32 +462,46 @@ if go:
                     rights = "Rights: Directie"
                 access = "Access: %s" % data[x][4]
 
-                Message(top_search, text=name, width=500, anchor=NE).pack()
-                Message(top_search, text=uid, width=500, anchor=NE).pack()
-                Message(top_search, text=cid, width=500, anchor=NE).pack()
-                Message(top_search, text=rights, width=500, anchor=NE).pack()
-                Message(top_search, text=access, width=500, anchor=NE).pack()
-                Message(top_search, text=" ", width=500).pack()
+                Message(top, text=name, width=500, anchor=NE).pack()
+                Message(top, text=uid, width=500, anchor=NE).pack()
+                Message(top, text=cid, width=500, anchor=NE).pack()
+                Message(top, text=rights, width=500, anchor=NE).pack()
+                Message(top, text=access, width=500, anchor=NE).pack()
+                Message(top, text=" ", width=500).pack()
 
-            top_search.geometry('{}x{}'.format(300, 300))
+            top.geometry('{}x{}'.format(300, 300))
 
 
-    def popup_data_added():
+    def popup_get_history(data):
         top = Toplevel()
-        top.title('Confirmation')
+        top.title("Results")
         top.focus_set()
 
-        Message(top, text="Data added").pack()
-        Button(top, text="Dismiss", command=top.destroy).pack()
+        if data != 0:
+            for x in range(0, len(data)):
+                name = "Name: %s" % data[x][2]
+                uid = "UID: %s" % data[x][3]
+                cid = "CID: %s" % data[x][1]
+                if data[x][0] == 1:
+                    rights = "Rights: Gast"
+                elif data[x][0] == 2:
+                    rights = "Rights: Schoonmaker"
+                elif data[x][0] == 3:
+                    rights = "Rights: Beveiliger"
+                elif data[x][0] == 4:
+                    rights = "Rights: Eigenaar"
+                access = "Access: %s" % data[x][4]
 
+                Message(top, text=name, width=500, anchor=NE).pack()
+                Message(top, text=uid, width=500, anchor=NE).pack()
+                Message(top, text=cid, width=500, anchor=NE).pack()
+                Message(top, text=rights, width=500, anchor=NE).pack()
+                Message(top, text=access, width=500, anchor=NE).pack()
+                Message(top, text=" ", width=500).pack()
 
-    def popup_data_deleted():
-        top = Toplevel
-        top.title("Confirmation")
-        top.focus_set()
-
-        Message(top, text="Data deleted").pack()
-        Button(top, text="Dismiss", command=top.destroy).pack()
+            top.geometry('{}x{}'.format(300, 300))
+        else:
+            Message(top, text="No data found", width=500, anchor=NE).pack()
 
 
     root.title("Hotel Management")

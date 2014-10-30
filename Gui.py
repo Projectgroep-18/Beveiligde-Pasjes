@@ -109,13 +109,14 @@ def door1Func():
     if ddoor1 == False:
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 1)
-        ddoor1 = True
         if var == True:
             door1.configure(image=doorO)
             door1.image = doorO
+            ddoor1 = True
         else:
             door1.configure(image=doorC)
             door1.image = doorC
+            ddoor1 = False
     else:
         door1.configure(image=doorC)
         door1.image = doorC

@@ -24,6 +24,7 @@ def emergency():
     firestate = UseDatabase.fire()
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
+    doorO_eigenaar = PhotoImage(file="door_eigenaar_open.png")
     doorC_eigenaar = PhotoImage(file="door_eigenaar_closed.png")
     if firestate:
         root.configure(bg="red")
@@ -38,8 +39,8 @@ def emergency():
         Whitespace3.configure(bg="red")
         Whitespace2.configure(bg="red")
         Whitespace1.configure(bg="red")
-        door1.configure(image=doorO)
-        door1.image = doorO
+        door1.configure(image=doorO_eigenaar)
+        door1.image = doorO_eigenaar
         door2.configure(image=doorO)
         door2.image = doorO
         door3.configure(image=doorO)
@@ -110,7 +111,7 @@ def emergency():
 
 
 def door1Func():
-    doorO = PhotoImage(file="door_opened.png")
+    doorO = PhotoImage(file="door_eigenaar_open.png")
     doorC = PhotoImage(file="door_eigenaar_closed.png")
     global ddoor1
     if ddoor1 == False:

@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-#import python_code_for_reading_uid
+import python_code_for_reading_uid
 
 root = Tk()
 
@@ -467,7 +467,7 @@ buttonDIS = Button(leftFrame, text="Disable", command=dis_card, width=7)
 buttonFire = Button(rightFrame, image=fire, command=emergency)
 labelFire = Label(rightFrame, text="Fire")
 
-labelHistory = Label(leftFrame, text="History")
+labelHistory = Label(leftFrame, text="Search History")
 labelHistoryName = Label(leftFrame, text="Naam")
 labelHistoryCID = Label(leftFrame, text="CID")
 labelHistoryRights = Label(leftFrame, text="Rechten")
@@ -545,15 +545,15 @@ door5Label.grid(row=5, column=1)
 door6Label.grid(row=6, column=1)
 door7Label.grid(row=7, column=1)
 
-labelHistory.grid(row=24, column=0)
-labelHistoryName.grid(row=24, column=0)
-entryHistoryName.grid(row=24, column=1)
-buttonHistoryName.grid(row=24, column=2)
-labelHistoryCID.grid(row=25, column=0)
-buttonHistoryCID.grid(row=25, column=2)
-labelHistoryRights.grid(row=26, column=0)
-entryHistoryRights.grid(row=26, column=1)
-buttonHistoryRights.grid(row=26, column=2)
+labelHistory.grid(row=24, column=1)
+labelHistoryName.grid(row=25, column=0)
+entryHistoryName.grid(row=25, column=1)
+buttonHistoryName.grid(row=25, column=2)
+labelHistoryCID.grid(row=26, column=0)
+buttonHistoryCID.grid(row=26, column=2)
+labelHistoryRights.grid(row=27, column=0)
+entryHistoryRights.grid(row=27, column=1)
+buttonHistoryRights.grid(row=27, column=2)
 
 # Zorgt dat de bg groen is
 root.configure(bg="green")

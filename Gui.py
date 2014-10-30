@@ -393,6 +393,7 @@ door4 = Button(rightFrame, image=doorStart, command=door4Func)
 door5 = Button(rightFrame, image=doorStart, command=door5Func)
 door6 = Button(rightFrame, image=doorStart, command=door6Func)
 door7 = Button(rightFrame, image=doorStart, command=door7Func)
+history = Button(rightFrame, text="History", command=gethistory)
 
 buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui, width=6)
 buttonSearchCID = Button(leftFrame, text="Search", command=search_uid_gui, width=6)

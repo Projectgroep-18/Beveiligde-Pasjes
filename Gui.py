@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 login = Tk()
 go = False
@@ -63,7 +63,7 @@ if go:
 
 
     def get_history_rights():
-        var1 = entryHistoryRights
+        var1 = entryHistoryRights.get()
         if var1:
             var2 = UseDatabase.searchhistory_rights(var1)
             if var2:
@@ -75,9 +75,9 @@ if go:
 
 
     def get_history_terminal():
-        var1 = entryHistoryTerminal
+        var1 = entryHistoryTerminal.get()
         if var1:
-            popup(UseDatabase.searchhistory_terminal(var1))
+            popup(UseDatabase.searchhistory_tid(var1))
         else:
             tkinter.messagebox.showerror("No Input", "There must be an input")
 
@@ -692,6 +692,10 @@ if go:
     labelHistoryRights.grid(row=27, column=0)
     entryHistoryRights.grid(row=27, column=1)
     buttonHistoryRights.grid(row=27, column=2)
+    labelHistoryTerminal.grid(row=28, column=0)
+    entryHistoryTerminal.grid(row=28, column=1)
+    buttonHistoryTerminal.grid(row=28, column=2)
+
 
     root.mainloop()
 else:

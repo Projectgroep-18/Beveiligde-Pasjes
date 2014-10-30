@@ -539,5 +539,4 @@ Whitespace3.configure(bg="green")
 Whitespace2.configure(bg="green")
 Whitespace1.configure(bg="green")
 
-gethistory()
 root.mainloop()

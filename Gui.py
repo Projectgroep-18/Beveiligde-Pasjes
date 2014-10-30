@@ -510,6 +510,7 @@ door4.grid(row=4, column=2)
 door5.grid(row=5, column=2)
 door6.grid(row=6, column=2)
 door7.grid(row=7, column=2)
+history.grid(row=9, column=2)
 
 Whitespace7.grid(row=0, column=0)
 Whitespace8.grid(row=0, column=3)

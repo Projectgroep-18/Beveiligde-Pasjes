@@ -14,10 +14,10 @@ def check(cid, tid=1):
     if cid == 1189998819991197253:
         print("Er gaat een deur open door het brandalarm, namelijk deur", tid)
         return True
-    c.execute("""SELECT UID from persoon where CID = %i""" % cid)
-    uid = c.fetchall()
-    if uid:
-        uid = uid[0][0]
+    c.execute("""SELECT Naam from persoon where CID = %i""" % cid)
+    naam = c.fetchall()
+    if naam:
+        naam = naam[0][0]
     else:
         print("De Card ID staat niet in de database")
         return False
@@ -37,7 +37,7 @@ def check(cid, tid=1):
         return False
     elif persoon > rechten:
         print('Welkom!')
-        addhistory(uid, tid)
+        addhistory(naam, tid)
         return True
     elif persoon == rechten:
         c.execute("""SELECT cid FROM terminal WHERE tid = %i""" % tid)
@@ -50,7 +50,7 @@ def check(cid, tid=1):
                 terminal = terminal[0][0]
                 if temp == cid:
                     print("Welkom!")
-                    addhistory(uid, tid)
+                    addhistory(naam, tid)
                     return True
             elif not terminal:
                 print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
@@ -61,10 +61,25 @@ def check(cid, tid=1):
             terminal = terminal[0][0]
             if persoon >= terminal:
                 print("Welkom!")
-                addhistory(uid, tid)
+                addhistory(naam, tid)
                 return True
     else:
         print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
+        return False
+
+#Is er een kamer vrij?
+#Rechten in nieuwe gast = 1
+#Rechten in terminal = 1
+#CID in terminal = 0
+#Return TID
+#else false
+
+def check_kamer():
+    c.execute("""SELECT TID from terminal where rechten = 1 AND CID = 0""")
+    temp = c.fetchall()
+    if temp:
+        return temp[0][0]
+    else:
         return False
 
 
@@ -83,6 +98,13 @@ def add(cid, naam, rechten):
         rechtnum = 4
     elif rechten == 'Gast':
         rechtnum = 1
+        if check_kamer():
+            tid = check_kamer()
+            print("Je kamernummer is", tid-3)
+            c.execute("""UPDATE terminal SET cid = %i WHERE TID = %i""" % (cid, tid))
+        else:
+            print("Er is geen kamer vrij.")
+            return False
     elif rechten == 'Schoonmaker':
         rechtnum = 2
     elif rechten == 'Beveiliging':
@@ -95,20 +117,34 @@ def add(cid, naam, rechten):
     conn.commit()
     print(naam, ' toegevoegd')
 
-
 # Functie om users te verwijderen uit de database
 def delete(uid):
+    # Controleer of er überhaupt een gebruiker is met die uid
     c.execute("""SELECT UID from persoon WHERE UID = %i """ % uid)
     uidlist = c.fetchall()
+    # Als die er wel is:
     if uidlist:
+        # Selecteer de naam die bij de UID hoort
         c.execute("""SELECT Naam from persoon WHERE UID = %i """ % uid)
         naam = c.fetchall()[0][0]
-        c.execute("""SELECT COUNT(UID) from persoon""")
+        # Controleer of het een gast is
+        c.execute("""SELECT rechten from persoon where UID = %i""" % uid)
+        rechten = c.fetchall()[0][0]
+        if rechten == 1:
+            c.execute("""SELECT TID from terminal where CID IN (SELECT CID FROM persoon WHERE UID = %i)""" % uid)
+            tid = c.fetchall()
+            if tid:
+                tid = tid[0][0]
+            else:
+                print("There is no such terminal!")
+            c.execute("""UPDATE terminal SET CID = 0 WHERE TID = %i""" % tid)
         # Zet het element op de laatste index op de index van het verwijderde element.
+        c.execute("""SELECT COUNT(UID) from persoon""")
         lastuid = c.fetchall()[0][0]
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')
+        # Als die gebruiker er niet is:
     else:
         print('Invalid User ID')
     conn.commit()
@@ -171,7 +207,7 @@ def deactiveer_cid(cid):
 
 
 # Functie om naar een naam te zoeken in de database
-def search_naam(naam):
+def search_name(naam):
     c.execute("""SELECT * from persoon WHERE Naam LIKE '%%%s%%'""" % naam)
     data = c.fetchall()
     if data:
@@ -208,7 +244,7 @@ def search_cid(cid):
 
 
 # Functie om naar rechten te zoeken in de database
-def search_rechten(rechten):
+def search_rights(rechten):
     rechtnum = 0
     if rechten == '':
         tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
@@ -257,11 +293,16 @@ def verander_naam(naam, nieuwenaam):
 
 
 # Functie die een entry toevoegt aan de database als een deur open gaat
-def addhistory(uid, tid):
+def addhistory(naam, tid):
     time = strftime("%Y-%m-%d %H:%M:%S")
-    c.execute("""SELECT cid from persoon WHERE uid = %i""" % uid)
-    cid = c.fetchall()[0][0]
-    c.execute("""INSERT INTO history VALUES (%i, %i, '%s', %i)""" % (uid, cid, time, tid))
+    c.execute("""SELECT cid from persoon WHERE naam = '%s'""" % naam)
+    cid = c.fetchall()
+    if cid:
+        cid = cid[0][0]
+    else:
+        print("Deze gebruiker bestaat niet, lul!")
+        return False
+    c.execute("""INSERT INTO history VALUES ('%s', %i, '%s', %i)""" % (naam, cid, time, tid))
     conn.commit()
 
 
@@ -277,7 +318,7 @@ def searchhistory_name(naam):
     match = search_naam(naam)
     print(match)
     if match:
-        c.execute("""SELECT * from HISTORY where uid IN (SELECT uid from persoon WHERE Naam LIKE '%%%s%%' % naam)""")
+        c.execute("""SELECT * from HISTORY where naam = '%s')""" % naam)
         test = c.fetchall()
         if test:
             print(test)
@@ -298,20 +339,38 @@ def searchhistory_cid(cid):
     return result
 
 
+def searchhistory_tid(tid):
+    c.execute("""SELECT * from history where tid = %i""" % tid)
+    temp = c.fetchall()
+    return temp
+
+
 def searchhistory_rights(rechten):
+    rechtnum = 0
+    if rechten == '':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
+        return False
+    elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
+        tkinter.messagebox.showerror("Incorrecte input",
+                                     "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
+        return False
+    elif rechten == 'Gast':
+        rechtnum = 1
+    elif rechten == 'Schoonmaker':
+        rechtnum = 2
+    elif rechten == 'Beveiliging':
+        rechtnum = 3
+    elif rechten == 'Eigenaar':
+        rechtnum = 4
     data = search_rechten(rechten)
-    print(data)
     if data:
-        result = []
-        for x in range(0, len(data)):
-            print('')
-            print('Naam = ', data[x][2])
-            print('Rechten = ', data[x][3])
-            print('CID = ', data[x][1])
-            print('UID = ', data[x][0])
-            print('Access = ', data[x][4])
-            result = result.append(data[x][0])
+        c.execute("""SELECT * FROM history WHERE Naam IN (SELECT Naam from persoon where Rechten = %i)""" % rechtnum)
+        result = c.fetchall()
+        print(result)
         return result
+    else:
+        print("Er is niemand met deze rechten!")
+        return False
 
 
 # Forces door of terminal TID open.

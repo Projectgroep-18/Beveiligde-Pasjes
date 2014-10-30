@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-#import python_code_for_reading_uid
+import python_code_for_reading_uid
 
 login = Tk()
 go = False
@@ -374,8 +374,12 @@ if go:
 
     def delete_from_db():
         if string_int(entryDeleteID.get()) != -1:
-            UseDatabase.delete(string_int(entryDeleteID.get()))
-            popup("Data deleted")
+            naam = UseDatabase.delete(string_int(entryDeleteID.get()))
+            if naam:
+                UseDatabase.delete(string_int(entryDeleteID.get()))
+                popup("%s is deleted" % naam)
+            else:
+                popup("User ID doesn't exist")
         else:
             tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -565,17 +569,17 @@ if go:
     entryRights2 = Entry(leftFrame, textvariable=inputVar4)
     labelRights2 = Label(leftFrame, text="Rights")
 
-    labelSearch = Label(leftFrame, text="Search by Name, UID or rights")
+    labelSearch = Label(leftFrame, text="Search by Name, Card ID or rights")
     labelEnter = Label(leftFrame, text="Add someone to database")
     labelDelete = Label(leftFrame, text="Delete someone from database")
 
-    door1Label = Label(rightFrame, text="Boss's office")
-    door2Label = Label(rightFrame, text="Securityroom")
-    door3Label = Label(rightFrame, text="Cleaningroom")
-    door4Label = Label(rightFrame, text="Guestroom 1")
-    door5Label = Label(rightFrame, text="Guestroom 2")
-    door6Label = Label(rightFrame, text="Guestroom 3")
-    door7Label = Label(rightFrame, text="Guestroom 4")
+    door1Label = Label(rightFrame, text="1. Boss's office")
+    door2Label = Label(rightFrame, text="2. Securityroom")
+    door3Label = Label(rightFrame, text="3. Cleaningroom")
+    door4Label = Label(rightFrame, text="4. Guestroom 1")
+    door5Label = Label(rightFrame, text="5. Guestroom 2")
+    door6Label = Label(rightFrame, text="6. Guestroom 3")
+    door7Label = Label(rightFrame, text="7. Guestroom 4")
 
     Whitespace1 = Label(leftFrame, text=" ")
     Whitespace2 = Label(leftFrame, text=" ")

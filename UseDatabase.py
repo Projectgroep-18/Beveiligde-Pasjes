@@ -143,7 +143,7 @@ def delete(uid):
         lastuid = c.fetchall()[0][0]
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
-        print(naam, 'verwijderd')
+        return naam
         # Als die gebruiker er niet is:
     else:
         print('Invalid User ID')
@@ -359,7 +359,7 @@ def searchhistory_rights(rechten):
         tkinter.messagebox.showerror("Incorrecte input",
                                      "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
         return False
-    data = search_rechten(rechten)
+    data = search_rights(rechten)
     if data:
         c.execute("""SELECT * FROM history WHERE Naam IN (SELECT Naam from persoon where Rechten = %i)""" % rechtnum)
         result = c.fetchall()

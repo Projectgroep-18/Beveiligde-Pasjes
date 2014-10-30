@@ -299,18 +299,27 @@ def searchhistory_cid(cid):
 
 
 def searchhistory_rights(rechten):
+    rechtnum = 0
+    if rechten == '':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
+        return False
+    elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
+        tkinter.messagebox.showerror("Incorrecte input",
+                                     "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
+        return False
+    elif rechten == 'Gast':
+        rechtnum = 1
+    elif rechten == 'Schoonmaker':
+        rechtnum = 2
+    elif rechten == 'Beveiliging':
+        rechtnum = 3
+    elif rechten == 'Eigenaar':
+        rechtnum = 4
     data = search_rechten(rechten)
-    print(data)
     if data:
-        result = []
-        for x in range(0, len(data)):
-            print('')
-            print('Naam = ', data[x][2])
-            print('Rechten = ', data[x][3])
-            print('CID = ', data[x][1])
-            print('UID = ', data[x][0])
-            print('Access = ', data[x][4])
-            result = result.append(data[x][0])
+        c.execute("""SELECT * FROM history WHERE Naam IN (SELECT Naam from persoon where Rechten = %i)""" % rechtnum)
+        result = c.fetchall()
+        print(result)
         return result
 
 

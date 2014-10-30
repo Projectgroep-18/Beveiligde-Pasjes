@@ -32,7 +32,7 @@ c.execute("""CREATE TABLE terminal
 # De persoon met de hoogste rank moet overal bijkunnen.
 
 c.execute("""CREATE TABLE history
-             ('UID' integer, 'CID' integer, 'Datum' text, 'TID' integer)""")
+             ('Naam' text, 'CID' integer, 'Datum' text, 'TID' integer)""")
 
 c.execute("""INSERT INTO fire VALUES (0)""")
 c.execute("""INSERT INTO persoon VALUES (1, 3529442660, 'Dirk-Jan Verandering', 3, 'Aan')""")

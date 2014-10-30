@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 root = Tk()
 
@@ -47,6 +47,13 @@ def emergency():
     doorC = PhotoImage(file="door_closed.png")
     doorO_eigenaar = PhotoImage(file="door_eigenaar_open.png")
     doorC_eigenaar = PhotoImage(file="door_eigenaar_closed.png")
+    global ddoor1
+    global ddoor2
+    global ddoor3
+    global ddoor4
+    global ddoor5
+    global ddoor6
+    global ddoor7
     if firestate:
         root.configure(bg="red")
         leftFrame.configure(bg="red")
@@ -74,13 +81,6 @@ def emergency():
         door6.image = doorO
         door7.configure(image=doorO)
         door7.image = doorO
-        global ddoor1
-        global ddoor2
-        global ddoor3
-        global ddoor4
-        global ddoor5
-        global ddoor6
-        global ddoor7
         ddoor1 = True
         ddoor2 = True
         ddoor3 = True
@@ -115,13 +115,6 @@ def emergency():
         door6.image = doorC
         door7.configure(image=doorC)
         door7.image = doorC
-        global ddoor1
-        global ddoor2
-        global ddoor3
-        global ddoor4
-        global ddoor5
-        global ddoor6
-        global ddoor7
         ddoor1 = False
         ddoor2 = False
         ddoor3 = False
@@ -440,13 +433,13 @@ labelSearch = Label(leftFrame, text="Search by Name, UID or rights")
 labelEnter = Label(leftFrame, text="Add someone to database")
 labelDelete = Label(leftFrame, text="Delete someone from database")
 
-door1Label = Label(rightFrame, text="Door 1")
-door2Label = Label(rightFrame, text="Door 2")
-door3Label = Label(rightFrame, text="Door 3")
-door4Label = Label(rightFrame, text="Door 4")
-door5Label = Label(rightFrame, text="Door 5")
-door6Label = Label(rightFrame, text="Door 6")
-door7Label = Label(rightFrame, text="Door 7")
+door1Label = Label(rightFrame, text="Boss's office")
+door2Label = Label(rightFrame, text="Securityroom")
+door3Label = Label(rightFrame, text="Cleaningroom")
+door4Label = Label(rightFrame, text="Guestroom 1")
+door5Label = Label(rightFrame, text="Guestroom 2")
+door6Label = Label(rightFrame, text="Guestroom 3")
+door7Label = Label(rightFrame, text="Guestroom 4")
 
 Whitespace1 = Label(leftFrame, text="   ")
 Whitespace2 = Label(leftFrame, text=" ")

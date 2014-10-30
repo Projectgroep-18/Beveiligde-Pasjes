@@ -46,12 +46,31 @@ if go:
 
     def get_history():
         var1 = UseDatabase.gethistory()
-        popup_get_history(var1)
+        top = Toplevel()
+        top.title("History")
+        top.focus_set()
+
+        if var1 != 0:
+            for x in range(0, len(var1)):
+                name = "Name: %s" % var1[x][0]
+                tid = "TID: %s" % var1[x][3]
+                cid = "CID: %s" % var1[x][1]
+                time = "Time: %s" %var1[x][2]
+
+                Message(top, text=name, width=500, anchor=NE).pack()
+                Message(top, text=cid, width=500, anchor=NE).pack()
+                Message(top, text=time, width=500, anchor=NE).pack()
+                Message(top, text=tid, width=500, anchor=NE).pack()
+                Message(top, text=" ", width=500).pack()
+
+            top.geometry('{}x{}'.format(300, 300))
+        else:
+            Message(top, text="History", width=500, anchor=NE).pack()
 
 
     def get_history_name():
         var0 = entryHistoryName.get()
-        var1 = UseDatabase.gethistory(var0)
+        var1 = UseDatabase.searchhistory_name(var0)
         top = Toplevel()
         top.title("History")
         top.focus_set()

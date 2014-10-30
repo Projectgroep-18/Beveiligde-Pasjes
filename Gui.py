@@ -487,29 +487,20 @@ if go:
 
         if data != 0:
             for x in range(0, len(data)):
-                name = "Name: %s" % data[x][2]
-                uid = "UID: %s" % data[x][3]
-                cid = "CID: %s" % data[x][1]
-                if data[x][0] == 1:
-                    rights = "Rights: Gast"
-                elif data[x][0] == 2:
-                    rights = "Rights: Schoonmaker"
-                elif data[x][0] == 3:
-                    rights = "Rights: Beveiliger"
-                elif data[x][0] == 4:
-                    rights = "Rights: Eigenaar"
-                access = "Access: %s" % data[x][4]
+                name = "Name: %s" % data[x][0]
+                cid = "Card ID: %s" % data[x][1]
+                time = "Datum: %s" % data[x][2]
+                tid = "Terminal: %s" % data[x][3]
 
-                Message(top, text=name, width=500, anchor=NE).pack()
-                Message(top, text=uid, width=500, anchor=NE).pack()
-                Message(top, text=cid, width=500, anchor=NE).pack()
-                Message(top, text=rights, width=500, anchor=NE).pack()
-                Message(top, text=access, width=500, anchor=NE).pack()
+                Message(top, text=name, width=500, anchor=NW).pack()
+                Message(top, text=cid, width=500, anchor=NW).pack()
+                Message(top, text=time, width=500, anchor=NW).pack()
+                Message(top, text=tid, width=500, anchor=NW).pack()
                 Message(top, text=" ", width=500).pack()
 
             top.geometry('{}x{}'.format(300, 300))
         else:
-            Message(top, text="No data found", width=500, anchor=NE).pack()
+            Message(top, text="No data found", width=500, anchor=NW).pack()
 
 
     root.title("Hotel Management")

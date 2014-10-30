@@ -65,7 +65,11 @@ if go:
     def get_history_rights():
         var1 = entryHistoryRights
         if var1:
-            popup(UseDatabase.searchhistory_rights(var1))
+            var2 = UseDatabase.searchhistory_rights(var1)
+            if var2:
+                popup(var2)
+            else:
+                popup("lege lijst")
         else:
             tkinter.messagebox.showerror("No Input", "There must be an input")
 

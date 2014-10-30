@@ -315,10 +315,10 @@ def gethistory():
 
 # Functie die in de history-tabel zoekt.
 def searchhistory_name(naam):
-    match = search_naam(naam)
+    match = search_name(naam)
     print(match)
     if match:
-        c.execute("""SELECT * from HISTORY where naam = '%s')""" % naam)
+        c.execute("""SELECT * from HISTORY where naam LIKE '%%%s%%'""" % naam)
         test = c.fetchall()
         if test:
             print(test)
@@ -347,14 +347,7 @@ def searchhistory_tid(tid):
 
 def searchhistory_rights(rechten):
     rechtnum = 0
-    if rechten == '':
-        tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
-        return False
-    elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
-        tkinter.messagebox.showerror("Incorrecte input",
-                                     "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
-        return False
-    elif rechten == 'Gast':
+    if rechten == 'Gast':
         rechtnum = 1
     elif rechten == 'Schoonmaker':
         rechtnum = 2
@@ -362,6 +355,10 @@ def searchhistory_rights(rechten):
         rechtnum = 3
     elif rechten == 'Eigenaar':
         rechtnum = 4
+    elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
+        tkinter.messagebox.showerror("Incorrecte input",
+                                     "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
+        return False
     data = search_rechten(rechten)
     if data:
         c.execute("""SELECT * FROM history WHERE Naam IN (SELECT Naam from persoon where Rechten = %i)""" % rechtnum)

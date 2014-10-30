@@ -96,6 +96,7 @@ def add(cid, naam, rechten):
         tid = check_kamer()
         if tid:
             c.execute("""UPDATE terminal SET CID = %i WHERE TID = %i""" % (cid, tid))
+            print("Je kamernummer is", tid)
         else:
             print("Er is geen kamer vrij.")
             return False
@@ -292,6 +293,29 @@ def gethistory():
     c.execute("""SELECT * from history""")
     history = c.fetchall()
     return history
+
+
+# Functie om in de history-tabel te zoeken
+def searchhistory_name(naam):
+    uid = search_naam(naam)
+    if uid:
+        for x in range(0, len(uid)):
+            print('')
+            print('Naam = ', uid[x][2])
+            print('UID = ', uid[x][0])
+        print(uid)
+        return uid
+    else:
+        print('not found.')
+        return False
+
+
+def searchhistory_cid():
+    return 0
+
+
+def searchhistory_rechten():
+    return 2
 
 
 # De functie die het brandalarm aan of uit zet.

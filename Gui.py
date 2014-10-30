@@ -112,15 +112,15 @@ def emergency():
         Whitespace2.configure(bg=stdbg)
         Whitespace1.configure(bg=stdbg)
         door1.configure(image=doorC_eigenaar)
-        door2.image = doorC_eigenaar
+        door1.image = doorC_eigenaar
         door2.configure(image=doorC_beveiliging)
-        door3.image = doorC_beveiliging
+        door2.image = doorC_beveiliging
         door3.configure(image=doorC_janitor)
-        door4.image = doorC_janitor
+        door3.image = doorC_janitor
         door4.configure(image=doorC_guest1)
-        door5.image = doorC_guest1
+        door4.image = doorC_guest1
         door5.configure(image=doorC_guest2)
-        door6.image = doorC_guest2
+        door5.image = doorC_guest2
         door6.configure(image=doorC_guest3)
         door6.image = doorC_guest3
         door7.configure(image=doorC_guest4)
@@ -138,85 +138,83 @@ def door1Func():
     doorO = PhotoImage(file="door_eigenaar_open.png")
     doorC = PhotoImage(file="door_eigenaar_closed.png")
     global ddoor1
-    if ddoor1 == False:
-        cid = python_code_for_reading_uid.readArduino()
-        var = UseDatabase.check(cid, 1)
-        if var == True:
-            door1.configure(image=doorO)
-            door1.image = doorO
-            ddoor1 = True
-        else:
-            door1.configure(image=doorC)
-            door1.image = doorC
-            ddoor1 = False
+    if firestate:
+        print("This door is open")
     else:
-        if not firestate:
-            door1.configure(image=doorC)
-            door1.image = doorC
-            ddoor1 = False
-
+        if ddoor1 == False:
+            cid = python_code_for_reading_uid.readArduino()
+            var = UseDatabase.check(cid, 1)
+            if var == True:
+                door1.configure(image=doorO)
+                door1.image = doorO
+                ddoor1 = True
+            else:
+                tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+        else:
+                door1.configure(image=doorC)
+                door1.image = doorC
+                ddoor1 = False
 
 def door2Func():
     doorO = PhotoImage(file="door_security_open.png")
     doorC = PhotoImage(file="door_security_closed.png")
     global ddoor2
-    if ddoor2 == False:
-        cid = python_code_for_reading_uid.readArduino()
-        var = UseDatabase.check(cid, 2)
-        if var == True:
-            door2.configure(image=doorO)
-            door2.image = doorO
-            ddoor2 = True
-        else:
-            door2.configure(image=doorC)
-            door2.image = doorC
-            ddoor2 = False
+    if firestate:
+        print("This door is open")
     else:
-        if not firestate:
-            door2.configure(image=doorC)
-            door2.image = doorC
-            ddoor2 = False
+        if ddoor2 == False:
+            cid = python_code_for_reading_uid.readArduino()
+            var = UseDatabase.check(cid, 2)
+            if var == True:
+                door2.configure(image=doorO)
+                door2.image = doorO
+                ddoor2 = True
+            else:
+                tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+        else:
+                door2.configure(image=doorC)
+                door2.image = doorC
+                ddoor2 = False
 
 
 def door3Func():
     doorO = PhotoImage(file="door_schoonmaker_open.png")
     doorC = PhotoImage(file="door_schoonmaker_closed.png")
     global ddoor3
-    if ddoor3 == False:
-        cid = python_code_for_reading_uid.readArduino()
-        var = UseDatabase.check(cid, 3)
-        if var == True:
-            door3.configure(image=doorO)
-            door3.image = doorO
-            ddoor3 = True
+    if firestate:
+        print("This door is open")
+    else:
+        if ddoor3 == False:
+            cid = python_code_for_reading_uid.readArduino()
+            var = UseDatabase.check(cid, 3)
+            if var == True:
+                door3.configure(image=doorO)
+                door3.image = doorO
+                ddoor3 = True
+            else:
+                tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
         else:
             door3.configure(image=doorC)
             door3.image = doorC
             ddoor3 = False
-    else:
-        if not firestate:
-            door3.configure(image=doorC)
-            door3.image = doorC
-            ddoor3 = False
-
 
 def door4Func():
     doorO = PhotoImage(file="door_1_open.png")
     doorC = PhotoImage(file="door_1_closed.png")
     global ddoor4
-    if ddoor4 == False:
-        cid = python_code_for_reading_uid.readArduino()
-        var = UseDatabase.check(cid, 4)
-        if var == True:
-            door4.configure(image=doorO)
-            door4.image = doorO
-            ddoor4 = True
-        else:
-            door4.configure(image=doorC)
-            door4.image = doorC
-            ddoor4 = False
+    if firestate:
+        print("this door is open")
     else:
-        if not firestate:
+        if ddoor4 == False:
+            cid = python_code_for_reading_uid.readArduino()
+            var = UseDatabase.check(cid, 4)
+            if var == True:
+                door4.configure(image=doorO)
+                door4.image = doorO
+                ddoor4 = True
+            else:
+                tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+        else:
             door4.configure(image=doorC)
             door4.image = doorC
             ddoor4 = False
@@ -226,19 +224,19 @@ def door5Func():
     doorO = PhotoImage(file="door_2_open.png")
     doorC = PhotoImage(file="door_2_closed.png")
     global ddoor5
-    if ddoor5 == False:
-        cid = python_code_for_reading_uid.readArduino()
-        var = UseDatabase.check(cid, 5)
-        if var == True:
-            door5.configure(image=doorO)
-            door5.image = doorO
-            ddoor5 = True
-        else:
-            door5.configure(image=doorC)
-            door5.image = doorC
-            ddoor5 = False
+    if firestate:
+        print("This door is open")
     else:
-        if not firestate:
+        if ddoor5 == False:
+            cid = python_code_for_reading_uid.readArduino()
+            var = UseDatabase.check(cid, 5)
+            if var == True:
+                door5.configure(image=doorO)
+                door5.image = doorO
+                ddoor5 = True
+            else:
+                tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+        else:
             door5.configure(image=doorC)
             door5.image = doorC
             ddoor5 = False
@@ -248,19 +246,19 @@ def door6Func():
     doorO = PhotoImage(file="door_3_open.png")
     doorC = PhotoImage(file="door_3_closed.png")
     global ddoor6
-    if ddoor1 == False:
-        cid = python_code_for_reading_uid.readArduino()
-        var = UseDatabase.check(cid, 6)
-        if var == True:
-            door6.configure(image=doorO)
-            door6.image = doorO
-            ddoor6 = True
-        else:
-            door6.configure(image=doorC)
-            door6.image = doorC
-            ddoor6 = False
+    if firestate:
+        print("This door is open")
     else:
-        if not firestate:
+        if ddoor1 == False:
+            cid = python_code_for_reading_uid.readArduino()
+            var = UseDatabase.check(cid, 6)
+            if var == True:
+                door6.configure(image=doorO)
+                door6.image = doorO
+                ddoor6 = True
+            else:
+                tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+        else:
             door6.configure(image=doorC)
             door6.image = doorC
             ddoor6 = False
@@ -270,19 +268,19 @@ def door7Func():
     doorO = PhotoImage(file="door_4_open.png")
     doorC = PhotoImage(file="door_4_closed.png")
     global ddoor7
-    if ddoor7 == False:
-        cid = python_code_for_reading_uid.readArduino()
-        var = UseDatabase.check(cid, 7)
-        if var == True:
-            door7.configure(image=doorO)
-            door7.image = doorO
-            ddoor7 = True
-        else:
-            door7.configure(image=doorC)
-            door7.image = doorC
-            ddoor7 = False
+    if firestate:
+        print("This door is open")
     else:
-        if not firestate:
+        if ddoor7 == False:
+            cid = python_code_for_reading_uid.readArduino()
+            var = UseDatabase.check(cid, 7)
+            if var == True:
+                door7.configure(image=doorO)
+                door7.image = doorO
+                ddoor7 = True
+            else:
+                tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+        else:
             door7.configure(image=doorC)
             door7.image = doorC
             ddoor7 = False

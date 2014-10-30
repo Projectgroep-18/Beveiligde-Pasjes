@@ -182,7 +182,7 @@ def search_naam(naam):
             print('CID = ', data[x][1])
             print('UID = ', data[x][0])
             print('Access = ', data[x][4])
-        print(data)
+        # print(data)
         return data
     else:
         print('not found.')
@@ -271,6 +271,34 @@ def gethistory():
     history = c.fetchall()
     return history
 
+
+# Functie die in de history-tabel zoekt.
+def searchhistory_naam(naam):
+    match = search_naam(naam)
+    print(match)
+    if match:
+        result = []
+        for x in range(0, len(match)):
+            print('')
+            print('Naam = ', match[x][2])
+            print('CID = ', match[x][1])
+            print('UID = ', match[x][0])
+            result.append(match[x][0])
+        print(result)
+        c.execute("""SELECT * from HISTORY where uid IN (SELECT uid from persoon WHERE Naam LIKE '%%%s%%' % naam)""")
+        test = c.fetchall()
+        if test:
+            print(test)
+            return test
+        else:
+            print("No results.")
+            return False
+    else:
+        print('not found.')
+        return False
+    return match
+
+searchhistory_naam('Jan')
 
 # Forces door of terminal TID open.
 def opendoor(tid):

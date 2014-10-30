@@ -40,6 +40,14 @@ def get_history_rights():
         tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
+def get_history_terminal():
+    var1 = entryHistoryTerminal
+    if var1:
+        popup(UseDatabase.searchhistory_terminal(var1))
+    else:
+        tkinter.messagebox.showerror("No Input", "There must be an input")
+
+
 def emergency():
     global firestate
     firestate = UseDatabase.fire()
@@ -321,6 +329,7 @@ def string_int(string):
 def delete_from_db():
     if string_int(entryDeleteID.get()) != -1:
         UseDatabase.delete(string_int(entryDeleteID.get()))
+        popup_data_deleted()
     else:
         tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -328,7 +337,7 @@ def delete_from_db():
 def search_name_gui():
     var1 = entryName1.get()
     if var1:
-        popup_search_name(UseDatabase.search_naam(var1))
+        popup_search_name(UseDatabase.search_name(var1))
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 
@@ -341,7 +350,7 @@ def search_cid_gui():
 def search_rights_gui():
     var1 = entryRights1.get()
     if var1:
-        searchresults = UseDatabase.search_rechten(var1)
+        searchresults = UseDatabase.search_rights(var1)
         if searchresults:
             popup_search_rights(searchresults)
     else:
@@ -372,23 +381,23 @@ def popup_search_name(data):
 
     if data != 0:
         for x in range(0, len(data)):
-            naam = "Naam: %s" % data[x][2]
+            name = "Name: %s" % data[x][2]
             uid = "UID: %s" % data[x][3]
             cid = "CID: %s" % data[x][1]
             if data[x][0] == 1:
-                rechten = "Rechten: Gast"
+                rights = "Rights: Gast"
             elif data[x][0] == 2:
-                rechten = "Rechten: Schoonmaker"
+                rights = "Rights: Schoonmaker"
             elif data[x][0] == 3:
-                rechten = "Rechten: Medewerker"
+                rights = "Rights: Beveiliger"
             elif data[x][0] == 4:
-                rechten = "Rechten: Directie"
+                rights = "Rights: Eigenaar"
             access = "Access: %s" % data[x][4]
 
-            Message(top_search, text=naam, width=500, anchor=NE).pack()
+            Message(top_search, text=name, width=500, anchor=NE).pack()
             Message(top_search, text=uid, width=500, anchor=NE).pack()
             Message(top_search, text=cid, width=500, anchor=NE).pack()
-            Message(top_search, text=rechten, width=500, anchor=NE).pack()
+            Message(top_search, text=rights, width=500, anchor=NE).pack()
             Message(top_search, text=access, width=500, anchor=NE).pack()
             Message(top_search, text=" ", width=500).pack()
 
@@ -404,23 +413,23 @@ def popup_search_rights(data):
         top_search.focus_set()
 
         for x in range(0, len(data)):
-            naam = "Naam: %s" % data[x][2]
+            name = "Name: %s" % data[x][2]
             uid = "UID: %s" % data[x][3]
             cid = "CID: %s" % data[x][1]
             if data[x][0] == 1:
-                rechten = "Rechten: Gast"
+                rights = "Rights: Gast"
             elif data[x][0] == 2:
-                rechten = "Rechten: Schoonmaker"
+                rights = "Rights: Schoonmaker"
             elif data[x][0] == 3:
-                rechten = "Rechten: Medewerker"
+                rights = "Rights: Medewerker"
             elif data[x][0] == 4:
-                rechten = "Rechten: Directie"
+                rights = "Rights: Directie"
             access = "Access: %s" % data[x][4]
 
-            Message(top_search, text=naam, width=500, anchor=NE).pack()
+            Message(top_search, text=name, width=500, anchor=NE).pack()
             Message(top_search, text=uid, width=500, anchor=NE).pack()
             Message(top_search, text=cid, width=500, anchor=NE).pack()
-            Message(top_search, text=rechten, width=500, anchor=NE).pack()
+            Message(top_search, text=rights, width=500, anchor=NE).pack()
             Message(top_search, text=access, width=500, anchor=NE).pack()
             Message(top_search, text=" ", width=500).pack()
 
@@ -439,7 +448,13 @@ def popup_add_vars():
     button.pack()
 
 
-root.title("Hotelpasjes beheer")
+def popup_data_deleted():
+    top = Toplevel
+    top.title("Confirmation")
+    top.focus_set()
+
+
+root.title("Hotel Management")
 root.resizable(0, 0)
 
 leftFrame = Frame(root)
@@ -456,6 +471,7 @@ inputVar6 = ""  # Disable UID
 inputVar7 = ""  # Enable UID
 inputVar8 = ""  # History name
 inputVar9 = ""  # History rights
+inputVar10 = "" # History terminal
 
 doorStartEigenaar= PhotoImage(file="door_eigenaar_closed.png")
 doorStartbeveiliging = PhotoImage(file="door_security_closed.png")
@@ -535,14 +551,17 @@ buttonFire = Button(rightFrame, image=fire, command=emergency)
 labelFire = Label(rightFrame, text="Fire")
 
 labelHistory = Label(leftFrame, text="Search History")
-labelHistoryName = Label(leftFrame, text="Naam")
+labelHistoryName = Label(leftFrame, text="Name")
 labelHistoryCID = Label(leftFrame, text="CID")
-labelHistoryRights = Label(leftFrame, text="Rechten")
+labelHistoryRights = Label(leftFrame, text="Rights")
+labelHistoryTerminal = Label(leftFrame, text="Terminal")
 entryHistoryName = Entry(leftFrame, textvariable=inputVar8)
 entryHistoryRights = Entry(leftFrame, textvariable=inputVar9)
+entryHistoryTerminal = Entry(leftFrame, textvariable=inputVar10)
 buttonHistoryName = Button(leftFrame, text="Search", command=get_history_name)
 buttonHistoryCID = Button(leftFrame, text="Search", command=get_history_cid)
 buttonHistoryRights = Button(leftFrame, text="Search", command=get_history_rights)
+buttonHistoryTerminal = Button(leftFrame, text="Search", command=get_history_terminal)
 
 buttonFire.grid(row=8, column=2)
 labelFire.grid(row=8, column=1)

@@ -104,6 +104,7 @@ def emergency():
 
 
 def door1Func():
+    fire = UseDatabase.fire()
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     global ddoor1
@@ -119,9 +120,10 @@ def door1Func():
             door1.image = doorC
             ddoor1 = False
     else:
-        door1.configure(image=doorC)
-        door1.image = doorC
-        ddoor1 = False
+        if not fire:
+            door1.configure(image=doorC)
+            door1.image = doorC
+            ddoor1 = False
 
 
 def door2Func():
@@ -140,9 +142,10 @@ def door2Func():
             door2.image = doorC
             ddoor2 = False
     else:
-        door2.configure(image=doorC)
-        door2.image = doorC
-        ddoor2 = False
+        if not fire:
+            door2.configure(image=doorC)
+            door2.image = doorC
+            ddoor2 = False
 
 
 def door3Func():
@@ -161,9 +164,10 @@ def door3Func():
             door3.image = doorC
             ddoor3 = False
     else:
-        door3.configure(image=doorC)
-        door3.image = doorC
-        ddoor3 = False
+        if not fire:
+            door3.configure(image=doorC)
+            door3.image = doorC
+            ddoor3 = False
 
 
 def door4Func():
@@ -182,9 +186,10 @@ def door4Func():
             door4.image = doorC
             ddoor4 = False
     else:
-        door4.configure(image=doorC)
-        door4.image = doorC
-        ddoor4 = False
+        if not fire:
+            door4.configure(image=doorC)
+            door4.image = doorC
+            ddoor4 = False
 
 
 def door5Func():
@@ -203,9 +208,10 @@ def door5Func():
             door5.image = doorC
             ddoor5 = False
     else:
-        door5.configure(image=doorC)
-        door5.image = doorC
-        ddoor5 = False
+        if not fire:
+            door5.configure(image=doorC)
+            door5.image = doorC
+            ddoor5 = False
 
 
 def door6Func():
@@ -224,9 +230,10 @@ def door6Func():
             door6.image = doorC
             ddoor6 = False
     else:
-        door6.configure(image=doorC)
-        door6.image = doorC
-        ddoor6 = False
+        if not fire:
+            door6.configure(image=doorC)
+            door6.image = doorC
+            ddoor6 = False
 
 
 def door7Func():
@@ -245,9 +252,10 @@ def door7Func():
             door7.image = doorC
             ddoor7 = False
     else:
-        door7.configure(image=doorC)
-        door7.image = doorC
-        ddoor7 = False
+        if not fire:
+            door7.configure(image=doorC)
+            door7.image = doorC
+            ddoor7 = False
 
 
 def en_card():

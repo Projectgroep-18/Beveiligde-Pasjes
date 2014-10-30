@@ -105,29 +105,22 @@ def emergency():
 
 
 def door1Func():
-    print("The function of door 1 starts.")
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     global ddoor1
     if ddoor1 == False:
-        print("Door is closed for now")
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 1)
         if var == True:
-            print("But now it will open!")
             door1.configure(image=doorO)
             door1.image = doorO
             ddoor1 = True
         else:
-            print("And it remains closed")
             door1.configure(image=doorC)
             door1.image = doorC
             ddoor1 = False
     else:
-        print("The function will now check if there is a fire.")
-        print(firestate)
         if not firestate:
-            print("Fire is off, door closes now")
             door1.configure(image=doorC)
             door1.image = doorC
             ddoor1 = False
@@ -149,7 +142,7 @@ def door2Func():
             door2.image = doorC
             ddoor2 = False
     else:
-        if not fire:
+        if not firestate:
             door2.configure(image=doorC)
             door2.image = doorC
             ddoor2 = False
@@ -171,7 +164,7 @@ def door3Func():
             door3.image = doorC
             ddoor3 = False
     else:
-        if not fire:
+        if not firestate:
             door3.configure(image=doorC)
             door3.image = doorC
             ddoor3 = False
@@ -193,7 +186,7 @@ def door4Func():
             door4.image = doorC
             ddoor4 = False
     else:
-        if not fire:
+        if not firestate:
             door4.configure(image=doorC)
             door4.image = doorC
             ddoor4 = False
@@ -215,7 +208,7 @@ def door5Func():
             door5.image = doorC
             ddoor5 = False
     else:
-        if not fire:
+        if not firestate:
             door5.configure(image=doorC)
             door5.image = doorC
             ddoor5 = False
@@ -237,7 +230,7 @@ def door6Func():
             door6.image = doorC
             ddoor6 = False
     else:
-        if not fire:
+        if not firestate:
             door6.configure(image=doorC)
             door6.image = doorC
             ddoor6 = False
@@ -259,7 +252,7 @@ def door7Func():
             door7.image = doorC
             ddoor7 = False
     else:
-        if not fire:
+        if not firestate:
             door7.configure(image=doorC)
             door7.image = doorC
             ddoor7 = False

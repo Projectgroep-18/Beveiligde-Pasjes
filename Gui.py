@@ -343,7 +343,7 @@ def search_rights_gui():
     if var1:
         searchresults = UseDatabase.search_rechten(var1)
         if searchresults:
-            popup_search(searchresults)
+            popup_search_rights(searchresults)
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 

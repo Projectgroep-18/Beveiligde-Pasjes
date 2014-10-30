@@ -378,7 +378,7 @@ inputVar7 = ""  # Input UID
 inputVar8 = ""
 
 doorStart = PhotoImage(file="door_closed.png")
-doorStartEigenaar= PhotoImage(file="door_closed_eigenaar.png")
+doorStartEigenaar= PhotoImage(file="door_eigenaar_closed.png")
 fire = PhotoImage(file="fire.png")
 
 door1 = Button(rightFrame, image=doorStartEigenaar, command=door1Func)

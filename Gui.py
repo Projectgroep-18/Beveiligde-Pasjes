@@ -5,6 +5,7 @@ import python_code_for_reading_uid
 
 root = Tk()
 
+
 ddoor1 = False
 ddoor2 = False
 ddoor3 = False
@@ -93,13 +94,13 @@ def emergency():
         global ddoor5
         global ddoor6
         global ddoor7
-        ddoor1 = True
-        ddoor2 = True
-        ddoor3 = True
-        ddoor4 = True
-        ddoor5 = True
-        ddoor6 = True
-        ddoor7 = True
+        ddoor1 = False
+        ddoor2 = False
+        ddoor3 = False
+        ddoor4 = False
+        ddoor5 = False
+        ddoor6 = False
+        ddoor7 = False
 
 
 def door1Func():
@@ -130,13 +131,14 @@ def door2Func():
     if ddoor2 == False:
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 2)
-        ddoor2 = True
         if var == True:
             door2.configure(image=doorO)
             door2.image = doorO
+            ddoor2 = True
         else:
             door2.configure(image=doorC)
             door2.image = doorC
+            ddoor2 = False
     else:
         door2.configure(image=doorC)
         door2.image = doorC
@@ -150,13 +152,14 @@ def door3Func():
     if ddoor3 == False:
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 3)
-        ddoor3 = True
         if var == True:
             door3.configure(image=doorO)
             door3.image = doorO
+            ddoor3 = True
         else:
             door3.configure(image=doorC)
             door3.image = doorC
+            ddoor3 = False
     else:
         door3.configure(image=doorC)
         door3.image = doorC
@@ -170,13 +173,14 @@ def door4Func():
     if ddoor4 == False:
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 4)
-        ddoor4 = True
         if var == True:
             door4.configure(image=doorO)
             door4.image = doorO
+            ddoor4 = True
         else:
             door4.configure(image=doorC)
             door4.image = doorC
+            ddoor4 = False
     else:
         door4.configure(image=doorC)
         door4.image = doorC
@@ -190,13 +194,14 @@ def door5Func():
     if ddoor5 == False:
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 5)
-        ddoor5 = True
         if var == True:
             door5.configure(image=doorO)
             door5.image = doorO
+            ddoor5 = True
         else:
             door5.configure(image=doorC)
             door5.image = doorC
+            ddoor5 = False
     else:
         door5.configure(image=doorC)
         door5.image = doorC
@@ -210,13 +215,14 @@ def door6Func():
     if ddoor1 == False:
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 6)
-        ddoor6 = True
         if var == True:
             door6.configure(image=doorO)
             door6.image = doorO
+            ddoor6 = True
         else:
             door6.configure(image=doorC)
             door6.image = doorC
+            ddoor6 = False
     else:
         door6.configure(image=doorC)
         door6.image = doorC
@@ -230,13 +236,14 @@ def door7Func():
     if ddoor7 == False:
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 7)
-        ddoor7 = True
         if var == True:
             door7.configure(image=doorO)
             door7.image = doorO
+            ddoor7 = True
         else:
             door7.configure(image=doorC)
             door7.image = doorC
+            ddoor7 = False
     else:
         door7.configure(image=doorC)
         door7.image = doorC

@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 root = Tk()
 
@@ -13,7 +13,7 @@ ddoor4 = False
 ddoor5 = False
 ddoor6 = False
 ddoor7 = False
-
+stdbg = root.cget("bg")
 
 def get_history():
     popup_search(UseDatabase.gethistory())
@@ -89,18 +89,18 @@ def emergency():
         ddoor6 = True
         ddoor7 = True
     else:
-        root.configure(bg="green")
-        leftFrame.configure(bg="green")
-        rightFrame.configure(bg="green")
-        Whitespace9.configure(bg="green")
-        Whitespace8.configure(bg="green")
-        Whitespace7.configure(bg="green")
-        Whitespace6.configure(bg="green")
-        Whitespace5.configure(bg="green")
-        Whitespace4.configure(bg="green")
-        Whitespace3.configure(bg="green")
-        Whitespace2.configure(bg="green")
-        Whitespace1.configure(bg="green")
+        root.configure(bg=stdbg)
+        leftFrame.configure(bg=stdbg)
+        rightFrame.configure(bg=stdbg)
+        Whitespace9.configure(bg=stdbg)
+        Whitespace8.configure(bg=stdbg)
+        Whitespace7.configure(bg=stdbg)
+        Whitespace6.configure(bg=stdbg)
+        Whitespace5.configure(bg=stdbg)
+        Whitespace4.configure(bg=stdbg)
+        Whitespace3.configure(bg=stdbg)
+        Whitespace2.configure(bg=stdbg)
+        Whitespace1.configure(bg=stdbg)
         door1.configure(image=doorC_eigenaar)
         door2.image = doorC_eigenaar
         door2.configure(image=doorC)
@@ -554,19 +554,5 @@ buttonHistoryCID.grid(row=26, column=2)
 labelHistoryRights.grid(row=27, column=0)
 entryHistoryRights.grid(row=27, column=1)
 buttonHistoryRights.grid(row=27, column=2)
-
-# Zorgt dat de bg groen is
-root.configure(bg="green")
-leftFrame.configure(bg="green")
-rightFrame.configure(bg="green")
-Whitespace9.configure(bg="green")
-Whitespace8.configure(bg="green")
-Whitespace7.configure(bg="green")
-Whitespace6.configure(bg="green")
-Whitespace5.configure(bg="green")
-Whitespace4.configure(bg="green")
-Whitespace3.configure(bg="green")
-Whitespace2.configure(bg="green")
-Whitespace1.configure(bg="green")
 
 root.mainloop()

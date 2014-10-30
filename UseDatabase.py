@@ -334,6 +334,12 @@ def searchhistory_cid(cid):
     return result
 
 
+def searchhistory_tid(tid):
+    c.execute("""SELECT * from history where tid = %i""" % tid)
+    temp = c.fetchall()
+    return temp
+
+
 def searchhistory_rights(rechten):
     rechtnum = 0
     if rechten == '':

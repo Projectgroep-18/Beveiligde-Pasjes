@@ -313,7 +313,7 @@ def searchhistory_name(naam):
     match = search_naam(naam)
     print(match)
     if match:
-        c.execute("""SELECT * from HISTORY where uid IN (SELECT uid from persoon WHERE Naam LIKE '%%%s%%' % naam)""")
+        c.execute("""SELECT * from HISTORY where naam = '%s')""" % naam)
         test = c.fetchall()
         if test:
             print(test)
@@ -357,6 +357,9 @@ def searchhistory_rights(rechten):
         result = c.fetchall()
         print(result)
         return result
+    else:
+        print("Er is niemand met deze rechten!")
+        return False
 
 
 # Forces door of terminal TID open.

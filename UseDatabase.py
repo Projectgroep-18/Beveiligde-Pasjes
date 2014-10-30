@@ -209,7 +209,23 @@ def search_uid(uid):
 
 # Functie om naar rechten te zoeken in de database
 def search_rechten(rechten):
-    c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % rechten)
+    rechtnum = 0
+    if rechten == '':
+        tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
+        return False
+    elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
+        tkinter.messagebox.showerror("Incorrecte input",
+                                     "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
+        return False
+    if rechten == 'Eigenaar':
+        rechtnum = 4
+    elif rechten == 'Gast':
+        rechtnum = 1
+    elif rechten == 'Schoonmaker':
+        rechtnum = 2
+    elif rechten == 'Beveiliging':
+        rechtnum = 3
+    c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % rechtnum)
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):

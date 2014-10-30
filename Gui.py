@@ -22,20 +22,20 @@ def get_history():
 def get_history_name():
     var1 = entryHistoryName.get()
     if var1:
-        popup(UseDatabase.gethistoryName(var1))
+        popup(UseDatabase.searchhistory_name(var1))
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
 def get_history_cid():
     var1 = (python_code_for_reading_uid.readArduino())
-    popup(UseDatabase.gethistoryCID(var1))
+    popup(UseDatabase.searchhistory_cid(var1))
 
 
 def get_history_rights():
     var1 = entryHistoryRights
     if var1:
-        popup(UseDatabase.gethistoryRights(var1))
+        popup(UseDatabase.searchhistory_rights(var1))
     else:
         tkinter.messagebox.showerror("No Input", "There must be an input")
 

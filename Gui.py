@@ -106,7 +106,7 @@ def emergency():
 
 def door1Func():
     doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
+    doorC = PhotoImage(file="door_closed_special.png")
     global ddoor1
     if ddoor1 == False:
         cid = python_code_for_reading_uid.readArduino()
@@ -378,9 +378,10 @@ inputVar7 = ""  # Input UID
 inputVar8 = ""
 
 doorStart = PhotoImage(file="door_closed.png")
+doorStartEigenaar= PhotoImage(file="door_closed_eigenaar.png")
 fire = PhotoImage(file="fire.png")
 
-door1 = Button(rightFrame, image=doorStart, command=door1Func)
+door1 = Button(rightFrame, image=doorStartEigenaar, command=door1Func)
 door2 = Button(rightFrame, image=doorStart, command=door2Func)
 door3 = Button(rightFrame, image=doorStart, command=door3Func)
 door4 = Button(rightFrame, image=doorStart, command=door4Func)

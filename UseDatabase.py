@@ -275,14 +275,13 @@ def fire():
     c.execute("""SELECT Fire from fire""")
     firestate = c.fetchall()[0][0]
     if firestate == 1:
-        firestate = 0
         for x in range(1, amountofdoors):
             closedoor(x)
             print("Er gaat een deur dicht, namelijk deur", x)
         c.execute("""UPDATE fire SET Fire = 0""")
         print("Het brandalarm staat nu weer uit.")
+        firestate = 0
     elif firestate == 0:
-        firestate = 1
         for x in range(1, amountofdoors):
             opendoor(x)
         c.execute("""UPDATE fire SET Fire = 1""")

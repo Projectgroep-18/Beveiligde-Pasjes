@@ -104,6 +104,7 @@ def emergency():
 
 
 def door1Func():
+    print("The function of door 1 starts.")
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
     global ddoor1
@@ -122,6 +123,8 @@ def door1Func():
             door1.image = doorC
             ddoor1 = False
     else:
+        print("The function will now check if there is a fire.")
+        print(fire)
         if not fire:
             print("Fire is off, door closes now")
             door1.configure(image=doorC)

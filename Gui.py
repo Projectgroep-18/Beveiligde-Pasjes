@@ -108,18 +108,22 @@ def door1Func():
     doorC = PhotoImage(file="door_closed.png")
     global ddoor1
     if ddoor1 == False:
+        print("Door is closed for now")
         cid = python_code_for_reading_uid.readArduino()
         var = UseDatabase.check(cid, 1)
         if var == True:
+            print("But now it will open!")
             door1.configure(image=doorO)
             door1.image = doorO
             ddoor1 = True
         else:
+            print("And it remains closed")
             door1.configure(image=doorC)
             door1.image = doorC
             ddoor1 = False
     else:
         if not fire:
+            print("Fire is off, door closes now")
             door1.configure(image=doorC)
             door1.image = doorC
             ddoor1 = False

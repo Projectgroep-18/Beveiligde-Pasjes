@@ -50,11 +50,28 @@ if go:
 
 
     def get_history_name():
-        var1 = entryHistoryName.get()
-        if var1:
-            popup(UseDatabase.searchhistory_name(var1))
+        var0 = entryHistoryName.get()
+        var1 = UseDatabase.gethistory(var0)
+        top = Toplevel()
+        top.title("History")
+        top.focus_set()
+
+        if var1 != 0:
+            for x in range(0, len(var1)):
+                name = "Name: %s" % var1[x][0]
+                tid = "TID: %s" % var1[x][3]
+                cid = "CID: %s" % var1[x][1]
+                time = "Time: %s" %var1[x][2]
+
+                Message(top, text=name, width=500, anchor=NE).pack()
+                Message(top, text=cid, width=500, anchor=NE).pack()
+                Message(top, text=time, width=500, anchor=NE).pack()
+                Message(top, text=tid, width=500, anchor=NE).pack()
+                Message(top, text=" ", width=500).pack()
+
+            top.geometry('{}x{}'.format(300, 300))
         else:
-            tkinter.messagebox.showerror("No Input", "There must be an input")
+            Message(top, text="Person not found", width=500, anchor=NE).pack()
 
 
     def get_history_cid():

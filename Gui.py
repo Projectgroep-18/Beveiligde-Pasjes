@@ -76,7 +76,7 @@ def emergency():
         Whitespace2.configure(bg="green")
         Whitespace1.configure(bg="green")
         door1.configure(image=doorC_eigenaar)
-        door2.image = doorC
+        door2.image = doorC_eigenaar
         door2.configure(image=doorC)
         door3.image = doorC
         door3.configure(image=doorC)

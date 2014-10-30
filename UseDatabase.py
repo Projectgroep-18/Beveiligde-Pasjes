@@ -96,7 +96,7 @@ def add(cid, naam, rechten):
         tid = check_kamer()
         if tid:
             c.execute("""UPDATE terminal SET CID = %i WHERE TID = %i""" % (cid, tid))
-            print("Je kamernummer is", tid)
+            print("Je kamernummer is", tid-3)
         else:
             print("Er is geen kamer vrij.")
             return False
@@ -308,6 +308,8 @@ def searchhistory_name(naam):
     else:
         print('not found.')
         return False
+
+    searchhistory_naam('Jan')
 
 
 def searchhistory_cid():

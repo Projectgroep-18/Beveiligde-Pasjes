@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-#import python_code_for_reading_uid
+import python_code_for_reading_uid
 
 root = Tk()
 
@@ -249,7 +249,7 @@ def door6Func():
     if firestate:
         print("This door is open")
     else:
-        if ddoor1 == False:
+        if ddoor6 == False:
             cid = python_code_for_reading_uid.readArduino()
             var = UseDatabase.check(cid, 6)
             if var == True:

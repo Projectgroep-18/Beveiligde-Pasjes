@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 root = Tk()
 
@@ -47,6 +47,13 @@ def emergency():
     doorC = PhotoImage(file="door_closed.png")
     doorO_eigenaar = PhotoImage(file="door_eigenaar_open.png")
     doorC_eigenaar = PhotoImage(file="door_eigenaar_closed.png")
+    global ddoor1
+    global ddoor2
+    global ddoor3
+    global ddoor4
+    global ddoor5
+    global ddoor6
+    global ddoor7
     if firestate:
         root.configure(bg="red")
         leftFrame.configure(bg="red")
@@ -74,13 +81,6 @@ def emergency():
         door6.image = doorO
         door7.configure(image=doorO)
         door7.image = doorO
-        global ddoor1
-        global ddoor2
-        global ddoor3
-        global ddoor4
-        global ddoor5
-        global ddoor6
-        global ddoor7
         ddoor1 = True
         ddoor2 = True
         ddoor3 = True
@@ -115,13 +115,6 @@ def emergency():
         door6.image = doorC
         door7.configure(image=doorC)
         door7.image = doorC
-        global ddoor1
-        global ddoor2
-        global ddoor3
-        global ddoor4
-        global ddoor5
-        global ddoor6
-        global ddoor7
         ddoor1 = False
         ddoor2 = False
         ddoor3 = False

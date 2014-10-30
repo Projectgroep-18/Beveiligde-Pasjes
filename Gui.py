@@ -16,10 +16,11 @@ ddoor7 = False
 
 
 def emergency():
-    fire = UseDatabase.fire()
+    global firestate
+    firestate = UseDatabase.fire()
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    if fire:
+    if firestate:
         root.configure(bg="red")
         leftFrame.configure(bg="red")
         rightFrame.configure(bg="red")
@@ -124,8 +125,8 @@ def door1Func():
             ddoor1 = False
     else:
         print("The function will now check if there is a fire.")
-        print(fire)
-        if not fire:
+        print(firestate)
+        if not firestate:
             print("Fire is off, door closes now")
             door1.configure(image=doorC)
             door1.image = doorC

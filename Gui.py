@@ -71,7 +71,7 @@ if go:
 
             top.geometry('{}x{}'.format(300, 300))
         else:
-            Message(top, text="Person not found", width=500, anchor=NE).pack()
+            Message(top, text="History", width=500, anchor=NE).pack()
 
 
     def get_history_cid():

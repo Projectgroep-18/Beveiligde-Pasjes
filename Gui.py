@@ -75,11 +75,18 @@ if go:
 
 
     def get_history_terminal():
-        var1 = entryHistoryTerminal.get()
-        if var1:
-            popup(UseDatabase.searchhistory_tid(var1))
-        else:
+        var1 = string_int(entryHistoryTerminal.get())
+        if not var1:
             tkinter.messagebox.showerror("No Input", "There must be an input")
+        elif var1 != -1:
+            var2 = (UseDatabase.searchhistory_tid(var1))
+            if var2:
+                popup(var2)
+            else:
+                popup("Lege lijst")
+        else:
+            tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+
 
 
     def emergency():

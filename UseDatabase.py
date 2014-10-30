@@ -9,6 +9,16 @@ from time import strftime
 c = conn.cursor()
 
 
+def check_kamer():
+    c.execute("""SELECT TID from terminal WHERE rechten = 1 AND CID = 0""")
+    terminals = c.fetchall()
+    if terminals:
+        terminals = terminals[0][0]
+        return terminals
+    else:
+        return False
+
+
 #Functie om te controleren of de gebruiker de deur mag openen
 def check(cid, tid=1):
     if cid == 1189998819991197253:
@@ -83,17 +93,22 @@ def add(cid, naam, rechten):
         rechtnum = 4
     elif rechten == 'Gast':
         rechtnum = 1
+        tid = check_kamer()
+        if tid:
+            c.execute("""UPDATE terminal SET CID = %i WHERE TID = %i""" % (cid, tid))
+        else:
+            print("Er is geen kamer vrij.")
+            return False
     elif rechten == 'Schoonmaker':
         rechtnum = 2
     elif rechten == 'Beveiliging':
         rechtnum = 3
-
     c.execute("""SELECT COUNT(UID) from persoon""")
     uid = c.fetchall()[0][0] + 1
     if rechtnum:
         c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechtnum))
     conn.commit()
-    print(naam, ' toegevoegd')
+    print(naam, 'toegevoegd')
 
 
 # Functie om users te verwijderen uit de database
@@ -104,8 +119,15 @@ def delete(uid):
         c.execute("""SELECT Naam from persoon WHERE UID = %i """ % uid)
         naam = c.fetchall()[0][0]
         c.execute("""SELECT COUNT(UID) from persoon""")
-        # Zet het element op de laatste index op de index van het verwijderde element.
         lastuid = c.fetchall()[0][0]
+        c.execute("""SELECT CID from persoon where UID = %i""" % uid)
+        cid = c.fetchall()[0][0]
+        c.execute("""SELECT TID from terminal where CID = %i""" % cid)
+        tid = c.fetchall()
+        if tid:
+            tid = tid[0][0]
+            c.execute("""UPDATE terminal SET cid = 0 WHERE tid = %i""" % tid)
+        # Zet het element op de laatste index op de index van het verwijderde element.
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')
@@ -270,18 +292,6 @@ def gethistory():
     c.execute("""SELECT * from history""")
     history = c.fetchall()
     return history
-
-
-# Forces door of terminal TID open.
-def opendoor(tid):
-    Door = check(1189998819991197253, tid)
-    return Door
-
-
-# Forces door of terminal TID closed.
-def closedoor(tid):
-    Door = False
-    return Door
 
 
 # De functie die het brandalarm aan of uit zet.

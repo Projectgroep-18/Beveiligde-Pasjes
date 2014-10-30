@@ -302,7 +302,7 @@ def addhistory(naam, tid):
     else:
         print("Deze gebruiker bestaat niet, lul!")
         return False
-    c.execute("""INSERT INTO history VALUES (%i, %i, '%s', %i)""" % (naam, cid, time, tid))
+    c.execute("""INSERT INTO history VALUES ('%s', %i, '%s', %i)""" % (naam, cid, time, tid))
     conn.commit()
 
 

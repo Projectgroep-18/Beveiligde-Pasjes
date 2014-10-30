@@ -190,8 +190,8 @@ def search_naam(naam):
 
 
 # Functie om naar een uid te zoeken in  de database
-def search_uid(uid):
-    c.execute("""SELECT * from persoon WHERE UID = %i""" % uid)
+def search_cid(cid):
+    c.execute("""SELECT * from persoon WHERE CID = %i""" % cid)
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
@@ -277,14 +277,6 @@ def searchhistory_naam(naam):
     match = search_naam(naam)
     print(match)
     if match:
-        result = []
-        for x in range(0, len(match)):
-            print('')
-            print('Naam = ', match[x][2])
-            print('CID = ', match[x][1])
-            print('UID = ', match[x][0])
-            result.append(match[x][0])
-        print(result)
         c.execute("""SELECT * from HISTORY where uid IN (SELECT uid from persoon WHERE Naam LIKE '%%%s%%' % naam)""")
         test = c.fetchall()
         if test:
@@ -294,11 +286,33 @@ def searchhistory_naam(naam):
             print("No results.")
             return False
     else:
-        print('not found.')
+        print('Name not found.')
         return False
     return match
 
-searchhistory_naam('Jan')
+
+def searchhistory_cid(cid):
+    c.execute("""SELECT * FROM history WHERE CID = %i""" % cid)
+    result = c.fetchall()
+    print(result)
+    return result
+
+
+def searchhistory_rights(rechten):
+    data = search_rechten(rechten)
+    print(data)
+    if data:
+        result = []
+        for x in range(0, len(data)):
+            print('')
+            print('Naam = ', data[x][2])
+            print('Rechten = ', data[x][3])
+            print('CID = ', data[x][1])
+            print('UID = ', data[x][0])
+            print('Access = ', data[x][4])
+            result = result.append(data[x][0])
+        return result
+
 
 # Forces door of terminal TID open.
 def opendoor(tid):

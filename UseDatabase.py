@@ -86,6 +86,7 @@ def check_kamer():
 # Functie om nieuwe users toe te voegen aan de database
 def add(cid, naam, rechten):
     rechtnum = 0
+    tid = 3
     if naam == '':
         tkinter.messagebox.showerror("Incorrecte input", "Vul een naam in")
     elif rechten == '':
@@ -94,8 +95,7 @@ def add(cid, naam, rechten):
         tkinter.messagebox.showerror("Incorrecte input",
                                      "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
         return False
-    if rechten == 'Eigenaar':
-        rechtnum = 4
+
     elif rechten == 'Gast':
         rechtnum = 1
         if check_kamer():
@@ -109,6 +109,8 @@ def add(cid, naam, rechten):
         rechtnum = 2
     elif rechten == 'Beveiliging':
         rechtnum = 3
+    elif rechten == 'Eigenaar':
+        rechtnum = 4
 
     c.execute("""SELECT COUNT(UID) from persoon""")
     uid = c.fetchall()[0][0] + 1

@@ -120,7 +120,7 @@ if go:
 
     def get_history_rights():
         var1 = entryHistoryRights.get()
-        if var1:
+        if var1 == 'Eigenaar' or var1 == 'Gast' or var1 == 'Beveiliging' or var1 == 'Schoonmaker':
             var2 = UseDatabase.searchhistory_rights(var1)
             if var2:
                 top = Toplevel()
@@ -144,10 +144,9 @@ if go:
                 else:
                     Message(top, text="History", width=500, anchor=NE).pack()
             else:
-                popup("lege lijst")
+                popup("Empty list")
         else:
-            tkinter.messagebox.showerror("No Input", "There must be an input")
-
+            tkinter.messagebox.showerror("No (valid) Input", "There must be a valid input (Gast, Schoonmaker, Beveiliging, Eigenaar)")
 
     def get_history_terminal():
         var1 = string_int(entryHistoryTerminal.get())
@@ -521,7 +520,10 @@ if go:
             var4 = UseDatabase.add(var1, var2, var3)
             if var4:
                 tid = var4[1]
-                popup("%s added, your chamber number is %i" % (var2,tid-3))
+                if var3 == 'Gast':
+                    popup("%s added, your chamber number is %i" % (var2, tid-3))
+                else:
+                    popup("%s added" % var2)
             else:
                 popup("Geen kamer vrij")
         else:

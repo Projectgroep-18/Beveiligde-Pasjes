@@ -15,8 +15,29 @@ ddoor6 = False
 ddoor7 = False
 
 
-def gethistory():
+def get_history():
     popup_search(UseDatabase.gethistory())
+
+
+def get_history_name():
+    var1 = entryHistoryName.get()
+    if var1:
+        popup_search(UseDatabase.gethistoryName(var1))
+    else:
+        tkinter.messagebox.showerror("No Input", "There must be an input")
+
+
+def get_history_cid():
+    var1 = (python_code_for_reading_uid.readArduino())
+    popup_search(UseDatabase.gethistoryCID(var1))
+
+
+def get_history_rights():
+    var1 = entryHistoryRights
+    if var1:
+        popup_search(UseDatabase.gethistoryRights(var1))
+    else:
+        tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
 def emergency():
@@ -315,15 +336,15 @@ def search():
 
 def search_name_gui():
     var1 = entryName1.get()
-    if var1 == "":
-        tkinter.messagebox.showerror("No Input", "There must be an input")
-    else:
+    if var1:
         popup_search(UseDatabase.search_naam(var1))
+    else:
+        tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
 def search_uid_gui():
     var1 = entryCID1.get()
-    if var1 == "":
+    if not var1:
         tkinter.messagebox.showerror("No Input", "There must be an input")
     elif string_int(var1) == -1:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
@@ -333,10 +354,10 @@ def search_uid_gui():
 
 def search_rights_gui():
     var1 = entryRights1.get()
-    if var1 == "":
-        tkinter.messagebox.showerror("No Input", "There must be an input")
-    else:
+    if var1:
         popup_search(UseDatabase.search_rechten(var1))
+    else:
+        tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
 def add_user():
@@ -381,6 +402,8 @@ inputVar5 = ""  # Input rights
 inputVar6 = ""  # Input UID
 inputVar7 = ""  # Input UID
 inputVar8 = ""
+inputVar9 = ""  # History name
+inputVar10 = "" # History rights
 
 doorStart = PhotoImage(file="door_closed.png")
 doorStartEigenaar= PhotoImage(file="door_eigenaar_closed.png")
@@ -454,6 +477,16 @@ buttonDIS = Button(leftFrame, text="Disable", command=dis_card, width=7)
 buttonFire = Button(rightFrame, image=fire, command=emergency)
 labelFire = Label(rightFrame, text="Fire")
 
+labelHistory = Label(leftFrame, text="History")
+labelHistoryName = Label(leftFrame, text="Naam")
+labelHistoryCID = Label(leftFrame, text="CID")
+labelHistoryRights = Label(leftFrame, text="Rechten")
+entryHistoryName = Entry(leftFrame, textvariable=inputVar9)
+entryHistoryRights = Entry(leftFrame, textvariable=inputVar10)
+buttonHistoryName = Button(leftFrame, text="Search", command=get_history_name)
+buttonHistoryCID = Button(leftFrame, text="Search", command=get_history_cid)
+buttonHistoryRights = Button(leftFrame, text="Search", command=get_history_rights)
+
 buttonFire.grid(row=8, column=2)
 labelFire.grid(row=8, column=1)
 
@@ -521,6 +554,15 @@ door5Label.grid(row=5, column=1)
 door6Label.grid(row=6, column=1)
 door7Label.grid(row=7, column=1)
 
+labelHistory.grid(row=19, column=0)
+labelHistoryName.grid(row=20, column=0)
+entryHistoryName.grid(row=20, column=1)
+buttonHistoryName.grid(row=20, column=2)
+labelHistoryCID.grid(row=21, column=0)
+buttonHistoryCID.grid(row=21, column=2)
+labelHistoryRights.grid(row=22, column=0)
+entryHistoryRights.grid(row=22, column=1)
+buttonHistoryRights.grid(row=22, column=2)
 
 # Zorgt dat de bg groen is
 root.configure(bg="green")
@@ -536,5 +578,5 @@ Whitespace3.configure(bg="green")
 Whitespace2.configure(bg="green")
 Whitespace1.configure(bg="green")
 
-gethistory()
+
 root.mainloop()

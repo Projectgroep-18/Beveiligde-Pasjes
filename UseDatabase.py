@@ -171,7 +171,7 @@ def deactiveer_cid(cid):
 
 
 # Functie om naar een naam te zoeken in de database
-def search_naam(naam):
+def search_name(naam):
     c.execute("""SELECT * from persoon WHERE Naam LIKE '%%%s%%'""" % naam)
     data = c.fetchall()
     if data:
@@ -208,7 +208,7 @@ def search_cid(cid):
 
 
 # Functie om naar rechten te zoeken in de database
-def search_rechten(rechten):
+def search_rights(rechten):
     rechtnum = 0
     if rechten == '':
         tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")

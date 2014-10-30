@@ -229,13 +229,12 @@ def search_rechten(rechten):
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
-            h = 1
-            # print('')
-            # print('Naam = ', data[x][2])
-            # print('Rechten = ', data[x][3])
-            # print('CID = ', data[x][1])
-            # print('UID = ', data[x][0])
-            # print('Access = ', data[x][4])
+            print('')
+            print('Naam = ', data[x][2])
+            print('Rechten = ', data[x][3])
+            print('CID = ', data[x][1])
+            print('UID = ', data[x][0])
+            print('Access = ', data[x][4])
         return data
     else:
         print('not found.')
@@ -274,7 +273,7 @@ def gethistory():
 
 
 # Functie die in de history-tabel zoekt.
-def searchhistory_naam(naam):
+def searchhistory_name(naam):
     match = search_naam(naam)
     print(match)
     if match:
@@ -300,24 +299,7 @@ def searchhistory_cid(cid):
 
 
 def searchhistory_rights(rechten):
-    rechtnum = 0
-    if rechten == '':
-        tkinter.messagebox.showerror("Incorrecte input", "Vul rechten in.")
-        return False
-    elif rechten != 'Eigenaar' and rechten != 'Gast' and rechten != 'Schoonmaker' and rechten != 'Beveiliging':
-        tkinter.messagebox.showerror("Incorrecte input",
-                                     "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
-        return False
-    elif rechten == 'Gast':
-        rechtnum = 1
-    elif rechten == 'Schoonmaker':
-        rechtnum = 2
-    elif rechten == 'Beveiliging':
-        rechtnum = 3
-    elif rechten == 'Eigenaar':
-        rechtnum = 4
-    c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % rechtnum)
-    data = c.fetchall()
+    data = search_rechten(rechten)
     print(data)
     if data:
         result = []
@@ -328,11 +310,9 @@ def searchhistory_rights(rechten):
             print('CID = ', data[x][1])
             print('UID = ', data[x][0])
             print('Access = ', data[x][4])
-            result.append(data[x][0])
-    c.execute("""SELECT * FROM history WHERE UID IN (SELECT UID FROM persoon WHERE Rechten = %i)""" % rechtnum)
-    result = c.fetchall()
-    print(result)
-    return result
+            result = result.append(data[x][0])
+        return result
+
 
 # Forces door of terminal TID open.
 def opendoor(tid):

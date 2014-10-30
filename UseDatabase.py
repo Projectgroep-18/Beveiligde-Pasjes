@@ -143,7 +143,7 @@ def delete(uid):
         lastuid = c.fetchall()[0][0]
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
-        return naam
+        print(naam, 'verwijderd')
         # Als die gebruiker er niet is:
     else:
         print('Invalid User ID')

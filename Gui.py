@@ -365,8 +365,11 @@ if go:
 
     def en_user():
         if string_int(entryEnableID.get()) != -1:
-            UseDatabase.activeer_uid(string_int(entryEnableID.get()))
-            popup("User enabled")
+            naam = UseDatabase.activeer_uid(string_int(entryEnableID.get()))
+            if naam:
+                popup("%s is disabled" % naam)
+            else:
+                popup("User ID doesn't exist or is already enabled")
         else:
             tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 
@@ -418,8 +421,10 @@ if go:
         var2, var3 = entryName2.get(), entryRights2.get()
         if var2 and var3:
             var1 = (python_code_for_reading_uid.readArduino())
-            UseDatabase.add(var1, var2, var3)
-            popup("User added")
+            if UseDatabase.add(var1, var2, var3):
+                popup("%s added" % var2)
+            else:
+                popup("Geen kamer vrij")
         else:
             tkinter.messagebox.showerror("No Input", "There must be an input")
 

@@ -15,6 +15,10 @@ ddoor6 = False
 ddoor7 = False
 
 
+def gethistory():
+    popup_search(UseDatabase.gethistory())
+
+
 def emergency():
     global firestate
     firestate = UseDatabase.fire()
@@ -324,7 +328,7 @@ def search_uid_gui():
     elif string_int(var1) == -1:
         tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
     else:
-        UseDatabase.search_uid(string_int(var1))
+        popup_search(UseDatabase.search_uid(string_int(var1)))
 
 
 def search_rights_gui():
@@ -332,7 +336,7 @@ def search_rights_gui():
     if var1 == "":
         tkinter.messagebox.showerror("No Input", "There must be an input")
     else:
-        UseDatabase.search_rechten(var1)
+        popup_search(UseDatabase.search_rechten(var1))
 
 
 def add_user():
@@ -532,4 +536,5 @@ Whitespace3.configure(bg="green")
 Whitespace2.configure(bg="green")
 Whitespace1.configure(bg="green")
 
+gethistory()
 root.mainloop()

@@ -155,6 +155,7 @@ def door1Func():
                 door1.image = doorC
                 ddoor1 = False
 
+
 def door2Func():
     doorO = PhotoImage(file="door_security_open.png")
     doorC = PhotoImage(file="door_security_closed.png")
@@ -197,6 +198,7 @@ def door3Func():
             door3.configure(image=doorC)
             door3.image = doorC
             ddoor3 = False
+
 
 def door4Func():
     doorO = PhotoImage(file="door_1_open.png")

@@ -413,8 +413,12 @@ if go:
 
 
     def en_card():
-        UseDatabase.activeer_cid(python_code_for_reading_uid.readArduino())
-        popup("Card enabled")
+        naam = UseDatabase.activeer_cid(python_code_for_reading_uid.readArduino())
+        if naam:
+            UseDatabase.activeer_cid(string_int(entryEnableID.get()))
+            popup("%s is enabled" % naam)
+        else:
+            popup("User ID doesn't exist or is already enabled")
 
 
     def dis_card():
@@ -442,7 +446,7 @@ if go:
         if string_int(entryEnableID.get()) != -1:
             naam = UseDatabase.activeer_uid(string_int(entryEnableID.get()))
             if naam:
-                popup("%s is disabled" % naam)
+                popup("%s is enabled" % naam)
             else:
                 popup("User ID doesn't exist or is already enabled")
         else:

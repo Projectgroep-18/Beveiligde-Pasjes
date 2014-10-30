@@ -217,14 +217,14 @@ def search_rechten(rechten):
         tkinter.messagebox.showerror("Incorrecte input",
                                      "Vul een van de volgende rechten in: Eigenaar, Gast, Schoonmaker, Beveiliging")
         return False
-    if rechten == 'Eigenaar':
-        rechtnum = 4
     elif rechten == 'Gast':
         rechtnum = 1
     elif rechten == 'Schoonmaker':
         rechtnum = 2
     elif rechten == 'Beveiliging':
         rechtnum = 3
+    elif rechten == 'Eigenaar':
+        rechtnum = 4
     c.execute("""SELECT * from persoon WHERE Rechten LIKE '%%%s%%'""" % rechtnum)
     data = c.fetchall()
     if data:

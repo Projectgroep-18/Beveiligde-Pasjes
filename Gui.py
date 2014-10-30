@@ -79,7 +79,11 @@ if go:
         if not var1:
             tkinter.messagebox.showerror("No Input", "There must be an input")
         elif var1 != -1:
-            popup(UseDatabase.searchhistory_tid(var1))
+            var2 = (UseDatabase.searchhistory_tid(var1))
+            if var2:
+                popup(var2)
+            else:
+                popup("Lege lijst")
         else:
             tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
 

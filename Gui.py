@@ -436,22 +436,22 @@ def popup_search_rights(data):
         top_search.geometry('{}x{}'.format(300, 300))
 
 
-def popup_add_vars():
+def popup_data_added():
     top = Toplevel()
     top.title('Confirmation')
     top.focus_set()
 
-    msg = Message(top, text="Data added")
-    msg.pack()
-
-    button = Button(top, text="Dismiss", command=top.destroy)
-    button.pack()
+    Message(top, text="Data added").pack()
+    Button(top, text="Dismiss", command=top.destroy).pack()
 
 
 def popup_data_deleted():
     top = Toplevel
     top.title("Confirmation")
     top.focus_set()
+
+    Message(top, text="Data deleted").pack()
+    Button(top, text="Dismiss", command=top.destroy).pack()
 
 
 root.title("Hotel Management")

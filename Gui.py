@@ -18,7 +18,7 @@ def emergency():
     fire = UseDatabase.fire()
     doorO = PhotoImage(file="door_opened.png")
     doorC = PhotoImage(file="door_closed.png")
-    if fire == 1:
+    if fire:
         root.configure(bg="red")
         leftFrame.configure(bg="red")
         rightFrame.configure(bg="red")

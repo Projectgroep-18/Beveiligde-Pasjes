@@ -484,7 +484,6 @@ if go:
         if string_int(entryDeleteID.get()) != -1:
             naam = UseDatabase.delete(string_int(entryDeleteID.get()))
             if naam:
-                UseDatabase.delete(string_int(entryDeleteID.get()))
                 popup("%s is deleted" % naam)
             else:
                 popup("User ID doesn't exist")
@@ -519,8 +518,10 @@ if go:
         var2, var3 = entryName2.get(), entryRights2.get()
         if var2 and var3:
             var1 = (python_code_for_reading_uid.readArduino())
-            if UseDatabase.add(var1, var2, var3):
-                popup("%s added" % var2)
+            var4 = UseDatabase.add(var1, var2, var3)
+            if var4:
+                tid = var4[1]
+                popup("%s added, your chamber number is %i" % (var2,tid-3))
             else:
                 popup("Geen kamer vrij")
         else:

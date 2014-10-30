@@ -116,6 +116,7 @@ def add(cid, naam, rechten):
         c.execute("""INSERT INTO persoon VALUES (%i, %i, '%s', '%i', 'Aan') """ % (uid, cid, naam, rechtnum))
     conn.commit()
     print(naam, ' toegevoegd')
+    return (naam, tid)
 
 # Functie om users te verwijderen uit de database
 def delete(uid):
@@ -144,6 +145,7 @@ def delete(uid):
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')
+        return naam
         # Als die gebruiker er niet is:
     else:
         print('Invalid User ID')

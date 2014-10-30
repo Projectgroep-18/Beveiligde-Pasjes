@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 root = Tk()
 
@@ -47,6 +47,13 @@ def emergency():
     doorC = PhotoImage(file="door_closed.png")
     doorO_eigenaar = PhotoImage(file="door_eigenaar_open.png")
     doorC_eigenaar = PhotoImage(file="door_eigenaar_closed.png")
+    global ddoor1
+    global ddoor2
+    global ddoor3
+    global ddoor4
+    global ddoor5
+    global ddoor6
+    global ddoor7
     if firestate:
         root.configure(bg="red")
         leftFrame.configure(bg="red")
@@ -74,13 +81,6 @@ def emergency():
         door6.image = doorO
         door7.configure(image=doorO)
         door7.image = doorO
-        global ddoor1
-        global ddoor2
-        global ddoor3
-        global ddoor4
-        global ddoor5
-        global ddoor6
-        global ddoor7
         ddoor1 = True
         ddoor2 = True
         ddoor3 = True
@@ -115,13 +115,6 @@ def emergency():
         door6.image = doorC
         door7.configure(image=doorC)
         door7.image = doorC
-        global ddoor1
-        global ddoor2
-        global ddoor3
-        global ddoor4
-        global ddoor5
-        global ddoor6
-        global ddoor7
         ddoor1 = False
         ddoor2 = False
         ddoor3 = False
@@ -343,14 +336,9 @@ def search_name_gui():
         tkinter.messagebox.showerror("No Input", "There must be an input")
 
 
-def search_uid_gui():
-    var1 = entryCID1.get()
-    if not var1:
-        tkinter.messagebox.showerror("No Input", "There must be an input")
-    elif string_int(var1) == -1:
-        tkinter.messagebox.showerror("Wrong Input", "Card ID must be an integer")
-    else:
-        popup_search(UseDatabase.search_uid(string_int(var1)))
+def search_cid_gui():
+    var1 = (python_code_for_reading_uid.readArduino())
+    popup_search(UseDatabase.search_uid(string_int(var1)))
 
 
 def search_rights_gui():
@@ -396,15 +384,15 @@ leftFrame.pack(side=LEFT, anchor=NW)
 rightFrame.pack(side=RIGHT, anchor=NW)
 
 inputVar1 = ""  # Search name
-inputVar2 = ""  # Search UID
-inputVar3 = ""  # Search rights
-inputVar4 = ""  # Input name
-inputVar5 = ""  # Input rights
-inputVar6 = ""  # Input UID
-inputVar7 = ""  # Input UID
-inputVar8 = ""
-inputVar9 = ""  # History name
-inputVar10 = "" # History rights
+
+inputVar2 = ""  # Search rights
+inputVar3 = ""  # Input name
+inputVar4 = ""  # Input rights
+inputVar5 = ""  # Input Delete UID
+inputVar6 = ""  # Disable UID
+inputVar7 = ""  # Enable UID
+inputVar8 = ""  # History name
+inputVar9 = ""  # History rights
 
 doorStart = PhotoImage(file="door_closed.png")
 doorStartEigenaar= PhotoImage(file="door_eigenaar_closed.png")
@@ -428,17 +416,17 @@ entryName1 = Entry(leftFrame, textvariable=inputVar1)
 labelName1 = Label(leftFrame, text="Name")
 entryCID1 = Entry(leftFrame, textvariable=inputVar2)
 labelCID1 = Label(leftFrame, text="User ID")
-entryRights1 = Entry(leftFrame, textvariable=inputVar3)
+entryRights1 = Entry(leftFrame, textvariable=inputVar2)
 labelRights1 = Label(leftFrame, text="Rights")
 
-entryDeleteID = Entry(leftFrame, textvariable=inputVar6)
+entryDeleteID = Entry(leftFrame, textvariable=inputVar5)
 labelDeleteID = Label(leftFrame, text="User ID")
 buttonDeleteID = Button(leftFrame, text="Delete", command=deleteFromDB, width=6)
 
 buttonEnter = Button(leftFrame, text="Enter", command=add_user, height=3, width=6)
-entryName2 = Entry(leftFrame, textvariable=inputVar4)
+entryName2 = Entry(leftFrame, textvariable=inputVar3)
 labelName2 = Label(leftFrame, text="Name")
-entryRights2 = Entry(leftFrame, textvariable=inputVar5)
+entryRights2 = Entry(leftFrame, textvariable=inputVar4)
 labelRights2 = Label(leftFrame, text="Rights")
 
 labelSearch = Label(leftFrame, text="Search by Name, UID or rights")
@@ -465,11 +453,11 @@ Whitespace9 = Label(leftFrame, text=" ")
 
 labelDisableID = Label(leftFrame, text="User ID")
 labelDisable = Label(leftFrame, text="Disable someone in database")
-entryDisableID = Entry(leftFrame, textvariable=inputVar7)
+entryDisableID = Entry(leftFrame, textvariable=inputVar6)
 disableButton = Button(leftFrame, text="Disable", command=dis_user, width=6)
 labelEnableID = Label(leftFrame, text="User ID")
 labelEnable = Label(leftFrame, text="Enable someone in database")
-entryEnableID = Entry(leftFrame, textvariable=inputVar8)
+entryEnableID = Entry(leftFrame, textvariable=inputVar7)
 enableButton = Button(leftFrame, text="Enable", command=en_user, width=6)
 
 labelENDIS = Label(leftFrame, text="Enable or Disable using keycard")
@@ -483,8 +471,8 @@ labelHistory = Label(leftFrame, text="History")
 labelHistoryName = Label(leftFrame, text="Naam")
 labelHistoryCID = Label(leftFrame, text="CID")
 labelHistoryRights = Label(leftFrame, text="Rechten")
-entryHistoryName = Entry(leftFrame, textvariable=inputVar9)
-entryHistoryRights = Entry(leftFrame, textvariable=inputVar10)
+entryHistoryName = Entry(leftFrame, textvariable=inputVar8)
+entryHistoryRights = Entry(leftFrame, textvariable=inputVar9)
 buttonHistoryName = Button(leftFrame, text="Search", command=get_history_name)
 buttonHistoryCID = Button(leftFrame, text="Search", command=get_history_cid)
 buttonHistoryRights = Button(leftFrame, text="Search", command=get_history_rights)
@@ -557,15 +545,15 @@ door5Label.grid(row=5, column=1)
 door6Label.grid(row=6, column=1)
 door7Label.grid(row=7, column=1)
 
-labelHistory.grid(row=19, column=0)
-labelHistoryName.grid(row=20, column=0)
-entryHistoryName.grid(row=20, column=1)
-buttonHistoryName.grid(row=20, column=2)
-labelHistoryCID.grid(row=21, column=0)
-buttonHistoryCID.grid(row=21, column=2)
-labelHistoryRights.grid(row=22, column=0)
-entryHistoryRights.grid(row=22, column=1)
-buttonHistoryRights.grid(row=22, column=2)
+labelHistory.grid(row=24, column=0)
+labelHistoryName.grid(row=24, column=0)
+entryHistoryName.grid(row=24, column=1)
+buttonHistoryName.grid(row=24, column=2)
+labelHistoryCID.grid(row=25, column=0)
+buttonHistoryCID.grid(row=25, column=2)
+labelHistoryRights.grid(row=26, column=0)
+entryHistoryRights.grid(row=26, column=1)
+buttonHistoryRights.grid(row=26, column=2)
 
 # Zorgt dat de bg groen is
 root.configure(bg="green")

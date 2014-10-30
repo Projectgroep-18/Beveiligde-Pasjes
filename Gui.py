@@ -60,7 +60,6 @@ def emergency():
         ddoor5 = True
         ddoor6 = True
         ddoor7 = True
-        UseDatabase.fire()
     else:
         root.configure(bg="green")
         leftFrame.configure(bg="green")

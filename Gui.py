@@ -43,10 +43,20 @@ def get_history_rights():
 def emergency():
     global firestate
     firestate = UseDatabase.fire()
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
     doorO_eigenaar = PhotoImage(file="door_eigenaar_open.png")
     doorC_eigenaar = PhotoImage(file="door_eigenaar_closed.png")
+    doorO_beveiliging = PhotoImage(file="door_security_open.png")
+    doorC_beveiliging = PhotoImage(file="door_security_closed.png")
+    doorO_janitor = PhotoImage(file="door_schoonmaker_open.png")
+    doorC_janitor = PhotoImage(file="door_schoonmaker_closed.png")
+    doorO_guest1 = PhotoImage(file="door_1_open.png")
+    doorC_guest1 = PhotoImage(file="door_1_closed.png")
+    doorO_guest2 = PhotoImage(file="door_2_open.png")
+    doorC_guest2 = PhotoImage(file="door_2_closed.png")
+    doorO_guest3 = PhotoImage(file="door_3_open.png")
+    doorC_guest3 = PhotoImage(file="door_3_closed.png")
+    doorO_guest4 = PhotoImage(file="door_4_open.png")
+    doorC_guest4 = PhotoImage(file="door_4_closed.png")
     global ddoor1
     global ddoor2
     global ddoor3
@@ -69,18 +79,18 @@ def emergency():
         Whitespace1.configure(bg="red")
         door1.configure(image=doorO_eigenaar)
         door1.image = doorO_eigenaar
-        door2.configure(image=doorO)
-        door2.image = doorO
-        door3.configure(image=doorO)
-        door3.image = doorO
-        door4.configure(image=doorO)
-        door4.image = doorO
-        door5.configure(image=doorO)
-        door5.image = doorO
-        door6.configure(image=doorO)
-        door6.image = doorO
-        door7.configure(image=doorO)
-        door7.image = doorO
+        door2.configure(image=doorO_beveiliging)
+        door2.image = doorO_beveiliging
+        door3.configure(image=doorO_janitor)
+        door3.image = doorO_janitor
+        door4.configure(image=doorO_guest1)
+        door4.image = doorO_guest1
+        door5.configure(image=doorO_guest2)
+        door5.image = doorO_guest2
+        door6.configure(image=doorO_guest3)
+        door6.image = doorO_guest3
+        door7.configure(image=doorO_guest4)
+        door7.image = doorO_guest4
         ddoor1 = True
         ddoor2 = True
         ddoor3 = True
@@ -103,18 +113,18 @@ def emergency():
         Whitespace1.configure(bg=stdbg)
         door1.configure(image=doorC_eigenaar)
         door2.image = doorC_eigenaar
-        door2.configure(image=doorC)
-        door3.image = doorC
-        door3.configure(image=doorC)
-        door4.image = doorC
-        door4.configure(image=doorC)
-        door5.image = doorC
-        door5.configure(image=doorC)
-        door6.image = doorC
-        door6.configure(image=doorC)
-        door6.image = doorC
-        door7.configure(image=doorC)
-        door7.image = doorC
+        door2.configure(image=doorC_beveiliging)
+        door3.image = doorC_beveiliging
+        door3.configure(image=doorC_janitor)
+        door4.image = doorC_janitor
+        door4.configure(image=doorC_guest1)
+        door5.image = doorC_guest1
+        door5.configure(image=doorC_guest2)
+        door6.image = doorC_guest2
+        door6.configure(image=doorC_guest3)
+        door6.image = doorC_guest3
+        door7.configure(image=doorC_guest4)
+        door7.image = doorC_guest4
         ddoor1 = False
         ddoor2 = False
         ddoor3 = False
@@ -147,8 +157,8 @@ def door1Func():
 
 
 def door2Func():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
+    doorO = PhotoImage(file="door_security_open.png")
+    doorC = PhotoImage(file="door_security_closed.png")
     global ddoor2
     if ddoor2 == False:
         cid = python_code_for_reading_uid.readArduino()
@@ -169,8 +179,8 @@ def door2Func():
 
 
 def door3Func():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
+    doorO = PhotoImage(file="door_schoonmaker_open.png")
+    doorC = PhotoImage(file="door_schoonmaker_closed.png")
     global ddoor3
     if ddoor3 == False:
         cid = python_code_for_reading_uid.readArduino()
@@ -191,8 +201,8 @@ def door3Func():
 
 
 def door4Func():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
+    doorO = PhotoImage(file="door_1_open.png")
+    doorC = PhotoImage(file="door_1_closed.png")
     global ddoor4
     if ddoor4 == False:
         cid = python_code_for_reading_uid.readArduino()
@@ -213,8 +223,8 @@ def door4Func():
 
 
 def door5Func():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
+    doorO = PhotoImage(file="door_2_open.png")
+    doorC = PhotoImage(file="door_2_closed.png")
     global ddoor5
     if ddoor5 == False:
         cid = python_code_for_reading_uid.readArduino()
@@ -235,8 +245,8 @@ def door5Func():
 
 
 def door6Func():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
+    doorO = PhotoImage(file="door_3_open.png")
+    doorC = PhotoImage(file="door_3_closed.png")
     global ddoor6
     if ddoor1 == False:
         cid = python_code_for_reading_uid.readArduino()
@@ -257,8 +267,8 @@ def door6Func():
 
 
 def door7Func():
-    doorO = PhotoImage(file="door_opened.png")
-    doorC = PhotoImage(file="door_closed.png")
+    doorO = PhotoImage(file="door_4_open.png")
+    doorC = PhotoImage(file="door_4_closed.png")
     global ddoor7
     if ddoor7 == False:
         cid = python_code_for_reading_uid.readArduino()
@@ -380,17 +390,22 @@ inputVar7 = ""  # Enable UID
 inputVar8 = ""  # History name
 inputVar9 = ""  # History rights
 
-doorStart = PhotoImage(file="door_closed.png")
 doorStartEigenaar= PhotoImage(file="door_eigenaar_closed.png")
+doorStartbeveiliging = PhotoImage(file="door_security_closed.png")
+doorStartjanitor = PhotoImage(file="door_schoonmaker_closed.png")
+doorStartguest1 = PhotoImage(file="door_1_closed.png")
+doorStartguest2 = PhotoImage(file="door_2_closed.png")
+doorStartguest3 = PhotoImage(file="door_3_closed.png")
+doorStartguest4 = PhotoImage(file="door_4_closed.png")
 fire = PhotoImage(file="fire.png")
 
 door1 = Button(rightFrame, image=doorStartEigenaar, command=door1Func)
-door2 = Button(rightFrame, image=doorStart, command=door2Func)
-door3 = Button(rightFrame, image=doorStart, command=door3Func)
-door4 = Button(rightFrame, image=doorStart, command=door4Func)
-door5 = Button(rightFrame, image=doorStart, command=door5Func)
-door6 = Button(rightFrame, image=doorStart, command=door6Func)
-door7 = Button(rightFrame, image=doorStart, command=door7Func)
+door2 = Button(rightFrame, image=doorStartbeveiliging, command=door2Func)
+door3 = Button(rightFrame, image=doorStartjanitor, command=door3Func)
+door4 = Button(rightFrame, image=doorStartguest1, command=door4Func)
+door5 = Button(rightFrame, image=doorStartguest2, command=door5Func)
+door6 = Button(rightFrame, image=doorStartguest3, command=door6Func)
+door7 = Button(rightFrame, image=doorStartguest4, command=door7Func)
 history = Button(rightFrame, text="History", command=get_history)
 
 buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui, width=6)

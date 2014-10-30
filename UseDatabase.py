@@ -305,6 +305,20 @@ def fire():
         firestate = 1
     conn.commit()
     return firestate
+
+
+# Forces door of terminal TID open.
+def opendoor(tid):
+    Door = check(1189998819991197253, tid)
+    return Door
+
+
+# Forces door of terminal TID closed.
+def closedoor(tid):
+    Door = False
+    return Door
+
+
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven
 # Je vult 1 terminal ID in, die deur gaat open, als je weer op de knop drukt gaat hij weer dicht.
 

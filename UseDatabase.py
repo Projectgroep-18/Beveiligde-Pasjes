@@ -67,6 +67,21 @@ def check(cid, tid=1):
         print("Toegang geweigerd. Ongeautoriseerde gebruiker.")
         return False
 
+#Is er een kamer vrij?
+#Rechten in nieuwe gast = 1
+#Rechten in terminal = 1
+#CID in terminal = 0
+#Return TID
+#else false
+
+def check_kamer():
+    c.execute("""SELECT TID from terminal where rechten = 1 AND CID = 0""")
+    temp = c.fetchall()
+    if temp:
+        return temp[0][0]
+    else:
+        return False
+
 
 # Functie om nieuwe users toe te voegen aan de database
 def add(cid, naam, rechten):
@@ -83,6 +98,13 @@ def add(cid, naam, rechten):
         rechtnum = 4
     elif rechten == 'Gast':
         rechtnum = 1
+        if check_kamer():
+            tid = check_kamer()
+            print("Je kamernummer is", tid-3)
+            c.execute("""UPDATE terminal SET cid = %i WHERE TID = %i""" % (cid, tid))
+        else:
+            print("Er is geen kamer vrij.")
+            return False
     elif rechten == 'Schoonmaker':
         rechtnum = 2
     elif rechten == 'Beveiliging':
@@ -95,20 +117,34 @@ def add(cid, naam, rechten):
     conn.commit()
     print(naam, ' toegevoegd')
 
-
 # Functie om users te verwijderen uit de database
 def delete(uid):
+    # Controleer of er überhaupt een gebruiker is met die uid
     c.execute("""SELECT UID from persoon WHERE UID = %i """ % uid)
     uidlist = c.fetchall()
+    # Als die er wel is:
     if uidlist:
+        # Selecteer de naam die bij de UID hoort
         c.execute("""SELECT Naam from persoon WHERE UID = %i """ % uid)
         naam = c.fetchall()[0][0]
-        c.execute("""SELECT COUNT(UID) from persoon""")
+        # Controleer of het een gast is
+        c.execute("""SELECT rechten from persoon where UID = %i""" % uid)
+        rechten = c.fetchall()[0][0]
+        if rechten == 1:
+            c.execute("""SELECT TID from terminal where CID IN (SELECT CID FROM persoon WHERE UID = %i)""" % uid)
+            tid = c.fetchall()
+            if tid:
+                tid = tid[0][0]
+            else:
+                print("There is no such terminal!")
+            c.execute("""UPDATE terminal SET CID = 0 WHERE TID = %i""" % tid)
         # Zet het element op de laatste index op de index van het verwijderde element.
+        c.execute("""SELECT COUNT(UID) from persoon""")
         lastuid = c.fetchall()[0][0]
         c.execute("""DELETE from persoon WHERE UID=%i """ % uid)
         c.execute("""UPDATE persoon SET UID = %i WHERE UID = %i""" % (uid, lastuid))
         print(naam, 'verwijderd')
+        # Als die gebruiker er niet is:
     else:
         print('Invalid User ID')
     conn.commit()

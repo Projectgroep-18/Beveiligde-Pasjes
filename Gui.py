@@ -44,7 +44,22 @@ if go:
     ddoor7 = False
     stdbg = root.cget("bg")
 
+    def scroll(event):
+        global lbname
+        global lbcid
+        global lbtime
+        global lbtid
+        lbname.yview("scroll", event.delta, "units")
+        lbcid.yview("scroll", event.delta, "units")
+        lbtime.yview("scroll", event.delta, "units")
+        lbtid.yview("scroll", event.delta, "units")
+        return "break"
+
     def get_history():
+        global lbname
+        global lbcid
+        global lbtime
+        global lbtid
         top = Toplevel()
         top.title("Resultaten")
         top.focus_set()
@@ -54,6 +69,10 @@ if go:
         lbtime = Listbox(top, height=50)
         lbtid = Listbox(top, height=50)
         data = UseDatabase.gethistory()
+        lbname.bind("<MouseWheel>", scroll)
+        lbcid.bind("<MouseWheel>", scroll)
+        lbtime.bind("<MouseWheel>", scroll)
+        lbtid.bind("<MouseWheel>", scroll)
         if data:
             lbname.insert(END, "Naam:")
             lbcid.insert(END, "Card ID:")

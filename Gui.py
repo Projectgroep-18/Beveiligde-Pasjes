@@ -5,7 +5,7 @@ import python_code_for_reading_uid
 
 login = Tk()
 go = False
-login.title("Enter password")
+login.title("Wachtwoord")
 login.resizable(0, 0)
 login.geometry("300x150")
 password = ""
@@ -18,11 +18,11 @@ def loginGo():
         go = True
         login.destroy()
     else:
-        tkinter.messagebox.showerror("Wrong password", "The password you entered is incorrect")
+        tkinter.messagebox.showerror("Verkeerd wachtwoord", "Het wachtwoord dat u invoerde is incorrect")
 
 
 loginFrame = Frame(login)
-labelLogin = Label(loginFrame, text="Enter password below", height=2, font=("Purisa", 18))
+labelLogin = Label(loginFrame, text="Vul uw wachtwoord in", height=2, font=("Purisa", 18))
 entryLogin = Entry(loginFrame, textvar=password, show="*", font=("Purisa", 16))
 buttonLogin = Button(loginFrame, text="Login", command=loginGo, font=("Purisa", 18))
 loginFrame.pack(anchor=CENTER)
@@ -47,15 +47,15 @@ if go:
     def get_history():
         var1 = UseDatabase.gethistory()
         top = Toplevel()
-        top.title("History")
+        top.title("Geschiedenis")
         top.focus_set()
 
         if var1 != 0:
             for x in range(0, len(var1)):
-                name = "Name: %s" % var1[x][0]
+                name = "Naam: %s" % var1[x][0]
                 tid = "TID: %s" % var1[x][3]
-                cid = "CID: %s" % var1[x][1]
-                time = "Time: %s" %var1[x][2]
+                cid = "Pasjes ID: %s" % var1[x][1]
+                time = "Tijd: %s" %var1[x][2]
 
                 Message(top, text=name, width=500, anchor=NE).pack()
                 Message(top, text=cid, width=500, anchor=NE).pack()
@@ -65,22 +65,22 @@ if go:
 
             top.geometry('{}x{}'.format(300, 300))
         else:
-            Message(top, text="History", width=500, anchor=NE).pack()
+            Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
 
 
     def get_history_name():
         var0 = entryHistoryName.get()
         var1 = UseDatabase.searchhistory_name(var0)
         top = Toplevel()
-        top.title("History")
+        top.title("Geschiedenis")
         top.focus_set()
 
         if var1 != 0:
             for x in range(0, len(var1)):
-                name = "Name: %s" % var1[x][0]
+                name = "Naam: %s" % var1[x][0]
                 tid = "TID: %s" % var1[x][3]
-                cid = "CID: %s" % var1[x][1]
-                time = "Time: %s" %var1[x][2]
+                cid = "Pasjes ID: %s" % var1[x][1]
+                time = "Tijd: %s" %var1[x][2]
 
                 Message(top, text=name, width=500, anchor=NE).pack()
                 Message(top, text=cid, width=500, anchor=NE).pack()
@@ -90,22 +90,22 @@ if go:
 
             top.geometry('{}x{}'.format(300, 300))
         else:
-            Message(top, text="History", width=500, anchor=NE).pack()
+            Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
 
 
     def get_history_cid():
         var0 = (python_code_for_reading_uid.readArduino())
         var1 = (UseDatabase.searchhistory_cid(var0))
         top = Toplevel()
-        top.title("History")
+        top.title("Geschiedenis")
         top.focus_set()
 
         if var1 != 0:
             for x in range(0, len(var1)):
-                name = "Name: %s" % var1[x][0]
+                name = "Naam: %s" % var1[x][0]
                 tid = "TID: %s" % var1[x][3]
-                cid = "CID: %s" % var1[x][1]
-                time = "Time: %s" %var1[x][2]
+                cid = "Pasjes ID: %s" % var1[x][1]
+                time = "Tijd: %s" %var1[x][2]
 
                 Message(top, text=name, width=500, anchor=NE).pack()
                 Message(top, text=cid, width=500, anchor=NE).pack()
@@ -115,7 +115,7 @@ if go:
 
             top.geometry('{}x{}'.format(300, 300))
         else:
-            Message(top, text="History", width=500, anchor=NE).pack()
+            Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
 
 
     def get_history_rights():
@@ -124,15 +124,15 @@ if go:
             var2 = UseDatabase.searchhistory_rights(var1)
             if var2:
                 top = Toplevel()
-                top.title("History")
+                top.title("Geschiedenis")
                 top.focus_set()
 
                 if var2 != 0:
                     for x in range(0, len(var2)):
-                        name = "Name: %s" % var2[x][0]
+                        name = "Naam: %s" % var2[x][0]
                         tid = "TID: %s" % var2[x][3]
-                        cid = "CID: %s" % var2[x][1]
-                        time = "Time: %s" %var2[x][2]
+                        cid = "Pasjes ID: %s" % var2[x][1]
+                        time = "Tijd: %s" %var2[x][2]
 
                         Message(top, text=name, width=500, anchor=NE).pack()
                         Message(top, text=cid, width=500, anchor=NE).pack()
@@ -142,29 +142,29 @@ if go:
 
                     top.geometry('{}x{}'.format(300, 300))
                 else:
-                    Message(top, text="History", width=500, anchor=NE).pack()
+                    Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
             else:
-                popup("Empty list")
+                popup("Geen data")
         else:
-            tkinter.messagebox.showerror("No (valid) Input", "There must be a valid input (Gast, Schoonmaker, Beveiliging, Eigenaar)")
+            tkinter.messagebox.showerror("Geen geldige invoer", "Er moet een geldige invoer worden gegeven (Gast, Schoonmaker, Beveiliging, Eigenaar)")
 
     def get_history_terminal():
         var1 = string_int(entryHistoryTerminal.get())
         if not var1:
-            tkinter.messagebox.showerror("No Input", "There must be an input")
+            tkinter.messagebox.showerror("Geen invoer", "Er moet wat ingevoerd worden")
         elif var1 != -1:
             var2 = (UseDatabase.searchhistory_tid(var1))
             if var2:
                 top = Toplevel()
-                top.title("History")
+                top.title("Geschiedenis")
                 top.focus_set()
 
                 if var2 != 0:
                     for x in range(0, len(var2)):
-                        name = "Name: %s" % var2[x][0]
+                        name = "Naam: %s" % var2[x][0]
                         tid = "TID: %s" % var2[x][3]
-                        cid = "CID: %s" % var2[x][1]
-                        time = "Time: %s" %var2[x][2]
+                        cid = "Pasjes ID: %s" % var2[x][1]
+                        time = "Tijd: %s" %var2[x][2]
 
                         Message(top, text=name, width=500, anchor=NE).pack()
                         Message(top, text=cid, width=500, anchor=NE).pack()
@@ -174,11 +174,11 @@ if go:
 
                     top.geometry('{}x{}'.format(300, 300))
                 else:
-                    Message(top, text="History", width=500, anchor=NE).pack()
+                    Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
             else:
-                popup("Lege lijst")
+                popup("Geen data")
         else:
-            tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+            tkinter.messagebox.showerror("Verkeerde invoer", "Gebruiker ID moet een integer zijn")
 
 
 
@@ -291,7 +291,7 @@ if go:
                     door1.image = doorO
                     ddoor1 = True
                 else:
-                    tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+                    tkinter.messagebox.showerror("Geen toegang", "U bent niet bevoegd om deze deur te openen")
             else:
                 door1.configure(image=doorC)
                 door1.image = doorC
@@ -313,7 +313,7 @@ if go:
                     door2.image = doorO
                     ddoor2 = True
                 else:
-                    tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+                    tkinter.messagebox.showerror("Geen toegang", "U bent niet bevoegd om deze deur te openen")
             else:
                 door2.configure(image=doorC)
                 door2.image = doorC
@@ -335,7 +335,7 @@ if go:
                     door3.image = doorO
                     ddoor3 = True
                 else:
-                    tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+                    tkinter.messagebox.showerror("Geen toegang", "U bent niet bevoegd om deze deur te openen")
             else:
                 door3.configure(image=doorC)
                 door3.image = doorC
@@ -357,7 +357,7 @@ if go:
                     door4.image = doorO
                     ddoor4 = True
                 else:
-                    tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+                    tkinter.messagebox.showerror("Geen toegang", "U bent niet bevoegd om deze deur te openen")
             else:
                 door4.configure(image=doorC)
                 door4.image = doorC
@@ -379,7 +379,7 @@ if go:
                     door5.image = doorO
                     ddoor5 = True
                 else:
-                    tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+                    tkinter.messagebox.showerror("Geen toegang", "U bent niet bevoegd om deze deur te openen")
             else:
                 door5.configure(image=doorC)
                 door5.image = doorC
@@ -401,7 +401,7 @@ if go:
                     door6.image = doorO
                     ddoor6 = True
                 else:
-                    tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+                    tkinter.messagebox.showerror("Geen toegang", "U bent niet bevoegd om deze deur te openen")
             else:
                 door6.configure(image=doorC)
                 door6.image = doorC
@@ -423,7 +423,7 @@ if go:
                     door7.image = doorO
                     ddoor7 = True
                 else:
-                    tkinter.messagebox.showerror("No Entry", "You are not authorized to enter")
+                    tkinter.messagebox.showerror("Geen toegang", "U bent niet bevoegd om deze deur te openen")
             else:
                 door7.configure(image=doorC)
                 door7.image = doorC
@@ -434,18 +434,18 @@ if go:
         naam = UseDatabase.activeer_cid(python_code_for_reading_uid.readArduino())
         if naam:
             UseDatabase.activeer_cid(string_int(entryEnableID.get()))
-            popup("%s is enabled" % naam)
+            popup("%s is geactiveerd" % naam)
         else:
-            popup("User ID doesn't exist or is already enabled")
+            popup("Gebruiker ID bestaat niet of is al geactiveerd")
 
 
     def dis_card():
         naam = UseDatabase.deactiveer_cid(python_code_for_reading_uid.readArduino())
         if naam:
             UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
-            popup("%s is disabled" % naam)
+            popup("%s is gedeactiveerd" % naam)
         else:
-            popup("User ID doesn't exist or is already disabled")
+            popup("Gebruiker ID bestaat niet of is al gedeactiveerd")
 
 
     def dis_user():
@@ -453,22 +453,22 @@ if go:
             naam = UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
             if naam:
                 UseDatabase.deactiveer_uid(string_int(entryDisableID.get()))
-                popup("%s is disabled" % naam)
+                popup("%s is gedeactiveerd" % naam)
             else:
-                popup("User ID doesn't exist or is already disabled")
+                popup("Gebruiker ID bestaat niet of is al gedeactiveerd")
         else:
-            tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+            tkinter.messagebox.showerror("Ongeldige invoer", "Gebruiker ID moet een integer zijn")
 
 
     def en_user():
         if string_int(entryEnableID.get()) != -1:
             naam = UseDatabase.activeer_uid(string_int(entryEnableID.get()))
             if naam:
-                popup("%s is enabled" % naam)
+                popup("%s is geactiveerd" % naam)
             else:
-                popup("User ID doesn't exist or is already enabled")
+                popup("Gebruiker ID bestaat niet of is al geactiveerd")
         else:
-            tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+            tkinter.messagebox.showerror("Ongeldige invoer", "Gebruiker ID moet een integer zijn")
 
 
     def string_int(string):
@@ -483,11 +483,11 @@ if go:
         if string_int(entryDeleteID.get()) != -1:
             naam = UseDatabase.delete(string_int(entryDeleteID.get()))
             if naam:
-                popup("%s is deleted" % naam)
+                popup("%s is verwijderd" % naam)
             else:
-                popup("User ID doesn't exist")
+                popup("Gebruiker ID bestaat niet")
         else:
-            tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+            tkinter.messagebox.showerror("Ongeldige invoer", "Gebruiker ID moet een integer zijn")
 
 
     def search_name_gui():
@@ -495,7 +495,7 @@ if go:
         if var1:
             popup_search_name(UseDatabase.search_name(var1))
         else:
-            tkinter.messagebox.showerror("No Input", "There must be an input")
+            tkinter.messagebox.showerror("Geen invoer", "Er moet iets worden ingevoerd")
 
 
     def search_cid_gui():
@@ -510,7 +510,7 @@ if go:
             if searchresults:
                 popup_search_rights(searchresults)
         else:
-            tkinter.messagebox.showerror("No Input", "There must be an input")
+            tkinter.messagebox.showerror("Geen invoer", "Er moet iets worden ingevoerd")
 
 
     def add_user():
@@ -521,43 +521,43 @@ if go:
             if var4:
                 tid = var4[1]
                 if var3 == 'Gast':
-                    popup("%s added, your chamber number is %i" % (var2, tid-3))
+                    popup("%s toegevoegd, het kamernummer is %i" % (var2, tid-3))
                 else:
-                    popup("%s added" % var2)
+                    popup("%s toegevoegd" % var2)
             else:
                 popup("Geen kamer vrij")
         else:
-            tkinter.messagebox.showerror("No Input", "There must be an input")
+            tkinter.messagebox.showerror("Geen invoer", "Er moet wat worden ingevoerd")
 
 
     def popup(string):
         top = Toplevel()
-        top.title("Results")
+        top.title("Resultaten")
         top.focus_set()
 
         Message(top, text=string).pack()
-        Button(top, text="Dismiss", command=top.destroy).pack()
+        Button(top, text="OK", command=top.destroy).pack()
 
 
     def popup_search_name(data):
         top = Toplevel()
-        top.title("Search results")
+        top.title("Zoekresultaten")
         top.focus_set()
 
         if data != 0:
             for x in range(0, len(data)):
-                name = "Name: %s" % data[x][2]
+                name = "Naam: %s" % data[x][2]
                 uid = "UID: %s" % data[x][0]
-                cid = "CID: %s" % data[x][1]
+                cid = "Pasjes ID: %s" % data[x][1]
                 if data[x][3] == 1:
-                    rights = "Rights: Gast"
+                    rights = "Rechten: Gast"
                 elif data[x][3] == 2:
-                    rights = "Rights: Schoonmaker"
+                    rights = "Rechten: Schoonmaker"
                 elif data[x][3] == 3:
-                    rights = "Rights: Beveiliger"
+                    rights = "Rechten: Beveiliger"
                 elif data[x][3] == 4:
-                    rights = "Rights: Eigenaar"
-                access = "Access: %s" % data[x][4]
+                    rights = "Rechten: Eigenaar"
+                access = "Kaart staat: %s" % data[x][4]
 
                 Message(top, text=name, width=500, anchor=NE).pack()
                 Message(top, text=uid, width=500, anchor=NE).pack()
@@ -568,28 +568,28 @@ if go:
 
             top.geometry('{}x{}'.format(300, 300))
         else:
-            Message(top, text="Person not found", width=500, anchor=NE).pack()
+            Message(top, text="Persoon niet gevonden", width=500, anchor=NE).pack()
 
 
     def popup_search_rights(data):
         if data != 0:
             top = Toplevel()
-            top.title("Search results")
+            top.title("Zoekresultaten")
             top.focus_set()
 
             for x in range(0, len(data)):
-                name = "Name: %s" % data[x][2]
+                name = "Naam: %s" % data[x][2]
                 uid = "UID: %s" % data[x][0]
-                cid = "CID: %s" % data[x][1]
+                cid = "Pasjes ID: %s" % data[x][1]
                 if data[x][3] == 1:
-                    rights = "Rights: Gast"
+                    rights = "Rechten: Gast"
                 elif data[x][3] == 2:
-                    rights = "Rights: Schoonmaker"
+                    rights = "Rechten: Schoonmaker"
                 elif data[x][3] == 3:
-                    rights = "Rights: Beveiliger"
+                    rights = "Rechten: Beveiliger"
                 elif data[x][3] == 4:
-                    rights = "Rights: Eigenaar"
-                access = "Access: %s" % data[x][4]
+                    rights = "Rechten: Eigenaar"
+                access = "Kaart staat: %s" % data[x][4]
 
                 Message(top, text=name, width=500, anchor=NE).pack()
                 Message(top, text=uid, width=500, anchor=NE).pack()
@@ -603,15 +603,15 @@ if go:
 
     def popup_get_history(data):
         top = Toplevel()
-        top.title("Results")
+        top.title("Resultaten")
         top.focus_set()
 
         if data != 0:
             for x in range(0, len(data)):
-                name = "Name: %s" % data[x][0]
-                cid = "Card ID: %s" % data[x][1]
+                name = "Naam: %s" % data[x][0]
+                cid = "Pasjes ID: %s" % data[x][1]
                 time = "Datum: %s" % data[x][2]
-                tid = "Terminal: %s" % data[x][3]
+                tid = "Deur: %s" % data[x][3]
 
                 Message(top, text=name, width=500, anchor=NW).pack()
                 Message(top, text=cid, width=500, anchor=NW).pack()
@@ -621,7 +621,7 @@ if go:
 
             top.geometry('{}x{}'.format(300, 300))
         else:
-            Message(top, text="No data found", width=500, anchor=NW).pack()
+            Message(top, text="Geen data gevonden", width=500, anchor=NW).pack()
 
 
     root.title("Hotel Management")
@@ -659,40 +659,40 @@ if go:
     door5 = Button(rightFrame, image=doorStartguest2, command=door5Func)
     door6 = Button(rightFrame, image=doorStartguest3, command=door6Func)
     door7 = Button(rightFrame, image=doorStartguest4, command=door7Func)
-    history = Button(rightFrame, text="History", command=get_history)
+    history = Button(rightFrame, text="Geschiedenis", command=get_history)
 
-    buttonSearchName = Button(leftFrame, text="Search", command=search_name_gui, width=6)
-    buttonSearchCID = Button(leftFrame, text="Search", command=search_cid_gui, width=6)
-    buttonSearchRights = Button(leftFrame, text="Search", command=search_rights_gui, width=6)
+    buttonSearchName = Button(leftFrame, text="Zoek", command=search_name_gui, width=6)
+    buttonSearchCID = Button(leftFrame, text="Zoek", command=search_cid_gui, width=6)
+    buttonSearchRights = Button(leftFrame, text="Zoek", command=search_rights_gui, width=6)
 
     entryName1 = Entry(leftFrame, textvariable=inputVar1)
-    labelName1 = Label(leftFrame, text="Name")
+    labelName1 = Label(leftFrame, text="Naam")
     # entryCID1 = Entry(leftFrame, textvariable=inputVar2)
-    labelCID1 = Label(leftFrame, text="Card ID")
+    labelCID1 = Label(leftFrame, text="Gebruiker ID")
     entryRights1 = Entry(leftFrame, textvariable=inputVar2)
-    labelRights1 = Label(leftFrame, text="Rights")
+    labelRights1 = Label(leftFrame, text="Rechten")
 
     entryDeleteID = Entry(leftFrame, textvariable=inputVar5)
-    labelDeleteID = Label(leftFrame, text="User ID")
-    buttonDeleteID = Button(leftFrame, text="Delete", command=delete_from_db, width=6)
+    labelDeleteID = Label(leftFrame, text="Gebruiker ID")
+    buttonDeleteID = Button(leftFrame, text="Verwijder", command=delete_from_db, width=6)
 
     buttonEnter = Button(leftFrame, text="Enter", command=add_user, height=3, width=6)
     entryName2 = Entry(leftFrame, textvariable=inputVar3)
-    labelName2 = Label(leftFrame, text="Name")
+    labelName2 = Label(leftFrame, text="Naam")
     entryRights2 = Entry(leftFrame, textvariable=inputVar4)
-    labelRights2 = Label(leftFrame, text="Rights")
+    labelRights2 = Label(leftFrame, text="Rechten")
 
-    labelSearch = Label(leftFrame, text="Search by Name, Card ID or rights")
-    labelEnter = Label(leftFrame, text="Add someone to database")
-    labelDelete = Label(leftFrame, text="Delete someone from database")
+    labelSearch = Label(leftFrame, text="Zoek op naam, gebruiker ID of rechten")
+    labelEnter = Label(leftFrame, text="Voeg iemand toe aan de database")
+    labelDelete = Label(leftFrame, text="Verwijder iemand uit de database")
 
-    door1Label = Label(rightFrame, text="1. Boss's office")
-    door2Label = Label(rightFrame, text="2. Securityroom")
-    door3Label = Label(rightFrame, text="3. Cleaningroom")
-    door4Label = Label(rightFrame, text="4. Guestroom 1")
-    door5Label = Label(rightFrame, text="5. Guestroom 2")
-    door6Label = Label(rightFrame, text="6. Guestroom 3")
-    door7Label = Label(rightFrame, text="7. Guestroom 4")
+    door1Label = Label(rightFrame, text="1. Directiekamer")
+    door2Label = Label(rightFrame, text="2. Beveiligingskamer")
+    door3Label = Label(rightFrame, text="3. Schoonmaakhok")
+    door4Label = Label(rightFrame, text="4. Gastkamer 1")
+    door5Label = Label(rightFrame, text="5. Gastkamer 2")
+    door6Label = Label(rightFrame, text="6. Gastkamer 3")
+    door7Label = Label(rightFrame, text="7. Gastkamer 4")
 
     Whitespace1 = Label(leftFrame, text=" ")
     Whitespace2 = Label(leftFrame, text=" ")
@@ -704,34 +704,34 @@ if go:
     Whitespace8 = Label(rightFrame, text=" ")
     Whitespace9 = Label(leftFrame, text=" ")
 
-    labelDisableID = Label(leftFrame, text="User ID")
-    labelDisable = Label(leftFrame, text="Disable someone in database")
+    labelDisableID = Label(leftFrame, text="Gebruiker ID")
+    labelDisable = Label(leftFrame, text="Deactiveer iemand in de database")
     entryDisableID = Entry(leftFrame, textvariable=inputVar6)
-    disableButton = Button(leftFrame, text="Disable", command=dis_user, width=6)
-    labelEnableID = Label(leftFrame, text="User ID")
-    labelEnable = Label(leftFrame, text="Enable someone in database")
+    disableButton = Button(leftFrame, text="Deactiveer", command=dis_user, width=6)
+    labelEnableID = Label(leftFrame, text="Gebruiker ID")
+    labelEnable = Label(leftFrame, text="Activeer iemand in de database")
     entryEnableID = Entry(leftFrame, textvariable=inputVar7)
-    enableButton = Button(leftFrame, text="Enable", command=en_user, width=6)
+    enableButton = Button(leftFrame, text="Activeer", command=en_user, width=6)
 
-    labelENDIS = Label(leftFrame, text="Enable or Disable using keycard")
-    buttonEN = Button(leftFrame, text="Enable", command=en_card, width=7)
-    buttonDIS = Button(leftFrame, text="Disable", command=dis_card, width=7)
+    labelENDIS = Label(leftFrame, text="Activeer of deactiveer met behulp van een pasje")
+    buttonEN = Button(leftFrame, text="Activeer", command=en_card, width=7)
+    buttonDIS = Button(leftFrame, text="Deactiveer", command=dis_card, width=7)
 
     buttonFire = Button(rightFrame, image=fire, command=emergency)
-    labelFire = Label(rightFrame, text="Fire")
+    labelFire = Label(rightFrame, text="Brand")
 
-    labelHistory = Label(leftFrame, text="Search History")
-    labelHistoryName = Label(leftFrame, text="Name")
-    labelHistoryCID = Label(leftFrame, text="CID")
-    labelHistoryRights = Label(leftFrame, text="Rights")
-    labelHistoryTerminal = Label(leftFrame, text="Terminal")
+    labelHistory = Label(leftFrame, text="Doorzoek geschiedenis")
+    labelHistoryName = Label(leftFrame, text="Naam")
+    labelHistoryCID = Label(leftFrame, text="Pasjes ID")
+    labelHistoryRights = Label(leftFrame, text="Rechten")
+    labelHistoryTerminal = Label(leftFrame, text="Deur")
     entryHistoryName = Entry(leftFrame, textvariable=inputVar8)
     entryHistoryRights = Entry(leftFrame, textvariable=inputVar9)
     entryHistoryTerminal = Entry(leftFrame, textvariable=inputVar10)
-    buttonHistoryName = Button(leftFrame, text="Search", command=get_history_name)
-    buttonHistoryCID = Button(leftFrame, text="Search", command=get_history_cid)
-    buttonHistoryRights = Button(leftFrame, text="Search", command=get_history_rights)
-    buttonHistoryTerminal = Button(leftFrame, text="Search", command=get_history_terminal)
+    buttonHistoryName = Button(leftFrame, text="Zoek", command=get_history_name)
+    buttonHistoryCID = Button(leftFrame, text="Zoek", command=get_history_cid)
+    buttonHistoryRights = Button(leftFrame, text="Zoek", command=get_history_rights)
+    buttonHistoryTerminal = Button(leftFrame, text="Zoek", command=get_history_terminal)
 
     buttonFire.grid(row=8, column=2)
     labelFire.grid(row=8, column=1)
@@ -816,4 +816,4 @@ if go:
 
     root.mainloop()
 else:
-    print("Bye")
+    print("Tot ziens")

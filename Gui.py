@@ -204,6 +204,7 @@ if go:
         else:
             tkinter.messagebox.showerror("Geen geldige invoer", "Er moet een geldige invoer worden gegeven (Gast, Schoonmaker, Beveiliging, Eigenaar)")
 
+
     def get_history_terminal():
         var1 = string_int(entryHistoryTerminal.get())
         if not var1:
@@ -235,7 +236,7 @@ if go:
                     lbname.insert(END, data[x][0])
                     lbcid.insert(END, data[x][1])
                     lbtime.insert(END, data[x][2])
-                lbtid.insert(END, data[x][3])
+                    lbtid.insert(END, data[x][3])
             else:
                 lbname.insert(END, "Geen Data")
             lbname.grid(column=1, row=1)

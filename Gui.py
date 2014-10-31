@@ -538,24 +538,31 @@ if go:
             if var1 == 1:
                 door1.configure(image=doorO_eigenaar)
                 door1.image = doorO_eigenaar
+                ddoor1 = True
             elif var1 == 2:
                 door2.configure(image=doorO_beveiliging)
                 door2.image = doorO_beveiliging
+                ddoor2 = True
             elif var1 == 3:
                 door3.configure(image=doorO_janitor)
                 door3.image = doorO_janitor
+                ddoor3 = True
             elif var1 == 4:
                 door4.configure(image=doorO_guest1)
                 door4.image = doorO_guest1
+                ddoor4 = True
             elif var1 == 5:
                 door5.configure(image=doorO_guest2)
                 door5.image = doorO_guest2
+                ddoor51 = True
             elif var1 == 6:
                 door6.configure(image=doorO_guest3)
                 door6.image = doorO_guest3
+                ddoor6 = True
             elif var1 == 7:
                 door7.configure(image=doorO_guest4)
                 door7.image = doorO_guest4
+                ddoor7 = True
 
 
     def closedoor():
@@ -582,24 +589,31 @@ if go:
             if var1 == 1:
                 door1.configure(image=doorC_eigenaar)
                 door1.image = doorC_eigenaar
+                ddoor1 = False
             elif var1 == 2:
                 door2.configure(image=doorC_beveiliging)
                 door2.image = doorC_beveiliging
+                ddoor2 = False
             elif var1 == 3:
                 door3.configure(image=doorC_janitor)
                 door3.image = doorC_janitor
+                ddoor3 = False
             elif var1 == 4:
                 door4.configure(image=doorC_guest1)
                 door4.image = doorC_guest1
+                ddoor4 = False
             elif var1 == 5:
                 door5.configure(image=doorC_guest2)
                 door5.image = doorC_guest2
+                ddoor5 = False
             elif var1 == 6:
                 door6.configure(image=doorC_guest3)
                 door6.image = doorC_guest3
+                ddoor6 = False
             elif var1 == 7:
                 door7.configure(image=doorC_guest4)
                 door7.image = doorC_guest4
+                ddoor7 = False
 
 
     def add_user():

@@ -532,7 +532,7 @@ if go:
         doorO_guest2 = PhotoImage(file="door_2_open.png")
         doorO_guest3 = PhotoImage(file="door_3_open.png")
         doorO_guest4 = PhotoImage(file="door_4_open.png")
-        var1 = string_int(entryOpenTerminal.get())
+        var1 = string_int(entryOpendeur.get())
         if var1:
             UseDatabase.opendoor(var1)
             if var1 == 1:
@@ -542,23 +542,26 @@ if go:
                 door2.configure(image=doorO_beveiliging)
                 door2.image = doorO_beveiliging
             elif var1 == 3:
-                door2.configure(image=doorO_janitor)
-                door2.image = doorO_janitor
+                door3.configure(image=doorO_janitor)
+                door3.image = doorO_janitor
             elif var1 == 4:
-                door2.configure(image=doorO_guest1)
-                door2.image = doorO_guest1
+                door4.configure(image=doorO_guest1)
+                door4.image = doorO_guest1
             elif var1 == 5:
-                door2.configure(image=doorO_guest2)
-                door2.image = doorO_guest2
+                door5.configure(image=doorO_guest2)
+                door5.image = doorO_guest2
             elif var1 == 6:
-                door2.configure(image=doorO_guest3)
-                door2.image = doorO_guest3
+                door6.configure(image=doorO_guest3)
+                door6.image = doorO_guest3
             elif var1 == 7:
-                door2.configure(image=doorO_guest4)
-                door2.image = doorO_guest4
+                door7.configure(image=doorO_guest4)
+                door7.image = doorO_guest4
 
 
     def closedoor():
+        if firestate:
+            popup("Het brandalarm staat aan, doe geen deuren dicht!")
+            return False
         global ddoor1
         global ddoor2
         global ddoor3
@@ -573,7 +576,7 @@ if go:
         doorC_guest2 = PhotoImage(file="door_2_closed.png")
         doorC_guest3 = PhotoImage(file="door_3_closed.png")
         doorC_guest4 = PhotoImage(file="door_4_closed.png")
-        var1 = string_int(entryOpenTerminal.get())
+        var1 = string_int(entrySluitdeur.get())
         if var1:
             UseDatabase.opendoor(var1)
             if var1 == 1:
@@ -583,20 +586,20 @@ if go:
                 door2.configure(image=doorC_beveiliging)
                 door2.image = doorC_beveiliging
             elif var1 == 3:
-                door2.configure(image=doorC_janitor)
-                door2.image = doorC_janitor
+                door3.configure(image=doorC_janitor)
+                door3.image = doorC_janitor
             elif var1 == 4:
-                door2.configure(image=doorC_guest1)
-                door2.image = doorC_guest1
+                door4.configure(image=doorC_guest1)
+                door4.image = doorC_guest1
             elif var1 == 5:
-                door2.configure(image=doorC_guest2)
-                door2.image = doorC_guest2
+                door5.configure(image=doorC_guest2)
+                door5.image = doorC_guest2
             elif var1 == 6:
-                door2.configure(image=doorC_guest3)
-                door2.image = doorC_guest3
+                door6.configure(image=doorC_guest3)
+                door6.image = doorC_guest3
             elif var1 == 7:
-                door2.configure(image=doorC_guest4)
-                door2.image = doorC_guest4
+                door7.configure(image=doorC_guest4)
+                door7.image = doorC_guest4
 
 
     def add_user():
@@ -733,7 +736,9 @@ if go:
     inputVar7 = ""  # Enable UID
     inputVar8 = ""  # History name
     inputVar9 = ""  # History rights
-    inputVar10 = ""  # History terminal
+    inputVar10 = "" # History terminal
+    inputVar11 = "" # Open door
+    inputVar12 = "" # Close door
 
     doorStartEigenaar = PhotoImage(file="door_eigenaar_closed.png")
     doorStartbeveiliging = PhotoImage(file="door_security_closed.png")
@@ -825,6 +830,14 @@ if go:
     buttonHistoryRights = Button(leftFrame, text="Zoek", command=get_history_rights)
     buttonHistoryTerminal = Button(leftFrame, text="Zoek", command=get_history_terminal)
 
+    labelOpendeur = Label(rightFrame, text="Open deur")
+    entryOpendeur = Entry(rightFrame, textvariable=inputVar11)
+    buttonOpendeur = Button(rightFrame, text="Open", command=opendoor)
+
+    labelSluitdeur = Label(rightFrame, text="Sluit deur")
+    entrySluitdeur = Entry(rightFrame, textvariable=inputVar12)
+    buttonSluitdeur = Button(rightFrame, text="Sluit", command=closedoor)
+
     buttonFire.grid(row=8, column=2)
     labelFire.grid(row=8, column=1)
 
@@ -880,6 +893,13 @@ if go:
     door6.grid(row=6, column=2)
     door7.grid(row=7, column=2)
     history.grid(row=9, column=2)
+
+    labelOpendeur.grid(row=11, column=0)
+    entryOpendeur.grid(row=11, column=1)
+    buttonOpendeur.grid(row=11, column=2)
+    labelSluitdeur.grid(row=12, column=0)
+    entrySluitdeur.grid(row=12, column=1)
+    buttonSluitdeur.grid(row=12, column=2)
 
     Whitespace7.grid(row=0, column=0)
     Whitespace8.grid(row=0, column=3)

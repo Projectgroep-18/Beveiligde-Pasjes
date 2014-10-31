@@ -706,18 +706,18 @@ if go:
                     lbaccess.insert(END, "Access:")
                     for x in range(0, len(data)):
                         lbname.insert(END, data[x][2])
-                    lbname.insert(END, data[x][2])
-                    if data[x][3] == 1:
-                        lbrights.insert(END, "Gast")
-                    elif data[x][3] == 2:
-                        lbrights.insert(END, "Schoonmaker")
-                    elif data[x][3] == 3:
-                        lbrights.insert(END, "Beveiliging")
-                    elif data[x][3] == 4:
-                        lbrights.insert(END, "Eigenaar")
-                        lbcid.insert(END, data[x][1])
-                        lbuid.insert(END, data[x][0])
-                        lbaccess.insert(END, data[x][4])
+                        lbname.insert(END, data[x][2])
+                        if data[x][3] == 1:
+                            lbrights.insert(END, "Gast")
+                        elif data[x][3] == 2:
+                            lbrights.insert(END, "Schoonmaker")
+                        elif data[x][3] == 3:
+                            lbrights.insert(END, "Beveiliging")
+                        elif data[x][3] == 4:
+                            lbrights.insert(END, "Eigenaar")
+                            lbcid.insert(END, data[x][1])
+                            lbuid.insert(END, data[x][0])
+                            lbaccess.insert(END, data[x][4])
                 else:
                     lbname.insert(END, "Geen Data")
                 lbname.grid(column=1, row=1)

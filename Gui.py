@@ -93,81 +93,114 @@ if go:
 
     def get_history_name():
         var0 = entryHistoryName.get()
-        var1 = UseDatabase.searchhistory_name(var0)
+        data = UseDatabase.searchhistory_name(var0)
+        global lbname
+        global lbcid
+        global lbtime
+        global lbtid
         top = Toplevel()
-        top.title("Geschiedenis")
+        top.title("Resultaten")
         top.focus_set()
-
-        if var1 != 0:
-            for x in range(0, len(var1)):
-                name = "Naam: %s" % var1[x][0]
-                tid = "TID: %s" % var1[x][3]
-                cid = "Pasjes ID: %s" % var1[x][1]
-                time = "Tijd: %s" %var1[x][2]
-
-                Message(top, text=name, width=500, anchor=NE).pack()
-                Message(top, text=cid, width=500, anchor=NE).pack()
-                Message(top, text=time, width=500, anchor=NE).pack()
-                Message(top, text=tid, width=500, anchor=NE).pack()
-                Message(top, text=" ", width=500).pack()
-
-            top.geometry('{}x{}'.format(300, 300))
+        top.resizable(0, 0)
+        lbname = Listbox(top, height=50)
+        lbcid = Listbox(top, height=50)
+        lbtime = Listbox(top, height=50)
+        lbtid = Listbox(top, height=50)
+        lbname.bind("<MouseWheel>", scroll)
+        lbcid.bind("<MouseWheel>", scroll)
+        lbtime.bind("<MouseWheel>", scroll)
+        lbtid.bind("<MouseWheel>", scroll)
+        if data:
+            lbname.insert(END, "Naam:")
+            lbcid.insert(END, "Card ID:")
+            lbtime.insert(END, "Datum:")
+            lbtid.insert(END, "Deur:")
+            for x in range(0, len(data)):
+                lbname.insert(END, data[x][0])
+                lbcid.insert(END, data[x][1])
+                lbtime.insert(END, data[x][2])
+                lbtid.insert(END, data[x][3])
         else:
-            Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
+            lbname.insert(END, "Geen Data")
+        lbname.grid(column=1, row=1)
+        lbcid.grid(column=3, row=1)
+        lbtime.grid(column=4, row=1)
+        lbtid.grid(column=2, row=1)
 
 
     def get_history_cid():
         var0 = (python_code_for_reading_uid.readArduino())
-        var1 = (UseDatabase.searchhistory_cid(var0))
+        data = (UseDatabase.searchhistory_cid(var0))
+        global lbname
+        global lbcid
+        global lbtime
+        global lbtid
         top = Toplevel()
-        top.title("Geschiedenis")
+        top.title("Resultaten")
         top.focus_set()
-
-        if var1 != 0:
-            for x in range(0, len(var1)):
-                name = "Naam: %s" % var1[x][0]
-                tid = "TID: %s" % var1[x][3]
-                cid = "Pasjes ID: %s" % var1[x][1]
-                time = "Tijd: %s" %var1[x][2]
-
-                Message(top, text=name, width=500, anchor=NE).pack()
-                Message(top, text=cid, width=500, anchor=NE).pack()
-                Message(top, text=time, width=500, anchor=NE).pack()
-                Message(top, text=tid, width=500, anchor=NE).pack()
-                Message(top, text=" ", width=500).pack()
-
-            top.geometry('{}x{}'.format(300, 300))
+        top.resizable(0, 0)
+        lbname = Listbox(top, height=50)
+        lbcid = Listbox(top, height=50)
+        lbtime = Listbox(top, height=50)
+        lbtid = Listbox(top, height=50)
+        lbname.bind("<MouseWheel>", scroll)
+        lbcid.bind("<MouseWheel>", scroll)
+        lbtime.bind("<MouseWheel>", scroll)
+        lbtid.bind("<MouseWheel>", scroll)
+        if data:
+            lbname.insert(END, "Naam:")
+            lbcid.insert(END, "Card ID:")
+            lbtime.insert(END, "Datum:")
+            lbtid.insert(END, "Deur:")
+            for x in range(0, len(data)):
+                lbname.insert(END, data[x][0])
+                lbcid.insert(END, data[x][1])
+                lbtime.insert(END, data[x][2])
+                lbtid.insert(END, data[x][3])
         else:
-            Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
+            lbname.insert(END, "Geen Data")
+        lbname.grid(column=1, row=1)
+        lbcid.grid(column=3, row=1)
+        lbtime.grid(column=4, row=1)
+        lbtid.grid(column=2, row=1)
 
 
     def get_history_rights():
         var1 = entryHistoryRights.get()
         if var1 == 'Eigenaar' or var1 == 'Gast' or var1 == 'Beveiliging' or var1 == 'Schoonmaker':
-            var2 = UseDatabase.searchhistory_rights(var1)
-            if var2:
-                top = Toplevel()
-                top.title("Geschiedenis")
-                top.focus_set()
-
-                if var2 != 0:
-                    for x in range(0, len(var2)):
-                        name = "Naam: %s" % var2[x][0]
-                        tid = "TID: %s" % var2[x][3]
-                        cid = "Pasjes ID: %s" % var2[x][1]
-                        time = "Tijd: %s" %var2[x][2]
-
-                        Message(top, text=name, width=500, anchor=NE).pack()
-                        Message(top, text=cid, width=500, anchor=NE).pack()
-                        Message(top, text=time, width=500, anchor=NE).pack()
-                        Message(top, text=tid, width=500, anchor=NE).pack()
-                        Message(top, text=" ", width=500).pack()
-
-                    top.geometry('{}x{}'.format(300, 300))
-                else:
-                    Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
+            data = UseDatabase.searchhistory_rights(var1)
+            global lbname
+            global lbcid
+            global lbtime
+            global lbtid
+            top = Toplevel()
+            top.title("Resultaten")
+            top.focus_set()
+            top.resizable(0, 0)
+            lbname = Listbox(top, height=50)
+            lbcid = Listbox(top, height=50)
+            lbtime = Listbox(top, height=50)
+            lbtid = Listbox(top, height=50)
+            lbname.bind("<MouseWheel>", scroll)
+            lbcid.bind("<MouseWheel>", scroll)
+            lbtime.bind("<MouseWheel>", scroll)
+            lbtid.bind("<MouseWheel>", scroll)
+            if data:
+                lbname.insert(END, "Naam:")
+                lbcid.insert(END, "Card ID:")
+                lbtime.insert(END, "Datum:")
+                lbtid.insert(END, "Deur:")
+                for x in range(0, len(data)):
+                    lbname.insert(END, data[x][0])
+                    lbcid.insert(END, data[x][1])
+                    lbtime.insert(END, data[x][2])
+                    lbtid.insert(END, data[x][3])
             else:
-                popup("Geen data")
+                lbname.insert(END, "Geen Data")
+            lbname.grid(column=1, row=1)
+            lbcid.grid(column=3, row=1)
+            lbtime.grid(column=4, row=1)
+            lbtid.grid(column=2, row=1)
         else:
             tkinter.messagebox.showerror("Geen geldige invoer", "Er moet een geldige invoer worden gegeven (Gast, Schoonmaker, Beveiliging, Eigenaar)")
 
@@ -176,30 +209,39 @@ if go:
         if not var1:
             tkinter.messagebox.showerror("Geen invoer", "Er moet wat ingevoerd worden")
         elif var1 != -1:
-            var2 = (UseDatabase.searchhistory_tid(var1))
-            if var2:
-                top = Toplevel()
-                top.title("Geschiedenis")
-                top.focus_set()
-
-                if var2 != 0:
-                    for x in range(0, len(var2)):
-                        name = "Naam: %s" % var2[x][0]
-                        tid = "TID: %s" % var2[x][3]
-                        cid = "Pasjes ID: %s" % var2[x][1]
-                        time = "Tijd: %s" %var2[x][2]
-
-                        Message(top, text=name, width=500, anchor=NE).pack()
-                        Message(top, text=cid, width=500, anchor=NE).pack()
-                        Message(top, text=time, width=500, anchor=NE).pack()
-                        Message(top, text=tid, width=500, anchor=NE).pack()
-                        Message(top, text=" ", width=500).pack()
-
-                    top.geometry('{}x{}'.format(300, 300))
-                else:
-                    Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
+            data = (UseDatabase.searchhistory_tid(var1))
+            global lbname
+            global lbcid
+            global lbtime
+            global lbtid
+            top = Toplevel()
+            top.title("Resultaten")
+            top.focus_set()
+            top.resizable(0, 0)
+            lbname = Listbox(top, height=50)
+            lbcid = Listbox(top, height=50)
+            lbtime = Listbox(top, height=50)
+            lbtid = Listbox(top, height=50)
+            lbname.bind("<MouseWheel>", scroll)
+            lbcid.bind("<MouseWheel>", scroll)
+            lbtime.bind("<MouseWheel>", scroll)
+            lbtid.bind("<MouseWheel>", scroll)
+            if data:
+                lbname.insert(END, "Naam:")
+                lbcid.insert(END, "Card ID:")
+                lbtime.insert(END, "Datum:")
+                lbtid.insert(END, "Deur:")
+                for x in range(0, len(data)):
+                    lbname.insert(END, data[x][0])
+                    lbcid.insert(END, data[x][1])
+                    lbtime.insert(END, data[x][2])
+                lbtid.insert(END, data[x][3])
             else:
-                popup("Geen data")
+                lbname.insert(END, "Geen Data")
+            lbname.grid(column=1, row=1)
+            lbcid.grid(column=3, row=1)
+            lbtime.grid(column=4, row=1)
+            lbtid.grid(column=2, row=1)
         else:
             tkinter.messagebox.showerror("Verkeerde invoer", "Deur ID moet een integer zijn")
 

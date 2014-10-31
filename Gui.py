@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-import python_code_for_reading_uid
+#import python_code_for_reading_uid
 
 login = Tk()
 go = False
@@ -45,27 +45,31 @@ if go:
     stdbg = root.cget("bg")
 
     def get_history():
-        var1 = UseDatabase.gethistory()
         top = Toplevel()
-        top.title("Geschiedenis")
+        top.title("Resultaten")
         top.focus_set()
-
-        if var1 != 0:
-            for x in range(0, len(var1)):
-                name = "Naam: %s" % var1[x][0]
-                tid = "TID: %s" % var1[x][3]
-                cid = "Pasjes ID: %s" % var1[x][1]
-                time = "Tijd: %s" %var1[x][2]
-
-                Message(top, text=name, width=500, anchor=NE).pack()
-                Message(top, text=cid, width=500, anchor=NE).pack()
-                Message(top, text=time, width=500, anchor=NE).pack()
-                Message(top, text=tid, width=500, anchor=NE).pack()
-                Message(top, text=" ", width=500).pack()
-
-            top.geometry('{}x{}'.format(300, 300))
+        top.resizable(0, 0)
+        lbname = Listbox(top, height=50)
+        lbcid = Listbox(top, height=50)
+        lbtime = Listbox(top, height=50)
+        lbtid = Listbox(top, height=50)
+        data = UseDatabase.gethistory()
+        if data:
+            lbname.insert(END, "Naam:")
+            lbcid.insert(END, "Card ID:")
+            lbtime.insert(END, "Datum:")
+            lbtid.insert(END, "Deur:")
+            for x in range(0, len(data)):
+                lbname.insert(END, data[x+2][0])
+                lbcid.insert(END, data[x+2][1])
+                lbtime.insert(END, data[x+2][2])
+                lbtid.insert(END, data[x+2][3])
         else:
-            Message(top, text="Geschiedenis", width=500, anchor=NE).pack()
+            lbname.insert(END, "Geen Data")
+        lbname.grid(column=1, row=1)
+        lbcid.grid(column=3, row=1)
+        lbtime.grid(column=4, row=1)
+        lbtid.grid(column=2, row=1)
 
 
     def get_history_name():
@@ -605,24 +609,30 @@ if go:
         top = Toplevel()
         top.title("Resultaten")
         top.focus_set()
+        scrollbar = Scrollbar(top)
+        lbname = Listbox(top, yscrollcommand=scrollbar.set)
+        lbcid = Listbox(top, yscrollcommand=scrollbar.set)
+        lbdate = Listbox(top, yscrollcommand=scrollbar.set)
+        lbtid = Listbox(top, yscrollcommand=scrollbar.set)
 
-        if data != 0:
+        if data:
+            lbname.insert(END, "Naam:")
+            lbcid.insert(END, "Card ID:")
+            lbdate.insert(END, "Datum:")
+            lbtid.insert(END, "Deur:")
             for x in range(0, len(data)):
-                name = "Naam: %s" % data[x][0]
-                cid = "Pasjes ID: %s" % data[x][1]
-                time = "Datum: %s" % data[x][2]
-                tid = "Deur: %s" % data[x][3]
-
-                Message(top, text=name, width=500, anchor=NW).pack()
-                Message(top, text=cid, width=500, anchor=NW).pack()
-                Message(top, text=time, width=500, anchor=NW).pack()
-                Message(top, text=tid, width=500, anchor=NW).pack()
-                Message(top, text=" ", width=500).pack()
-
-            top.geometry('{}x{}'.format(300, 300))
+                lbname.insert(END, data[x+2][0])
+                lbcid.insert(END, data[x+2][1])
+                lbdate.insert(END, data[x+2][2])
+                lbtid.insert(END, data[x+2][3])
         else:
-            Message(top, text="Geen data gevonden", width=500, anchor=NW).pack()
-
+            lbname.insert(END, "Geen Data")
+        lbname.grid(collumn=1)
+        lbcid.grid(collumn=2)
+        lbdate.grid(collumn=3)
+        lbtid.grid(collumn=4)
+        scrollbar.grid(collumn=5, fill=Y)
+        scrollbar.config(command=(lbname.yview, lbcid.yview, lbdate.yview, lbtid.yview))
 
     root.title("Hotel Management")
     root.resizable(0, 0)

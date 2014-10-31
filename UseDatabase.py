@@ -216,14 +216,6 @@ def search_name(naam):
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
-            if data[x][3] == 1:
-                data[x][3] = "Gast"
-            elif data[x][3] == 2:
-                data[x][3] = "Schoonmaker"
-            elif data[x][3] == 3:
-                data[x][3] = "Beveiliging"
-            elif data[x][3] = 4:
-                data[x][3] = "Eigenaar"
             print('')
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])
@@ -243,14 +235,6 @@ def search_cid(cid):
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
-            if data[x][3] == 1:
-                data[x][3] = "Gast"
-            elif data[x][3] == 2:
-                data[x][3] = "Schoonmaker"
-            elif data[x][3] == 3:
-                data[x][3] = "Beveiliging"
-            elif data[x][3] = 4:
-                data[x][3] = "Eigenaar"
             print('')
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])
@@ -285,14 +269,6 @@ def search_rights(rechten):
     data = c.fetchall()
     if data:
         for x in range(0, len(data)):
-            if data[x][3] == 1:
-                data[x][3] = "Gast"
-            elif data[x][3] == 2:
-                data[x][3] = "Schoonmaker"
-            elif data[x][3] == 3:
-                data[x][3] = "Beveiliging"
-            elif data[x][3] = 4:
-                data[x][3] = "Eigenaar"
             print('')
             print('Naam = ', data[x][2])
             print('Rechten = ', data[x][3])

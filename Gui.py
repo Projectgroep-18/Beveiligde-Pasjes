@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 import UseDatabase
-#import python_code_for_reading_uid
+import python_code_for_reading_uid
 
 login = Tk()
 go = False
@@ -711,7 +711,7 @@ if go:
         if data != 0:
             for x in range(0, len(data)):
                 name = "Naam: %s" % data[x][2]
-                uid = "UID: %s" % data[x][0]
+                uid = "Gebruiker ID: %s" % data[x][0]
                 cid = "Pasjes ID: %s" % data[x][1]
                 if data[x][3] == 1:
                     rights = "Rechten: Gast"
@@ -743,7 +743,7 @@ if go:
 
             for x in range(0, len(data)):
                 name = "Naam: %s" % data[x][2]
-                uid = "UID: %s" % data[x][0]
+                uid = "Gebruiker ID: %s" % data[x][0]
                 cid = "Pasjes ID: %s" % data[x][1]
                 if data[x][3] == 1:
                     rights = "Rechten: Gast"

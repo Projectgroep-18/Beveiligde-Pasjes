@@ -55,7 +55,6 @@ if go:
         lbtid.yview("scroll", event.delta, "units")
         return "break"
 
-
     def get_history():
         global lbname
         global lbcid
@@ -90,7 +89,6 @@ if go:
         lbcid.grid(column=3, row=1)
         lbtime.grid(column=4, row=1)
         lbtid.grid(column=2, row=1)
-
 
     def get_history_name():
         var0 = entryHistoryName.get()
@@ -128,7 +126,6 @@ if go:
         lbtime.grid(column=4, row=1)
         lbtid.grid(column=2, row=1)
 
-
     def get_history_cid():
         var0 = (python_code_for_reading_uid.readArduino())
         data = (UseDatabase.searchhistory_cid(var0))
@@ -164,7 +161,6 @@ if go:
         lbcid.grid(column=3, row=1)
         lbtime.grid(column=4, row=1)
         lbtid.grid(column=2, row=1)
-
 
     def get_history_rights():
         var1 = entryHistoryRights.get()
@@ -204,7 +200,6 @@ if go:
             lbtid.grid(column=2, row=1)
         else:
             tkinter.messagebox.showerror("Geen geldige invoer", "Er moet een geldige invoer worden gegeven (Gast, Schoonmaker, Beveiliging, Eigenaar)")
-
 
     def get_history_terminal():
         var1 = string_int(entryHistoryTerminal.get())
@@ -246,7 +241,6 @@ if go:
             lbtid.grid(column=2, row=1)
         else:
             tkinter.messagebox.showerror("Verkeerde invoer", "Deur ID moet een integer zijn")
-
 
     def emergency():
         global firestate
@@ -341,7 +335,6 @@ if go:
             ddoor6 = False
             ddoor7 = False
 
-
     def door1Func():
         doorO = PhotoImage(file="door_eigenaar_open.png")
         doorC = PhotoImage(file="door_eigenaar_closed.png")
@@ -362,7 +355,6 @@ if go:
                 door1.configure(image=doorC)
                 door1.image = doorC
                 ddoor1 = False
-
 
     def door2Func():
         doorO = PhotoImage(file="door_security_open.png")
@@ -385,7 +377,6 @@ if go:
                 door2.image = doorC
                 ddoor2 = False
 
-
     def door3Func():
         doorO = PhotoImage(file="door_schoonmaker_open.png")
         doorC = PhotoImage(file="door_schoonmaker_closed.png")
@@ -406,7 +397,6 @@ if go:
                 door3.configure(image=doorC)
                 door3.image = doorC
                 ddoor3 = False
-
 
     def door4Func():
         doorO = PhotoImage(file="door_1_open.png")
@@ -429,7 +419,6 @@ if go:
                 door4.image = doorC
                 ddoor4 = False
 
-
     def door5Func():
         doorO = PhotoImage(file="door_2_open.png")
         doorC = PhotoImage(file="door_2_closed.png")
@@ -450,7 +439,6 @@ if go:
                 door5.configure(image=doorC)
                 door5.image = doorC
                 ddoor5 = False
-
 
     def door6Func():
         doorO = PhotoImage(file="door_3_open.png")
@@ -473,7 +461,6 @@ if go:
                 door6.image = doorC
                 ddoor6 = False
 
-
     def door7Func():
         doorO = PhotoImage(file="door_4_open.png")
         doorC = PhotoImage(file="door_4_closed.png")
@@ -495,7 +482,6 @@ if go:
                 door7.image = doorC
                 ddoor7 = False
 
-
     def en_card():
         naam = UseDatabase.activeer_cid(python_code_for_reading_uid.readArduino())
         if naam:
@@ -504,7 +490,6 @@ if go:
         else:
             popup("Gebruiker ID bestaat niet of is al geactiveerd")
 
-
     def dis_card():
         naam = UseDatabase.deactiveer_cid(python_code_for_reading_uid.readArduino())
         if naam:
@@ -512,7 +497,6 @@ if go:
             popup("%s is gedeactiveerd" % naam)
         else:
             popup("Gebruiker ID bestaat niet of is al gedeactiveerd")
-
 
     def dis_user():
         if string_int(entryDisableID.get()) != -1:
@@ -525,7 +509,6 @@ if go:
         else:
             tkinter.messagebox.showerror("Ongeldige invoer", "Gebruiker ID moet een integer zijn")
 
-
     def en_user():
         if string_int(entryEnableID.get()) != -1:
             naam = UseDatabase.activeer_uid(string_int(entryEnableID.get()))
@@ -536,14 +519,12 @@ if go:
         else:
             tkinter.messagebox.showerror("Ongeldige invoer", "Gebruiker ID moet een integer zijn")
 
-
     def string_int(string):
         try:
             int(string)
             return int(string)
         except ValueError:
             return -1
-
 
     def delete_from_db():
         if string_int(entryDeleteID.get()) != -1:
@@ -554,7 +535,6 @@ if go:
                 popup("Gebruiker ID bestaat niet")
         else:
             tkinter.messagebox.showerror("Ongeldige invoer", "Gebruiker ID moet een integer zijn")
-
 
     def scroll2(event):
         global lbname
@@ -568,7 +548,6 @@ if go:
         lbuid.yview("scroll", event.delta, "units")
         lbaccess.yview("scroll", event.delta, "units")
         return "break"
-
 
     def search_name_gui():
         var1 = entryName1.get()
@@ -622,7 +601,6 @@ if go:
         else:
             tkinter.messagebox.showerror("Geen invoer", "Er moet iets worden ingevoerd")
 
-
     def search_cid_gui():
         var1 = (python_code_for_reading_uid.readArduino())
         data = UseDatabase.search_cid(string_int(var1))
@@ -653,7 +631,6 @@ if go:
             lbaccess.insert(END, "Kaart staat:")
             for x in range(0, len(data)):
                 lbname.insert(END, data[x][2])
-                lbname.insert(END, data[x][2])
                 if data[x][3] == 1:
                     lbrights.insert(END, "Gast")
                 elif data[x][3] == 2:
@@ -672,7 +649,6 @@ if go:
         lbcid.grid(column=3, row=1)
         lbuid.grid(column=4, row=1)
         lbaccess.grid(column=5, row=1)
-
 
     def search_rights_gui():
         var1 = entryRights1.get()
@@ -706,7 +682,6 @@ if go:
                     lbaccess.insert(END, "Kaart staat:")
                     for x in range(0, len(data)):
                         lbname.insert(END, data[x][2])
-                        lbname.insert(END, data[x][2])
                         if data[x][3] == 1:
                             lbrights.insert(END, "Gast")
                         elif data[x][3] == 2:
@@ -715,9 +690,9 @@ if go:
                             lbrights.insert(END, "Beveiliging")
                         elif data[x][3] == 4:
                             lbrights.insert(END, "Eigenaar")
-                            lbcid.insert(END, data[x][1])
-                            lbuid.insert(END, data[x][0])
-                            lbaccess.insert(END, data[x][4])
+                        lbcid.insert(END, data[x][1])
+                        lbuid.insert(END, data[x][0])
+                        lbaccess.insert(END, data[x][4])
                 else:
                     lbname.insert(END, "Geen Data")
                 lbname.grid(column=1, row=1)
@@ -727,7 +702,6 @@ if go:
                 lbaccess.grid(column=5, row=1)
         else:
             tkinter.messagebox.showerror("Geen invoer", "Er moet iets worden ingevoerd")
-
 
     def opendoor():
         global ddoor1
@@ -775,7 +749,6 @@ if go:
                 door7.configure(image=doorO_guest4)
                 door7.image = doorO_guest4
                 ddoor7 = True
-
 
     def closedoor():
         if firestate:
@@ -827,7 +800,6 @@ if go:
                 door7.image = doorC_guest4
                 ddoor7 = False
 
-
     def add_user():
         var2, var3 = entryName2.get(), entryRights2.get()
         if var2 and var3:
@@ -844,7 +816,6 @@ if go:
         else:
             tkinter.messagebox.showerror("Geen invoer", "Er moet wat worden ingevoerd")
 
-
     def popup(string):
         top = Toplevel()
         top.title("Resultaten")
@@ -852,7 +823,6 @@ if go:
 
         Message(top, text=string).pack()
         Button(top, text="OK", command=top.destroy).pack()
-
 
     def popup_search_name(data):
         top = Toplevel()
@@ -885,7 +855,6 @@ if go:
         else:
             Message(top, text="Persoon niet gevonden", width=500, anchor=NE).pack()
 
-
     def popup_search_rights(data):
         if data != 0:
             top = Toplevel()
@@ -914,7 +883,6 @@ if go:
                 Message(top, text=" ", width=500).pack()
 
             top.geometry('{}x{}'.format(300, 300))
-
 
     def popup_get_history(data):
         top = Toplevel()

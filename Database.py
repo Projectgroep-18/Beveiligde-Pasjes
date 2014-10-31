@@ -22,9 +22,6 @@ c.execute("""CREATE TABLE persoon
 # 1 is gast, 2 is schoonmaker, 3 is beveiliging, 4 is eigenaar. Uitbreiding mogelijk.
 # De persoon met de hoogste rank moet overal bijkunnen.
 
-c.execute("""CREATE TABLE versleuteling
-             ('KeyID' integer, 'key' text)""")
-
 c.execute("""CREATE TABLE terminal
              ('TID' integer primary key, 'Rechten' integer, 'CID' integer)""")
 # Rechten is een integer die aangeeft welke 'rang' de gebruiker heeft.

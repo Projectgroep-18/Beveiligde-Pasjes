@@ -766,7 +766,7 @@ if go:
             elif var1 == 5:
                 door5.configure(image=doorO_guest2)
                 door5.image = doorO_guest2
-                ddoor51 = True
+                ddoor5 = True
             elif var1 == 6:
                 door6.configure(image=doorO_guest3)
                 door6.image = doorO_guest3

@@ -411,14 +411,54 @@ def fire():
 
 # Forces door of terminal TID open.
 def opendoor(tid):
-    Door = check(1189998819991197253, tid)
-    return Door
+    global ddoor1
+    global ddoor2
+    global ddoor3
+    global ddoor4
+    global ddoor5
+    global ddoor6
+    global ddoor7
+    if tid == 1:
+        ddoor1 = True
+    elif tid == 2:
+        ddoor2 = True
+    elif tid == 3:
+        ddoor3 = True
+    elif tid == 4:
+        ddoor4 = True
+    elif tid == 5:
+        ddoor5 = True
+    elif tid == 6:
+        ddoor6 = True
+    elif tid == 7:
+        ddoor7 = True
+    return True
 
 
 # Forces door of terminal TID closed.
 def closedoor(tid):
-    Door = False
-    return Door
+    global ddoor1
+    global ddoor2
+    global ddoor3
+    global ddoor4
+    global ddoor5
+    global ddoor6
+    global ddoor7
+    if tid == 1:
+        ddoor1 = False
+    elif tid == 2:
+        ddoor2 = False
+    elif tid == 3:
+        ddoor3 = False
+    elif tid == 4:
+        ddoor4 = False
+    elif tid == 5:
+        ddoor5 = False
+    elif tid == 6:
+        ddoor6 = False
+    elif tid == 7:
+        ddoor7 = False
+    return False
 
 
 # Idee: Een knop/functie die voor 1 terminal de deur opent in geval van nood waarbij niet alle deuren openhoeven

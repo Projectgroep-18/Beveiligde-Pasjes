@@ -178,7 +178,7 @@ if go:
             else:
                 popup("Lege lijst")
         else:
-            tkinter.messagebox.showerror("Wrong Input", "User ID must be an integer")
+            tkinter.messagebox.showerror("Wrong Input", "Terminal ID must be an integer")
 
 
 

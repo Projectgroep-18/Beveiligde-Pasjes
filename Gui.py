@@ -597,7 +597,7 @@ if go:
                 lbrights.insert(END, "Rechten:")
                 lbcid.insert(END, "Card ID:")
                 lbuid.insert(END, "User ID:")
-                lbaccess.insert(END, "Access:")
+                lbaccess.insert(END, "Kaart staat:")
                 for x in range(0, len(data)):
                     lbname.insert(END, data[x][0])
                     lbrights.insert(END, data[x][1])

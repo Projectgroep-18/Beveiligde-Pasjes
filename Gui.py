@@ -570,7 +570,8 @@ if go:
 
 
     def search_name_gui():
-        data = entryName1.get()
+        var1 = entryName1.get()
+        data = UseDatabase.search_name(var1)
         if data:
             global lbname
             global lbrights

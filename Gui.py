@@ -178,7 +178,7 @@ if go:
             else:
                 popup("Geen data")
         else:
-            tkinter.messagebox.showerror("Verkeerde invoer", "Gebruiker ID moet een integer zijn")
+            tkinter.messagebox.showerror("Verkeerde invoer", "Deur ID moet een integer zijn")
 
 
 

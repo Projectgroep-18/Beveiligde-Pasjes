@@ -599,10 +599,10 @@ if go:
                 lbuid.insert(END, "User ID:")
                 lbaccess.insert(END, "Access:")
                 for x in range(0, len(data)):
-                    lbname.insert(END, data[x][2])
-                    lbrights.insert(END, data[x][3])
-                    lbcid.insert(END, data[x][1])
-                    lbuid.insert(END, data[x][0])
+                    lbname.insert(END, data[x][0])
+                    lbrights.insert(END, data[x][1])
+                    lbcid.insert(END, data[x][2])
+                    lbuid.insert(END, data[x][3])
                     lbrights.insert(END, data[x][4])
             else:
                 lbname.insert(END, "Geen Data")
@@ -644,10 +644,10 @@ if go:
             lbuid.insert(END, "User ID:")
             lbaccess.insert(END, "Access:")
             for x in range(0, len(data)):
-                lbname.insert(END, data[x][2])
-                lbrights.insert(END, data[x][3])
-                lbcid.insert(END, data[x][1])
-                lbuid.insert(END, data[x][0])
+                lbname.insert(END, data[x][0])
+                lbrights.insert(END, data[x][1])
+                lbcid.insert(END, data[x][2])
+                lbuid.insert(END, data[x][3])
                 lbrights.insert(END, data[x][4])
         else:
             lbname.insert(END, "Geen Data")
@@ -689,11 +689,11 @@ if go:
                     lbuid.insert(END, "User ID:")
                     lbaccess.insert(END, "Access:")
                     for x in range(0, len(data)):
-                        lbname.insert(END, data[x][2])
-                        lbrights.insert(END, data[x][3])
-                        lbcid.insert(END, data[x][1])
-                        lbuid.insert(END, data[x][0])
-                        lbrights.insert(END, data[x][4])
+                        lbname.insert(END, data[x][1])
+                        lbrights.insert(END, data[x][2])
+                        lbcid.insert(END, data[x][3])
+                        lbuid.insert(END, data[x][4])
+                        lbrights.insert(END, data[x][5])
                 else:
                     lbname.insert(END, "Geen Data")
                 lbname.grid(column=1, row=1)

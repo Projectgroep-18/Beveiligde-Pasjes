@@ -648,9 +648,9 @@ if go:
         if data:
             lbname.insert(END, "Naam:")
             lbrights.insert(END, "Rechten:")
-            lbcid.insert(END, "Card ID:")
-            lbuid.insert(END, "User ID:")
-            lbaccess.insert(END, "Access:")
+            lbcid.insert(END, "Pasjes ID:")
+            lbuid.insert(END, "Gebruiker ID:")
+            lbaccess.insert(END, "Kaart staat:")
             for x in range(0, len(data)):
                 lbname.insert(END, data[x][2])
                 lbname.insert(END, data[x][2])
@@ -701,9 +701,9 @@ if go:
                 if data:
                     lbname.insert(END, "Naam:")
                     lbrights.insert(END, "Rechten:")
-                    lbcid.insert(END, "Card ID:")
-                    lbuid.insert(END, "User ID:")
-                    lbaccess.insert(END, "Access:")
+                    lbcid.insert(END, "Pasjes ID:")
+                    lbuid.insert(END, "Gebruiker ID:")
+                    lbaccess.insert(END, "Kaart staat:")
                     for x in range(0, len(data)):
                         lbname.insert(END, data[x][2])
                         lbname.insert(END, data[x][2])

@@ -555,26 +555,151 @@ if go:
         else:
             tkinter.messagebox.showerror("Ongeldige invoer", "Gebruiker ID moet een integer zijn")
 
+    def scroll2(event):
+        global lbname
+        global lbrights
+        global lbcid
+        global lbuid
+        global lbaccess
+        lbname.yview("scroll", event.delta, "units")
+        lbrights.yview("scroll", event.delta, "units")
+        lbcid.yview("scroll", event.delta, "units")
+        lbuid.yview("scroll", event.delta, "units")
+        lbaccess.yview("scroll", event.delta, "units")
+        return "break"
+
 
     def search_name_gui():
-        var1 = entryName1.get()
-        if var1:
-            popup_search_name(UseDatabase.search_name(var1))
+        data = entryName1.get()
+        if data:
+            global lbname
+            global lbrights
+            global lbcid
+            global lbuid
+            global lbacess
+            top = Toplevel()
+            top.title("Resultaten")
+            top.focus_set()
+            top.resizable(0, 0)
+            lbname = Listbox(top, height=50)
+            lbrights = Listbox(top, height=50)
+            lbcid = Listbox(top, height=50)
+            lbuid = Listbox(top, height=50)
+            lbaccess = Listbox(top, height=50)
+            lbname.bind("<MouseWheel>", scroll2)
+            lbrights.bind("<MouseWheel>", scroll2)
+            lbcid.bind("<MouseWheel>", scroll2)
+            lbuid.bind("<MouseWheel>", scroll2)
+            lbaccess.bind("<MouseWheel>", scroll2)
+            if data:
+                lbname.insert(END, "Naam:")
+                lbrights.insert(END, "Rechten:")
+                lbcid.insert(END, "Card ID:")
+                lbuid.insert(END, "User ID:")
+                lbaccess.insert(END, "Access:")
+                for x in range(0, len(data)):
+                    lbname.insert(END, data[x][2])
+                    lbrights.insert(END, data[x][3])
+                    lbcid.insert(END, data[x][1])
+                    lbuid.insert(END, data[x][0])
+                    lbrights.insert(END, data[x][4])
+            else:
+                lbname.insert(END, "Geen Data")
+            lbname.grid(column=1, row=1)
+            lbrights.grid(column=2, row=1)
+            lbcid.grid(column=3, row=1)
+            lbuid.grid(column=4, row=1)
+            lbaccess.grid(column=5, row=1)
         else:
             tkinter.messagebox.showerror("Geen invoer", "Er moet iets worden ingevoerd")
 
 
     def search_cid_gui():
         var1 = (python_code_for_reading_uid.readArduino())
-        popup_search_name(UseDatabase.search_cid(string_int(var1)))
+        data = UseDatabase.search_cid(string_int(var1))
+        global lbname
+        global lbrights
+        global lbcid
+        global lbuid
+        global lbacess
+        top = Toplevel()
+        top.title("Resultaten")
+        top.focus_set()
+        top.resizable(0, 0)
+        lbname = Listbox(top, height=50)
+        lbrights = Listbox(top, height=50)
+        lbcid = Listbox(top, height=50)
+        lbuid = Listbox(top, height=50)
+        lbaccess = Listbox(top, height=50)
+        lbname.bind("<MouseWheel>", scroll2)
+        lbrights.bind("<MouseWheel>", scroll2)
+        lbcid.bind("<MouseWheel>", scroll2)
+        lbuid.bind("<MouseWheel>", scroll2)
+        lbaccess.bind("<MouseWheel>", scroll2)
+        if data:
+            lbname.insert(END, "Naam:")
+            lbrights.insert(END, "Rechten:")
+            lbcid.insert(END, "Card ID:")
+            lbuid.insert(END, "User ID:")
+            lbaccess.insert(END, "Access:")
+            for x in range(0, len(data)):
+                lbname.insert(END, data[x][2])
+                lbrights.insert(END, data[x][3])
+                lbcid.insert(END, data[x][1])
+                lbuid.insert(END, data[x][0])
+                lbrights.insert(END, data[x][4])
+        else:
+            lbname.insert(END, "Geen Data")
+        lbname.grid(column=1, row=1)
+        lbrights.grid(column=2, row=1)
+        lbcid.grid(column=3, row=1)
+        lbuid.grid(column=4, row=1)
+        lbaccess.grid(column=5, row=1)
 
 
     def search_rights_gui():
         var1 = entryRights1.get()
         if var1:
-            searchresults = UseDatabase.search_rights(var1)
-            if searchresults:
-                popup_search_rights(searchresults)
+            data = UseDatabase.search_rights(var1)
+            if data:
+                global lbname
+                global lbrights
+                global lbcid
+                global lbuid
+                global lbacess
+                top = Toplevel()
+                top.title("Resultaten")
+                top.focus_set()
+                top.resizable(0, 0)
+                lbname = Listbox(top, height=50)
+                lbrights = Listbox(top, height=50)
+                lbcid = Listbox(top, height=50)
+                lbuid = Listbox(top, height=50)
+                lbaccess = Listbox(top, height=50)
+                lbname.bind("<MouseWheel>", scroll2)
+                lbrights.bind("<MouseWheel>", scroll2)
+                lbcid.bind("<MouseWheel>", scroll2)
+                lbuid.bind("<MouseWheel>", scroll2)
+                lbaccess.bind("<MouseWheel>", scroll2)
+                if data:
+                    lbname.insert(END, "Naam:")
+                    lbrights.insert(END, "Rechten:")
+                    lbcid.insert(END, "Card ID:")
+                    lbuid.insert(END, "User ID:")
+                    lbaccess.insert(END, "Access:")
+                    for x in range(0, len(data)):
+                        lbname.insert(END, data[x][2])
+                        lbrights.insert(END, data[x][3])
+                        lbcid.insert(END, data[x][1])
+                        lbuid.insert(END, data[x][0])
+                        lbrights.insert(END, data[x][4])
+                else:
+                    lbname.insert(END, "Geen Data")
+                lbname.grid(column=1, row=1)
+                lbrights.grid(column=2, row=1)
+                lbcid.grid(column=3, row=1)
+                lbuid.grid(column=4, row=1)
+                lbaccess.grid(column=5, row=1)
         else:
             tkinter.messagebox.showerror("Geen invoer", "Er moet iets worden ingevoerd")
 

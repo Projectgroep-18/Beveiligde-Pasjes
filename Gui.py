@@ -55,6 +55,7 @@ if go:
         lbtid.yview("scroll", event.delta, "units")
         return "break"
 
+
     def get_history():
         global lbname
         global lbcid
@@ -245,7 +246,6 @@ if go:
             lbtid.grid(column=2, row=1)
         else:
             tkinter.messagebox.showerror("Verkeerde invoer", "Deur ID moet een integer zijn")
-
 
 
     def emergency():
@@ -555,6 +555,7 @@ if go:
         else:
             tkinter.messagebox.showerror("Ongeldige invoer", "Gebruiker ID moet een integer zijn")
 
+
     def scroll2(event):
         global lbname
         global lbrights
@@ -599,8 +600,16 @@ if go:
                 lbuid.insert(END, "User ID:")
                 lbaccess.insert(END, "Kaart staat:")
                 for x in range(0, len(data)):
-                    lbname.insert(END, data[x][2])
                     lbrights.insert(END, data[x][3])
+                    lbname.insert(END, data[x][2])
+                    if data[x][3] == 1:
+                        lbrights.insert(END, "Gast")
+                    elif data[x][3] == 2:
+                        lbrights.insert(END, "Schoonmaker")
+                    elif data[x][3] == 3:
+                        lbrights.insert(END, "Beveiliging")
+                    elif data[x][3] == 4:
+                        lbrights.insert(END, "Eigenaar")
                     lbcid.insert(END, data[x][1])
                     lbuid.insert(END, data[x][0])
                     lbaccess.insert(END, data[x][4])

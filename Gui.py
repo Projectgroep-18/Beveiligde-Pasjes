@@ -513,6 +513,88 @@ if go:
             tkinter.messagebox.showerror("Geen invoer", "Er moet iets worden ingevoerd")
 
 
+    def opendoor():
+        global ddoor1
+        global ddoor2
+        global ddoor3
+        global ddoor4
+        global ddoor5
+        global ddoor6
+        global ddoor7
+        doorO_eigenaar = PhotoImage(file="door_eigenaar_open.png")
+        doorO_beveiliging = PhotoImage(file="door_security_open.png")
+        doorO_janitor = PhotoImage(file="door_schoonmaker_open.png")
+        doorO_guest1 = PhotoImage(file="door_1_open.png")
+        doorO_guest2 = PhotoImage(file="door_2_open.png")
+        doorO_guest3 = PhotoImage(file="door_3_open.png")
+        doorO_guest4 = PhotoImage(file="door_4_open.png")
+        var1 = string_int(entryOpenTerminal.get())
+        if var1:
+            UseDatabase.opendoor(var1)
+            if var1 == 1:
+                door1.configure(image=doorO_eigenaar)
+                door1.image = doorO_eigenaar
+            elif var1 == 2:
+                door2.configure(image=doorO_beveiliging)
+                door2.image = doorO_beveiliging
+            elif var1 == 3:
+                door2.configure(image=doorO_janitor)
+                door2.image = doorO_janitor
+            elif var1 == 4:
+                door2.configure(image=doorO_guest1)
+                door2.image = doorO_guest1
+            elif var1 == 5:
+                door2.configure(image=doorO_guest2)
+                door2.image = doorO_guest2
+            elif var1 == 6:
+                door2.configure(image=doorO_guest3)
+                door2.image = doorO_guest3
+            elif var1 == 7:
+                door2.configure(image=doorO_guest4)
+                door2.image = doorO_guest4
+
+
+    def closedoor():
+        global ddoor1
+        global ddoor2
+        global ddoor3
+        global ddoor4
+        global ddoor5
+        global ddoor6
+        global ddoor7
+        doorC_eigenaar = PhotoImage(file="door_eigenaar_closed.png")
+        doorC_beveiliging = PhotoImage(file="door_security_closed.png")
+        doorC_janitor = PhotoImage(file="door_schoonmaker_closed.png")
+        doorC_guest1 = PhotoImage(file="door_1_closed.png")
+        doorC_guest2 = PhotoImage(file="door_2_closed.png")
+        doorC_guest3 = PhotoImage(file="door_3_closed.png")
+        doorC_guest4 = PhotoImage(file="door_4_closed.png")
+        var1 = string_int(entryOpenTerminal.get())
+        if var1:
+            UseDatabase.opendoor(var1)
+            if var1 == 1:
+                door1.configure(image=doorC_eigenaar)
+                door1.image = doorC_eigenaar
+            elif var1 == 2:
+                door2.configure(image=doorC_beveiliging)
+                door2.image = doorC_beveiliging
+            elif var1 == 3:
+                door2.configure(image=doorC_janitor)
+                door2.image = doorC_janitor
+            elif var1 == 4:
+                door2.configure(image=doorC_guest1)
+                door2.image = doorC_guest1
+            elif var1 == 5:
+                door2.configure(image=doorC_guest2)
+                door2.image = doorC_guest2
+            elif var1 == 6:
+                door2.configure(image=doorC_guest3)
+                door2.image = doorC_guest3
+            elif var1 == 7:
+                door2.configure(image=doorC_guest4)
+                door2.image = doorC_guest4
+
+
     def add_user():
         var2, var3 = entryName2.get(), entryRights2.get()
         if var2 and var3:

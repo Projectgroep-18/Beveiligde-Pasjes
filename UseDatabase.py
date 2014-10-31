@@ -222,7 +222,7 @@ def search_name(naam):
                 data[x][3] = "Schoonmaker"
             elif data[x][3] == 3:
                 data[x][3] = "Beveiliging"
-            elif data[x][3] == 4:
+            elif data[x][3] = 4:
                 data[x][3] = "Eigenaar"
             print('')
             print('Naam = ', data[x][2])
@@ -249,7 +249,7 @@ def search_cid(cid):
                 data[x][3] = "Schoonmaker"
             elif data[x][3] == 3:
                 data[x][3] = "Beveiliging"
-            elif data[x][3] == 4:
+            elif data[x][3] = 4:
                 data[x][3] = "Eigenaar"
             print('')
             print('Naam = ', data[x][2])
@@ -291,7 +291,7 @@ def search_rights(rechten):
                 data[x][3] = "Schoonmaker"
             elif data[x][3] == 3:
                 data[x][3] = "Beveiliging"
-            elif data[x][3] == 4:
+            elif data[x][3] = 4:
                 data[x][3] = "Eigenaar"
             print('')
             print('Naam = ', data[x][2])
